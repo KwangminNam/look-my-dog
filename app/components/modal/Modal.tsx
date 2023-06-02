@@ -22,11 +22,6 @@ export default function Modal({
   closeAction
 }: ModalProps) {
 
-  console.log(isOpen)
-
-  useEffect(()=>{
-    console.log('123')
-  },[isOpen])
 
   return (
     isOpen ? (<div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
@@ -39,6 +34,10 @@ export default function Modal({
                 <IoMdClose size={30} />
               </button>
             </header>
+            {/* BODY CONTENT */}
+            <div>{bodyContent}</div>
+            {/* FOOTER CONTENT */}
+            <div>{footerContent}</div>
           </div>
         </div>
       </div>
