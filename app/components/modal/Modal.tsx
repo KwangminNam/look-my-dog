@@ -1,16 +1,19 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from "react";
-import { IoMdClose } from 'react-icons/io';
-import useLoginModal from "../hooks/useLoginModal";
+import { IoMdClose } from "react-icons/io";
+import Button from "../Button";
 
 interface ModalProps {
   title: string;
   subtitle?: string;
   isOpen: boolean;
+  actionLabel: string;
   bodyContent?: React.ReactElement;
   footerContent?: React.ReactElement;
+  secondActionLabel?: string;
+  secondActionOnclick?: () => void;
   closeAction: () => void;
+  actionOnclick: () => void;
 }
 
 export default function Modal({
@@ -19,28 +22,62 @@ export default function Modal({
   bodyContent,
   isOpen,
   footerContent,
-  closeAction
+  actionLabel,
+  actionOnclick,
+  closeAction,
+  secondActionLabel,
+  secondActionOnclick
 }: ModalProps) {
-
-
-  return (
-    isOpen ? (<div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
-      <div className={`translate duration-300 h-full ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+  return isOpen ? (
+    <div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
+      <div
+        className={`translate duration-300 h-full ${
+          isOpen ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
         <div className="flex justify-center items-center h-full">
-          <div className="bg-white w-1/2 h-[800px] rounded-2xl">
-            <header className="h-16 boder border-b-2 flex justify-center text-2xl items-center relative">
+          {/* MODAL */}
+          <div className="bg-white w-[900px] h-[850px] rounded-2xl relative flex flex-col justify-between px-7">
+            <header
+              className="
+                py-9
+                boder
+                border-b-2
+                flex
+                justify-center
+                text-2xl
+                items-center
+              "
+            >
               <span>{title}</span>
-              <button className="absolute top-3 right-9" onClick={closeAction}>
-                <IoMdClose size={30} />
+              <button className="absolute top-8 right-9" onClick={closeAction}>
+                <IoMdClose size={40} />
               </button>
             </header>
             {/* BODY CONTENT */}
-            <div>{bodyContent}</div>
-            {/* FOOTER CONTENT */}
-            <div>{footerContent}</div>
+            <div className="flex flex-col">
+              <div className="pb-16">{bodyContent}</div>
+              {/* FOOTER CONTENT */}
+            </div>
+            {/* BUTTON */}
+            <div className="flex justify-between gap-7 pb-2">
+              {secondActionLabel && secondActionOnclick ? (
+                <Button
+                  label={secondActionLabel}
+                  onClick={secondActionOnclick}
+                />
+              ) : undefined}
+              <Button
+                label={actionLabel}
+                onClick={actionOnclick}
+                bgColor={actionLabel === "등록하기" ? true : false}
+              />
+            </div>
+            <hr />
+            <div className="pb-9">{footerContent}</div>
           </div>
         </div>
       </div>
-    </div>) : null
-  )
+    </div>
+  ) : null;
 }

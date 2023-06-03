@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import MenuItem from "./MenuItem";
-import useLoginModal from "../hooks/useLoginModal";
-import useRegisterModal from "../hooks/useRegisterModal";
-import usePostModal from "../hooks/usePostModal";
+import useLoginModal from "../../hooks/useLoginModal";
+import useRegisterModal from "../../hooks/useRegisterModal";
+import usePostModal from "../../hooks/usePostModal";
 
 export default function Hamberger() {
 
