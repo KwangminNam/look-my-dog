@@ -1,21 +1,31 @@
 'use client';
 
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+
 interface InputProps {
   id: string;
   label: string;
   type?: string;
+  register: UseFormRegister<FieldValues>;
+  errors:FieldErrors;
+  required?:boolean;
+
 }
 
 export default function Input({
   id,
   label,
   type = 'text',
+  register,
+  required,
+  errors
  }: InputProps) {
   
   return (
     <div className='w-full relative'>
       <input
         id={id}
+        {...register(id,{required})}
         placeholder=" "
         type={type}
         className={`
