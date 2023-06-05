@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import MenuItem from "./MenuItem";
@@ -7,6 +8,7 @@ import useRegisterModal from "../../hooks/useRegisterModal";
 import usePostModal from "../../hooks/usePostModal";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import Avator from "../Avator";
 
 interface HambergerMenuProps {
   loggedInUser?: User | null;
@@ -33,15 +35,16 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       >
         강아지 자랑하기
       </button>
-      <div className="cursor-pointer hover:shadow-md" onClick={setToggleOpen}>
+      <div className="p-4 border border-solid border-neutral-400 cursor-pointer flex gap-2 hover:shadow-md rounded-2xl" onClick={setToggleOpen}>
         <AiOutlineMenu size={30} />
+        <Avator imgSrc={null}/>
       </div>
       {isOpen && (
         <div className="absolute top-12 right-0">
           <div className="w-[120px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>
-                <MenuItem label="로그아웃" onClick={() => signOut()} />
+                <MenuItem label="로그아웃" onClick={() =>{ signOut()}} />
                 <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
                 <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
                 <MenuItem label="내 정보" onClick={registerModal.actionOpen} />

@@ -16,10 +16,8 @@ function Button({ borderColor, label, bgColor, onClick , icon:Icon}: ButtonProps
       className={`
        w-full
       rounded-xl
-      bg-sky-500
       h-24
-      ${bgColor ? 'bg-sky-500/100' : 'bg-red-500'}
-      ${bgColor ? 'border border-solid border-black' : 'border-none'}
+      ${bgColor ? 'bg-red-500' : 'bg-sky-500'}
       text-3xl
       relative
       text-white
