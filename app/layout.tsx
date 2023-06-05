@@ -1,25 +1,38 @@
-import NavBar from './components/navBar/NavBar'
-import './globals.css'
-import { Jua} from 'next/font/google'
+import ToasterProvider from "./Provider/ToasterProvider";
+import getLoggedInUser from "./actions/getLoginedUser";
+import HeroBox from "./components/HeroBox";
+import LoginModal from "./components/modal/LoginModal";
+import PostmyDogModal from "./components/modal/PostmyDogModal";
+import RegisterModal from "./components/modal/RegisterModal";
+import NavBar from "./components/navBar/NavBar";
+import "./globals.css";
+import { Jua } from "next/font/google";
 
-const jua = Jua({ subsets: ['latin'] , weight: '400'})
+
+const jua = Jua({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
-  title: 'Look my Dog',
-  description: 'Dog pictures of blog',
-}
+  title: "Look my Dog",
+  description: "Dog pictures of blog"
+};
 
-export default function RootLayout({
-  children,
+export default async function RootLayout({
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  const loggedInUser = await getLoggedInUser();
   return (
     <html lang="en">
       <body className={jua.className}>
-        <NavBar/>
-        <div className='pb-20 pt-48'>{children}</div>
+        <ToasterProvider/>
+        <NavBar loggedInUser={loggedInUser} />
+        <HeroBox />
+        <LoginModal />
+        <RegisterModal />
+        <PostmyDogModal />
+        <div className="pb-20 pt-48">{children}</div>
       </body>
     </html>
-  )
+  );
 }

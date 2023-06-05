@@ -6,10 +6,7 @@ import RegisterModal from "./components/modal/RegisterModal";
 export default function Home() {
   return (
     <>
-      <HeroBox />
-      <LoginModal/>
-      <RegisterModal/>
-      <PostmyDogModal/>
+
     </>
   )
       

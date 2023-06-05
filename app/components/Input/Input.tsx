@@ -1,5 +1,6 @@
 'use client';
 
+import { spawn } from "child_process";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
@@ -7,9 +8,8 @@ interface InputProps {
   label: string;
   type?: string;
   register: UseFormRegister<FieldValues>;
-  errors:FieldErrors;
+  errors:FieldErrors | undefined;
   required?:boolean;
-
 }
 
 export default function Input({
@@ -21,6 +21,7 @@ export default function Input({
   errors
  }: InputProps) {
   
+
   return (
     <div className='w-full relative'>
       <input
@@ -59,6 +60,7 @@ export default function Input({
           `}>
         {label}
       </label>
+      
     </div>
   )
 }

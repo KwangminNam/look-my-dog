@@ -10,16 +10,36 @@ import { FcGoogle } from "react-icons/fc";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { z, ZodType } from "zod";
+import {zodResolver} from "@hookform/resolvers/zod"
+
+type ValidationType = {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
 
 export default function RegisterModal() {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
+  const validation: ZodType<ValidationType> = z.object({
+    name: z.string().min(2).max(5),
+    email:z.string().email(),
+    password:z.string().min(5).max(10),
+    passwordConfirm:z.string().min(5).max(10),
+  }).refine((data)=> data.password === data.passwordConfirm , {
+    message:"비밀번호가 일치하지않습니다.",
+    path:["passwordConfirm"]
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<FieldValues>({
+  } = useForm<FieldValues | ValidationType>({
+    // resolver:zodResolver(validation),
     defaultValues: {
       name: "",
       email: "",
@@ -51,6 +71,14 @@ export default function RegisterModal() {
         label="비밀번호"
         required
       />
+      {/* <Input
+        register={register}
+        errors={errors}
+        id="passwordConfirm"
+        type="password"
+        label="비밀번호 확인"
+        required
+      /> */}
     </div>
   );
 
