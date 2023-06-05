@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import usePostModal from "../../hooks/usePostModal";
 import Modal from "./Modal";
 import Input from "../Input/Input";
-
+import { FieldValues, useForm } from "react-hook-form";
 
 enum POST_STEPS {
   TITLE = 0,
@@ -15,6 +15,7 @@ enum POST_STEPS {
 export default function PostmyDogModal() {
   const [step, setStep] = useState(POST_STEPS.TITLE);
   const postModal = usePostModal();
+  const { register ,formState:{errors} } = useForm<FieldValues>();
 
   const nextStep = () => {
     setStep((prev) => prev + 1);
@@ -25,8 +26,8 @@ export default function PostmyDogModal() {
   };
 
   const onSubmit = () => {
-    if(step !== POST_STEPS.IMAGE) return nextStep();
-  }
+    if (step !== POST_STEPS.IMAGE) return nextStep();
+  };
 
   const actionLabel = useMemo(() => {
     if (step === POST_STEPS.IMAGE) return "등록하기";
@@ -40,10 +41,20 @@ export default function PostmyDogModal() {
 
   let bodyModal = (
     <div className="flex flex-col gap-4">
-      <Input id='id'label="아이디" />
-      <Input id='password'label="비밀번호" />
+      <Input
+        id="id"
+        label="강아지이름"
+        register={register}
+        errors={errors}
+      />
+      <Input
+        id="password"
+        label="비밀번호"
+        register={register}
+        errors={errors}
+      />
     </div>
-  )
+  );
 
   if (step === POST_STEPS.CONTENT) {
     bodyModal = <div>강아지 등록하기 두번째</div>;
@@ -52,7 +63,6 @@ export default function PostmyDogModal() {
   if (step === POST_STEPS.IMAGE) {
     bodyModal = <div>강아지 등록하기 세번째</div>;
   }
-
 
   return (
     <Modal
