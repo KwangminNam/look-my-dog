@@ -6,12 +6,13 @@ import MenuItem from "./MenuItem";
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
 import usePostModal from "../../hooks/usePostModal";
-import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import Avator from "../Avator";
+import { SafeUser } from "@/app/types";
+import { useRouter } from "next/navigation";
 
 interface HambergerMenuProps {
-  loggedInUser?: User | null;
+  loggedInUser?: SafeUser | null;
 }
 
 export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
@@ -19,8 +20,15 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const postModal = usePostModal();
+  const router = useRouter();
 
   const setToggleOpen = () => setIsOpen((prev) => !prev);
+  const onOpenPostModal = () => {
+    if(!loggedInUser){
+      return loginModal.actionOpen();
+    }
+     postModal.actionOpen();
+  }
 
   return (
     <div className="relative flex items-center gap-10 text-2xl">
@@ -31,21 +39,21 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
         rounded-xl
         shadow-md
         p-3"
-        onClick={postModal.actionOpen}
+        onClick={onOpenPostModal}
       >
         강아지 자랑하기
       </button>
       <div className="p-4 border border-solid border-neutral-400 cursor-pointer flex gap-2 hover:shadow-md rounded-2xl" onClick={setToggleOpen}>
         <AiOutlineMenu size={30} />
-        <Avator imgSrc={null}/>
+        <Avator imgSrc={loggedInUser?.image}/>
       </div>
       {isOpen && (
-        <div className="absolute top-12 right-0">
+        <div className="absolute top-16 right-0 z-[100]">
           <div className="w-[120px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>
                 <MenuItem label="로그아웃" onClick={() =>{ signOut()}} />
-                <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
+                <MenuItem label="이동" onClick={()=>{router.push('/test')}} />
                 <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
                 <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
               </>

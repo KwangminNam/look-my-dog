@@ -16,11 +16,14 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginModal() {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -33,21 +36,30 @@ export default function LoginModal() {
     }
   });
 
+  const onToggleLogin = () => {
+    loginModal.actionClose();
+    registerModal.actionOpen();
+  }
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
     signIn("credentials", {
       ...data,
       redirect: false
-    }).then((callback) => {
-      if (callback?.ok) {
-        toast.success("로그인 성공");
-        console.log("로그인성공")
-        router.refresh();
-        loginModal.actionClose();
-      }
-      if (callback?.error) {
-        toast.error("로그인 실패");
-      }
-    });
+    })
+      .then((callback) => {
+        if (callback?.ok) {
+          setIsLoading(false);
+          toast.success("로그인 성공");
+          router.refresh();
+          loginModal.actionClose();
+        }
+        if (callback?.error) {
+          toast.error("로그인 실패");
+        }
+      })
+      .catch((error) => toast.error(error))
+      .finally(() => setIsLoading(false));
   };
 
   const loginBodyContent = (
@@ -71,19 +83,22 @@ export default function LoginModal() {
   );
 
   const loginFooterContent = (
-    <div className="flex flex-col gap-6">
+    <div className="flex items-center flex-col gap-6">
       <Button
         label="Github로 로그인하기"
         bgColor
-        onClick={() => {}}
+        onClick={() => {signIn('github')}}
         icon={AiFillGithub}
+        disabled={isLoading}
       />
       <Button
         label="Google로 로그인하기"
         bgColor
-        onClick={() => {}}
+        onClick={() => {signIn('google')}}
         icon={FcGoogle}
+        disabled={isLoading}
       />
+      <p className="cursor-pointer" onClick={onToggleLogin}>룩마독이 처음이신가요? <span className="text-red-400">회원가입</span></p>
     </div>
   );
 
@@ -96,6 +111,7 @@ export default function LoginModal() {
       actionOnclick={handleSubmit(onSubmit)}
       bodyContent={loginBodyContent}
       footerContent={loginFooterContent}
+      disabled={isLoading}
     />
   );
 }

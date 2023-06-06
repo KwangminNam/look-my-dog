@@ -12,6 +12,7 @@ import { toast } from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { z, ZodType } from "zod";
 import {zodResolver} from "@hookform/resolvers/zod"
+import { signIn } from "next-auth/react";
 
 type ValidationType = {
   name: string;
@@ -46,6 +47,11 @@ export default function RegisterModal() {
       password: ""
     }
   });
+
+  const onToggleLogin = () => {
+    registerModal.actionClose();
+    loginModal.actionOpen();
+  }
 
   const loginBodyContent = (
     <div className="flex flex-col gap-6">
@@ -83,19 +89,20 @@ export default function RegisterModal() {
   );
 
   const loginFooterContent = (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col items-center  gap-6">
       <Button
         label="Github로 회원가입"
         bgColor
-        onClick={() => {}}
+        onClick={() => {signIn('github')}}
         icon={AiFillGithub}
       />
       <Button
         label="Google로 회원가입"
         bgColor
-        onClick={() => {}}
+        onClick={() => {signIn('google')}}
         icon={FcGoogle}
       />
+      <p onClick={onToggleLogin} className="cursor-pointer">이미 회원이신가요? <span className="text-red-400" >로그인</span></p>
     </div>
   );
 

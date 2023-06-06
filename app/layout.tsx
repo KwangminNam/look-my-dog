@@ -1,4 +1,4 @@
-import ToasterProvider from "./Provider/ToasterProvider";
+import ToasterProvider from "./provider/ToasterProvider";
 import getLoggedInUser from "./actions/getLoginedUser";
 import HeroBox from "./components/HeroBox";
 import LoginModal from "./components/modal/LoginModal";
@@ -7,7 +7,6 @@ import RegisterModal from "./components/modal/RegisterModal";
 import NavBar from "./components/navBar/NavBar";
 import "./globals.css";
 import { Jua } from "next/font/google";
-
 
 const jua = Jua({ subsets: ["latin"], weight: "400" });
 
@@ -23,9 +22,9 @@ export default async function RootLayout({
 }) {
   const loggedInUser = await getLoggedInUser();
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={jua.className}>
-        <ToasterProvider/>
+        <ToasterProvider />
         <NavBar loggedInUser={loggedInUser} />
         <HeroBox />
         <LoginModal />

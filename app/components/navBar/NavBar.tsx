@@ -1,14 +1,14 @@
 "use client";
 
-import { User } from "@prisma/client";
 import Container from "../Container";
-import TypeDogs from "../dogtype/TypeDogs";
+import TypeDogs from "../TypeDogs";
 import Hamberger from "./Hamberger";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
+import { SafeUser } from "@/app/types";
 
 interface NavBarProps {
-  loggedInUser: User | null;
+  loggedInUser?: SafeUser | null;
 }
 
 export default function NavBar({loggedInUser}:NavBarProps) {

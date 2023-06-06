@@ -2,6 +2,7 @@
 
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
+import Loading from "../Loader/Loading";
 
 interface ModalProps {
   title: string;
@@ -11,6 +12,7 @@ interface ModalProps {
   bodyContent?: React.ReactElement;
   footerContent?: React.ReactElement;
   secondActionLabel?: string;
+  disabled?: boolean;
   secondActionOnclick?: () => void;
   closeAction: () => void;
   actionOnclick: () => void;
@@ -19,6 +21,7 @@ interface ModalProps {
 export default function Modal({
   title,
   subtitle,
+  disabled,
   bodyContent,
   isOpen,
   footerContent,
@@ -38,6 +41,7 @@ export default function Modal({
         <div className="flex justify-center items-center h-full">
           {/* MODAL */}
           <div className="bg-white w-[900px] h-[850px] rounded-2xl relative flex flex-col justify-between px-7">
+            {disabled && <Loading />}
             <header
               className="
                 py-9
@@ -65,12 +69,14 @@ export default function Modal({
                 <Button
                   label={secondActionLabel}
                   onClick={secondActionOnclick}
+                  disabled={disabled}
                 />
               ) : undefined}
               <Button
                 label={actionLabel}
                 onClick={actionOnclick}
                 bgColor={actionLabel === "등록하기" ? true : false}
+                disabled={disabled}
               />
             </div>
             <hr />
