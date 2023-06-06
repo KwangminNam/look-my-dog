@@ -5,6 +5,9 @@ import usePostModal from "../../hooks/usePostModal";
 import Modal from "./Modal";
 import Input from "../Input/Input";
 import { FieldValues, useForm } from "react-hook-form";
+import { TYPE_OF_DOG } from "../TypeDogs";
+import Image from "next/image";
+import PostDogInput from "../Input/PostDogInput";
 
 enum POST_STEPS {
   TITLE = 0,
@@ -40,19 +43,10 @@ export default function PostmyDogModal() {
   }, [step]);
 
   let bodyModal = (
-    <div className="flex flex-col gap-4">
-      <Input
-        id="id"
-        label="강아지이름"
-        register={register}
-        errors={errors}
-      />
-      <Input
-        id="password"
-        label="비밀번호"
-        register={register}
-        errors={errors}
-      />
+    <div className="grid grid-cols-2 gap-4">
+      {TYPE_OF_DOG.map((item)=>(
+        <PostDogInput label={item.label} src={item.src} selected/>
+      ))}
     </div>
   );
 
