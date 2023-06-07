@@ -13,6 +13,8 @@ interface ModalProps {
   footerContent?: React.ReactElement;
   secondActionLabel?: string;
   disabled?: boolean;
+  stepsLength?: any;
+  currentStep?:number;
   secondActionOnclick?: () => void;
   closeAction: () => void;
   actionOnclick: () => void;
@@ -26,17 +28,18 @@ export default function Modal({
   isOpen,
   footerContent,
   actionLabel,
+  stepsLength,
+  secondActionLabel,
+  currentStep,
   actionOnclick,
   closeAction,
-  secondActionLabel,
   secondActionOnclick
 }: ModalProps) {
   return isOpen ? (
     <div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
       <div
-        className={`translate duration-300 h-full ${
-          isOpen ? "translate-y-0" : "translate-y-full"
-        }`}
+        className={`translate duration-300 h-full ${isOpen ? "translate-y-0" : "translate-y-full"
+          }`}
       >
         <div className="flex justify-center items-center h-full">
           {/* MODAL */}
@@ -59,8 +62,9 @@ export default function Modal({
               </button>
             </header>
             {/* BODY CONTENT */}
-            <div className="flex flex-col">
+            <div className="flex flex-col relative">
               <div className="pb-16">{bodyContent}</div>
+              {stepsLength && <span className="absolute left-0 top-[45px]">{currentStep}/{stepsLength}</span>}
               {/* FOOTER CONTENT */}
             </div>
             {/* BUTTON */}

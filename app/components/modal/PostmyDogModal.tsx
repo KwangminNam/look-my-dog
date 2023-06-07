@@ -30,12 +30,17 @@ export default function PostmyDogModal() {
     formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
+      title: '',
       dogType: '',
       dogAge: 1,
       male: '',
     }
   });
   const postModal = usePostModal();
+  const stepsArray = Object.keys(POST_STEPS).filter(key => isNaN(Number(key))).map(key => POST_STEPS[key as any]);
+  const stepsLength = stepsArray.length;
+
+  console.log(stepsLength)
 
   const [step, setStep] = useState(POST_STEPS.TITLE);
   const [label, setLabel] = useState("");
@@ -44,8 +49,11 @@ export default function PostmyDogModal() {
   const dogAge = watch('dogAge');
   const male = watch('male');
 
+
   console.log(dogType);
   console.log(male);
+  console.log(dogAge)
+
 
   useEffect(() => {
     if (postModal.isOpen === false) {
@@ -54,6 +62,7 @@ export default function PostmyDogModal() {
   }, [postModal.isOpen]);
 
   const nextStep = () => {
+    if(dogType === "") return;
     setStep((prev) => prev + 1);
   };
 
@@ -90,6 +99,7 @@ export default function PostmyDogModal() {
 
   const actionLabel = useMemo(() => {
     if (step === POST_STEPS.IMAGE) return "등록하기";
+    if (dogType === "" ) return "강아지 종류를 선택해주세요!"
     return "다음 단계";
   }, [step]);
 
@@ -135,8 +145,28 @@ export default function PostmyDogModal() {
             </div>
             <div className="flex-col flex items-center">
               <Input id="dogName" register={register} errors={errors} label="강아지 이름" />
-              {MALE_DATA.map(item => <SelectSex onClick={selectMaleType} key={item.male} value={item.male} selected={male === item.male} />)}
-              <AgeCounter value={dogAge} onChange={(age) => setCustumValue('dogAge', age)} />
+              <hr />
+              <div className="flex">
+                <span>성별을 골라주세요</span>
+                <div className="flex">
+                  {MALE_DATA.map(item =>
+                    <SelectSex
+                      onClick={selectMaleType}
+                      key={item.male}
+                      value={item.male}
+                      selected={male === item.male}
+                    />
+                  )}
+                </div>
+              </div>
+              <hr />
+              <div className="flex">
+                <span>강아지의 나이는 몇살인가요?</span>
+                <AgeCounter
+                  value={dogAge}
+                  onChange={(age) => setCustumValue('dogAge', age)}
+                />
+              </div>
             </div>
           </>)
           : <div className="h-full bg-red-50"><p>강아지종류 선택을 하지않으셨습니다.</p><span>이전 단계에서 강아지를 선택해주세요</span></div>}
@@ -158,6 +188,8 @@ export default function PostmyDogModal() {
       actionOnclick={onSubmit}
       secondActionLabel={secondActionLabel}
       secondActionOnclick={step !== POST_STEPS.TITLE ? prevStep : undefined}
+      stepsLength={stepsLength}
+      currentStep={step + 1}
     />
   );
 }

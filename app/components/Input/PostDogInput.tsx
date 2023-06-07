@@ -29,7 +29,7 @@ export default function PostDogInput({
       }>
       <span>{label}</span>
       <Image
-        className="rounded-full top-1/2 translate-y-1/2 absolute right-0"
+        className="w-[60px] h-[50px] rounded-full top-[-50%] translate-y-1/2 absolute right-0"
         width={60}
         height={60}
         src={`${src}.jpeg`}
