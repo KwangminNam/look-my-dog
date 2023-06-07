@@ -24,12 +24,13 @@ function Button({
     <button
       className={`
         w-full
-        rounded-xl
-        h-16
+        rounded-md
+        h-12
         disabled:opacity-70
         disabled:cursor-not-allowed
         ${bgColor ? "bg-red-500" : "bg-sky-500"}
-        text-3xl
+        text-2xl
+        font-light
         relative
         text-white
       `}

@@ -70,7 +70,6 @@ export default function LoginModal() {
     signIn(name);
   }
 
-  console.log(isLoading);
 
 
   const loginBodyContent = (
@@ -94,7 +93,7 @@ export default function LoginModal() {
   );
 
   const loginFooterContent = (
-    <div className="flex items-center flex-col gap-6">
+    <div className="flex items-center flex-col gap-4">
       <Button
         label="Github로 로그인하기"
         bgColor

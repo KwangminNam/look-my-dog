@@ -41,12 +41,13 @@ export default function Input({
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
+          text-2xl
         `}
       />
       <label
         className={`
           absolute
-          text-xl
+          text-sm
           duration-150
           transform
           -translate-y-3
@@ -54,6 +55,7 @@ export default function Input({
           z-10
           origin-[0]
           left-4
+          text-neutral-400
           peer-placeholder-shown:scale-100
           peer-placeholder-shown:translate-y-0
           peer-focus:scale-75

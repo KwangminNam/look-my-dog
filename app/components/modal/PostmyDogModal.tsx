@@ -10,6 +10,7 @@ import Image from "next/image";
 import PostDogInput from "../Input/PostDogInput";
 import AgeCounter from "../AgeCounter";
 import SelectSex from "../Input/SelectSex";
+import ImageUpload from "../ImageUpload";
 
 enum POST_STEPS {
   TITLE = 0,
@@ -17,10 +18,7 @@ enum POST_STEPS {
   IMAGE = 2
 }
 
-const MALE_DATA = [
-  { male: '남자' },
-  { male: '여자' },
-]
+const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
 
 export default function PostmyDogModal() {
   const {
@@ -30,39 +28,42 @@ export default function PostmyDogModal() {
     formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      title: '',
-      dogType: '',
+      title: "",
+      dogType: "",
       dogAge: 1,
-      male: '',
+      male: "",
+      imageSrc:''
     }
   });
   const postModal = usePostModal();
-  const stepsArray = Object.keys(POST_STEPS).filter(key => isNaN(Number(key))).map(key => POST_STEPS[key as any]);
+  const stepsArray = Object.keys(POST_STEPS)
+    .filter((key) => isNaN(Number(key)))
+    .map((key) => POST_STEPS[key as any]);
   const stepsLength = stepsArray.length;
 
-  console.log(stepsLength)
+  console.log(stepsLength);
 
   const [step, setStep] = useState(POST_STEPS.TITLE);
   const [label, setLabel] = useState("");
 
-  const dogType = watch('dogType');
-  const dogAge = watch('dogAge');
-  const male = watch('male');
-
+  const dogType = watch("dogType");
+  const dogAge = watch("dogAge");
+  const male = watch("male");
+  const imageSrc = watch('imageSrc');
 
   console.log(dogType);
   console.log(male);
-  console.log(dogAge)
-
+  console.log(dogAge);
+  console.log(imageSrc)
 
   useEffect(() => {
     if (postModal.isOpen === false) {
-      setStep(POST_STEPS.TITLE)
+      setStep(POST_STEPS.TITLE);
     }
   }, [postModal.isOpen]);
 
   const nextStep = () => {
-    if(dogType === "") return;
+    if (dogType === "") return;
     setStep((prev) => prev + 1);
   };
 
@@ -71,13 +72,13 @@ export default function PostmyDogModal() {
   };
 
   const selectDogType = (value: string) => {
-    setCustumValue('dogType', value);
+    setCustumValue("dogType", value);
     setLabel(value);
-  }
+  };
 
   const selectMaleType = (value: string) => {
-    setCustumValue('male', value);
-  }
+    setCustumValue("male", value);
+  };
 
   const onSubmit = () => {
     if (step !== POST_STEPS.IMAGE) return nextStep();
@@ -95,13 +96,14 @@ export default function PostmyDogModal() {
       default:
         return "Look my Dog";
     }
-  }, [step])
+  }, [step]);
 
   const actionLabel = useMemo(() => {
     if (step === POST_STEPS.IMAGE) return "등록하기";
-    if (dogType === "" ) return "강아지 종류를 선택해주세요!"
+    if (dogType === "") return "강아지 종류를 선택해주세요!";
     return "다음 단계";
-  }, [step]);
+  }, [step,dogType]);
+
 
   const secondActionLabel = useMemo(() => {
     if (step === POST_STEPS.TITLE) return undefined;
@@ -113,7 +115,7 @@ export default function PostmyDogModal() {
       shouldDirty: true,
       shouldValidate: true,
       shouldTouch: true
-    })
+    });
   };
 
   let bodyModal = (
@@ -134,48 +136,76 @@ export default function PostmyDogModal() {
       <div>
         {label ? (
           <>
-            <div className="flex">
-              <div>나의 강아지 종류는 <span className="text-red-400">{label}</span></div>
-              {TYPE_OF_DOG
-                .filter(item => item.label === label)
-                .map((item) => (
-                  <Image src={`${item.src}.jpeg`} alt={label} width={50} height={50} />
-                ))
-              }
+            <div className="flex justify-center items-center mb-4">
+              <div className="text-xl">
+                나의 강아지 종류는 <span className="text-red-400">{label}</span>
+              </div>
+              {TYPE_OF_DOG.filter((item) => item.label === label).map(
+                (item) => (
+                  <Image
+                    className="
+                      border-2
+                      border-neutral-300
+                      border-solid
+                      rounded-full"
+                    src={`${item.src}.jpeg`}
+                    alt={label}
+                    width={70}
+                    height={70}
+                  />
+                )
+              )}
             </div>
             <div className="flex-col flex items-center">
-              <Input id="dogName" register={register} errors={errors} label="강아지 이름" />
-              <hr />
-              <div className="flex  w-full justify-around">
-                <span>성별을 골라주세요</span>
+              <Input
+                id="dogName"
+                register={register}
+                errors={errors}
+                label="강아지 이름"
+              />
+
+              <div className="mt-4 flex py-6 w-full justify-between border-t border-b border-solid border-neutral-300">
+                <span className="text-2xl">성별을 골라주세요</span>
                 <div className="flex">
-                  {MALE_DATA.map(item =>
+                  {MALE_DATA.map((item) => (
                     <SelectSex
                       onClick={selectMaleType}
                       key={item.male}
                       value={item.male}
                       selected={male === item.male}
                     />
-                  )}
+                  ))}
                 </div>
               </div>
               <hr />
-              <div className="flex  w-full justify-around">
-                <span>강아지의 나이는 몇살인가요?</span>
+              <div className="flex pt-6 w-full justify-between">
+                <span className="text-2xl">강아지의 나이는 몇살인가요?</span>
                 <AgeCounter
                   value={dogAge}
-                  onChange={(age) => setCustumValue('dogAge', age)}
+                  onChange={(age) => setCustumValue("dogAge", age)}
                 />
               </div>
             </div>
-          </>)
-          : <div className="h-full bg-red-50"><p>강아지종류 선택을 하지않으셨습니다.</p><span>이전 단계에서 강아지를 선택해주세요</span></div>}
+          </>
+        ) : (
+          <div className="h-full bg-red-50">
+            <p>강아지종류 선택을 하지않으셨습니다.</p>
+            <span>이전 단계에서 강아지를 선택해주세요</span>
+          </div>
+        )}
       </div>
     );
   }
 
   if (step === POST_STEPS.IMAGE) {
-    bodyModal = <div>강아지 등록하기 세번째</div>;
+    bodyModal = (
+      <div>
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value)=>setCustumValue("imageSrc",value)}
+        />
+      </div>
+    )
   }
 
   return (
