@@ -146,7 +146,7 @@ export default function PostmyDogModal() {
             <div className="flex-col flex items-center">
               <Input id="dogName" register={register} errors={errors} label="강아지 이름" />
               <hr />
-              <div className="flex">
+              <div className="flex  w-full justify-around">
                 <span>성별을 골라주세요</span>
                 <div className="flex">
                   {MALE_DATA.map(item =>
@@ -160,7 +160,7 @@ export default function PostmyDogModal() {
                 </div>
               </div>
               <hr />
-              <div className="flex">
+              <div className="flex  w-full justify-around">
                 <span>강아지의 나이는 몇살인가요?</span>
                 <AgeCounter
                   value={dogAge}
