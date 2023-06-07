@@ -99,7 +99,7 @@ export default function TypeDogs() {
   return (
     <Container>
       <div className="relative">
-        <button
+        {/* <button
           className="absolute right-1/2 top-[-20px] translate-x-1/2 bg-red-400 rounded-full"
           onClick={openToggle}
         >
@@ -108,7 +108,7 @@ export default function TypeDogs() {
           ) : (
             <MdOutlineKeyboardDoubleArrowDown size={50} />
           )}
-        </button>
+        </button> */}
         <ul className="py-11 grid grid-cols-5 gap-3 h-0s translate-y-0">
           {TYPE_OF_DOG.map((item) => (
             <TypeDogBox

@@ -22,7 +22,7 @@ model User {
   favoriteIds String[] @db.ObjectId
 
   accounts Account[]
-  listings Listing[]
+  listings DogListing[]
   reservation Reservation[]
 }
 
@@ -45,19 +45,17 @@ model Account {
   @@unique([provider,providerAccountId])
 }
 
-model Listing {
+model DogListing {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   description String
   imageSrc String
   createdAt DateTime @default(now())
-  category String
-  roomCount Int
-  bathroomCount Int
+  dogType String
+  dogAge Int
+  male String
   locationValue String
   userId String @db.ObjectId
-  price Int
-  guestCount Int
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
 }
@@ -71,5 +69,5 @@ model Reservation {
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: [listingId], references: [id],onDelete: Cascade)
+  listing DogListing @relation(fields: [listingId], references: [id],onDelete: Cascade)
 }

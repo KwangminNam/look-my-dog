@@ -23,11 +23,12 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
   const router = useRouter();
 
   const setToggleOpen = () => setIsOpen((prev) => !prev);
+
   const onOpenPostModal = () => {
-    if(!loggedInUser){
+    if (!loggedInUser) {
       return loginModal.actionOpen();
     }
-     postModal.actionOpen();
+    postModal.actionOpen();
   }
 
   return (
@@ -45,15 +46,15 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       </button>
       <div className="p-4 border border-solid border-neutral-400 cursor-pointer flex gap-2 hover:shadow-md rounded-2xl" onClick={setToggleOpen}>
         <AiOutlineMenu size={30} />
-        <Avator imgSrc={loggedInUser?.image}/>
+        <Avator imgSrc={loggedInUser?.image} />
       </div>
       {isOpen && (
         <div className="absolute top-16 right-0 z-[100]">
           <div className="w-[120px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>
-                <MenuItem label="로그아웃" onClick={() =>{ signOut()}} />
-                <MenuItem label="이동" onClick={()=>{router.push('/test')}} />
+                <MenuItem label="로그아웃" onClick={() => { signOut() }} />
+                <MenuItem label="이동" onClick={() => { router.push('/test') }} />
                 <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
                 <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
               </>

@@ -5,7 +5,7 @@ import Button from "../Button";
 import Loading from "../Loader/Loading";
 
 interface ModalProps {
-  title: string;
+  title: string | undefined;
   subtitle?: string;
   isOpen: boolean;
   actionLabel: string;
@@ -40,7 +40,7 @@ export default function Modal({
       >
         <div className="flex justify-center items-center h-full">
           {/* MODAL */}
-          <div className="bg-white w-[900px] h-[850px] rounded-2xl relative flex flex-col justify-between px-7">
+          <div className="bg-white w-[650px] rounded-2xl relative flex flex-col justify-between px-7">
             {disabled && <Loading />}
             <header
               className="

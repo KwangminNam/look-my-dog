@@ -26,10 +26,10 @@ export default function RegisterModal() {
   const loginModal = useLoginModal();
 
   const validation: ZodType<ValidationType> = z.object({
-    name: z.string().min(2).max(5),
-    email:z.string().email(),
-    password:z.string().min(5).max(10),
-    passwordConfirm:z.string().min(5).max(10),
+    name: z.string().min(2,"이름은 두글자 이상 이여야 합니다.").max(5,"이름은 다섯글자 이하 여야 합니다."),
+    email:z.string().email("이메일 형식에 맞게 입력해주세요."),
+    password:z.string().min(5,"비밀번호는 5글자 이상 이여야합니다").max(10,"비밀번호는 10글자 이하 여야합니다"),
+    passwordConfirm:z.string().min(5,"비밀번호는 5글자 이상 이여야합니다").max(10,"비밀번호는 10글자 이하 여야합니다"),
   }).refine((data)=> data.password === data.passwordConfirm , {
     message:"비밀번호가 일치하지않습니다.",
     path:["passwordConfirm"]
@@ -40,7 +40,7 @@ export default function RegisterModal() {
     handleSubmit,
     formState: { errors }
   } = useForm<FieldValues | ValidationType>({
-    // resolver:zodResolver(validation),
+    resolver:zodResolver(validation),
     defaultValues: {
       name: "",
       email: "",
@@ -48,13 +48,15 @@ export default function RegisterModal() {
     }
   });
 
+  console.log(errors);
+
   const onToggleLogin = () => {
     registerModal.actionClose();
     loginModal.actionOpen();
   }
 
   const loginBodyContent = (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <Input
         register={register}
         errors={errors}
@@ -77,14 +79,14 @@ export default function RegisterModal() {
         label="비밀번호"
         required
       />
-      {/* <Input
+      <Input
         register={register}
         errors={errors}
         id="passwordConfirm"
         type="password"
         label="비밀번호 확인"
         required
-      /> */}
+      />
     </div>
   );
 

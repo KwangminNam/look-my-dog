@@ -1,7 +1,7 @@
 "use client";
 
 import { IconType } from "react-icons";
-import Loading from "./Loader/Loading";
+
 
 interface ButtonProps {
   label: string;
@@ -23,21 +23,21 @@ function Button({
   return (
     <button
       className={`
-       w-full
-      rounded-xl
-      h-24
-      disabled:opacity-70
-      disabled:cursor-not-allowed
-      ${bgColor ? "bg-red-500" : "bg-sky-500"}
-      text-3xl
-      relative
-      text-white
+        w-full
+        rounded-xl
+        h-16
+        disabled:opacity-70
+        disabled:cursor-not-allowed
+        ${bgColor ? "bg-red-500" : "bg-sky-500"}
+        text-3xl
+        relative
+        text-white
       `}
       onClick={onClick}
       disabled={disabled}
     >
       <span>{label}</span>
-      {Icon && <Icon size={40} className="absolute left-64 top-7" />}
+      {Icon && <Icon size={40} className="absolute left-28 top-3" />}
     </button>
   );
 }

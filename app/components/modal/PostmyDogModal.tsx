@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import usePostModal from "../../hooks/usePostModal";
 import Modal from "./Modal";
 import Input from "../Input/Input";
@@ -8,6 +8,8 @@ import { FieldValues, useForm } from "react-hook-form";
 import { TYPE_OF_DOG } from "../TypeDogs";
 import Image from "next/image";
 import PostDogInput from "../Input/PostDogInput";
+import AgeCounter from "../AgeCounter";
+import SelectSex from "../Input/SelectSex";
 
 enum POST_STEPS {
   TITLE = 0,
@@ -15,10 +17,41 @@ enum POST_STEPS {
   IMAGE = 2
 }
 
+const MALE_DATA = [
+  { male: '남자' },
+  { male: '여자' },
+]
+
 export default function PostmyDogModal() {
-  const [step, setStep] = useState(POST_STEPS.TITLE);
+  const {
+    watch,
+    setValue,
+    register,
+    formState: { errors }
+  } = useForm<FieldValues>({
+    defaultValues: {
+      dogType: '',
+      dogAge: 1,
+      male: '',
+    }
+  });
   const postModal = usePostModal();
-  const { register ,formState:{errors} } = useForm<FieldValues>();
+
+  const [step, setStep] = useState(POST_STEPS.TITLE);
+  const [label, setLabel] = useState("");
+
+  const dogType = watch('dogType');
+  const dogAge = watch('dogAge');
+  const male = watch('male');
+
+  console.log(dogType);
+  console.log(male);
+
+  useEffect(() => {
+    if (postModal.isOpen === false) {
+      setStep(POST_STEPS.TITLE)
+    }
+  }, [postModal.isOpen]);
 
   const nextStep = () => {
     setStep((prev) => prev + 1);
@@ -28,9 +61,32 @@ export default function PostmyDogModal() {
     setStep((prev) => prev - 1);
   };
 
+  const selectDogType = (value: string) => {
+    setCustumValue('dogType', value);
+    setLabel(value);
+  }
+
+  const selectMaleType = (value: string) => {
+    setCustumValue('male', value);
+  }
+
   const onSubmit = () => {
     if (step !== POST_STEPS.IMAGE) return nextStep();
+    //TODO: return last step function
   };
+
+  const headerLabel = useMemo(() => {
+    switch (step) {
+      case POST_STEPS.TITLE:
+        return "강아지 종류 선택해주세요";
+      case POST_STEPS.CONTENT:
+        return "강아지에 대해 간단한 정보를 알려주세요";
+      case POST_STEPS.IMAGE:
+        return "강아지 사진을 올려주세요";
+      default:
+        return "Look my Dog";
+    }
+  }, [step])
 
   const actionLabel = useMemo(() => {
     if (step === POST_STEPS.IMAGE) return "등록하기";
@@ -42,16 +98,50 @@ export default function PostmyDogModal() {
     return "뒤로";
   }, [step]);
 
+  const setCustumValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true
+    })
+  };
+
   let bodyModal = (
     <div className="grid grid-cols-2 gap-4">
-      {TYPE_OF_DOG.map((item)=>(
-        <PostDogInput label={item.label} src={item.src} selected/>
+      {TYPE_OF_DOG.map((item) => (
+        <PostDogInput
+          label={item.label}
+          src={item.src}
+          selected={dogType === item.label}
+          onClick={selectDogType}
+        />
       ))}
     </div>
   );
 
   if (step === POST_STEPS.CONTENT) {
-    bodyModal = <div>강아지 등록하기 두번째</div>;
+    bodyModal = (
+      <div>
+        {label ? (
+          <>
+            <div className="flex">
+              <div>나의 강아지 종류는 <span className="text-red-400">{label}</span></div>
+              {TYPE_OF_DOG
+                .filter(item => item.label === label)
+                .map((item) => (
+                  <Image src={`${item.src}.jpeg`} alt={label} width={50} height={50} />
+                ))
+              }
+            </div>
+            <div className="flex-col flex items-center">
+              <Input id="dogName" register={register} errors={errors} label="강아지 이름" />
+              {MALE_DATA.map(item => <SelectSex onClick={selectMaleType} key={item.male} value={item.male} selected={male === item.male} />)}
+              <AgeCounter value={dogAge} onChange={(age) => setCustumValue('dogAge', age)} />
+            </div>
+          </>)
+          : <div className="h-full bg-red-50"><p>강아지종류 선택을 하지않으셨습니다.</p><span>이전 단계에서 강아지를 선택해주세요</span></div>}
+      </div>
+    );
   }
 
   if (step === POST_STEPS.IMAGE) {
@@ -60,7 +150,7 @@ export default function PostmyDogModal() {
 
   return (
     <Modal
-      title="내 강아지 자랑하기"
+      title={headerLabel}
       isOpen={postModal.isOpen}
       closeAction={postModal.actionClose}
       bodyContent={bodyModal}

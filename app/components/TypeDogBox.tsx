@@ -23,33 +23,6 @@ export default function TypeDogBox({
   const router = useRouter();
   const params = useSearchParams();
 
-  // const handleQuery = () => {
-  //   let query = {};
-
-  //   if (params) {
-  //     query = qs.parse(params.toString());
-  //   }
-
-  //   const updateQuery: any = {
-  //     ...query,
-  //     puppy: type
-  //   };
-
-  //   // select가 일어나면 url 파라미터에 다른것들과 중복되지않게 클릭이 되면 클릭된 것 제외 삭제 시킴 / 한번 더누르면 선택된것도 삭제
-  //   if (params?.get("puppy") === type) {
-  //     delete updateQuery.puppy;
-  //   }
-
-  //   const url = qs.stringifyUrl(
-  //     {
-  //       url: "/",
-  //       query: updateQuery
-  //     },
-  //     { skipNull: true }
-  //   );
-
-  //   router.push(url);
-  // };
   const handleClick = useCallback(() => {
     let currentQuery = {};
     if (params) {

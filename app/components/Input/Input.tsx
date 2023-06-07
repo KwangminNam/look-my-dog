@@ -1,14 +1,15 @@
 'use client';
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import Validation from "../Validation";
 
 interface InputProps {
   id: string;
   label: string;
   type?: string;
   register: UseFormRegister<FieldValues>;
-  errors:FieldErrors | undefined;
-  required?:boolean;
+  errors: FieldErrors | undefined;
+  required?: boolean;
 }
 
 export default function Input({
@@ -18,14 +19,13 @@ export default function Input({
   register,
   required,
   errors
- }: InputProps) {
-  
+}: InputProps) {
 
   return (
     <div className='w-full relative'>
       <input
         id={id}
-        {...register(id,{required})}
+        {...register(id, { required })}
         placeholder=" "
         type={type}
         className={`
@@ -43,7 +43,9 @@ export default function Input({
           disabled:cursor-not-allowed
         `}
       />
-      <label className={`absolute
+      <label
+        className={`
+          absolute
           text-xl
           duration-150
           transform
@@ -59,7 +61,7 @@ export default function Input({
           `}>
         {label}
       </label>
-      
+      {errors?.[id] && <Validation validation={errors[id]?.message as string}/>}
     </div>
   )
 }

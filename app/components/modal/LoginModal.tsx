@@ -18,12 +18,15 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+type SnsName = 'github' | 'google';
+
 export default function LoginModal() {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const {
     register,
@@ -55,15 +58,23 @@ export default function LoginModal() {
           loginModal.actionClose();
         }
         if (callback?.error) {
-          toast.error("로그인 실패");
+          toast.error("아이디와 비밀번호를 확인해주세요.");
         }
       })
       .catch((error) => toast.error(error))
       .finally(() => setIsLoading(false));
   };
 
+  const onSnsLogin = (name:SnsName) => {
+    setIsLoading(true);
+    signIn(name);
+  }
+
+  console.log(isLoading);
+
+
   const loginBodyContent = (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <Input
         id="email"
         label="아이디"
@@ -87,14 +98,14 @@ export default function LoginModal() {
       <Button
         label="Github로 로그인하기"
         bgColor
-        onClick={() => {signIn('github')}}
+        onClick={() => { onSnsLogin('github') }}
         icon={AiFillGithub}
         disabled={isLoading}
       />
       <Button
         label="Google로 로그인하기"
         bgColor
-        onClick={() => {signIn('google')}}
+        onClick={() => { onSnsLogin('google') }}
         icon={FcGoogle}
         disabled={isLoading}
       />
