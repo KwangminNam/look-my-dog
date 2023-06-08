@@ -18,6 +18,7 @@ interface ModalProps {
   secondActionOnclick?: () => void;
   closeAction: () => void;
   actionOnclick: () => void;
+  isLoading?:boolean;
 }
 
 export default function Modal({
@@ -31,10 +32,15 @@ export default function Modal({
   stepsLength,
   secondActionLabel,
   currentStep,
+  isLoading,
   actionOnclick,
   closeAction,
   secondActionOnclick
 }: ModalProps) {
+
+  console.log(disabled);
+  console.log(isLoading)
+
   return isOpen ? (
     <div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
       <div
@@ -45,7 +51,7 @@ export default function Modal({
         <div className="flex justify-center items-center h-full">
           {/* MODAL */}
           <div className="bg-white w-[650px] rounded-2xl relative flex flex-col justify-between px-7">
-            {disabled && <Loading />}
+            {isLoading && <Loading />}
             <header
               className="
                 py-9
@@ -69,7 +75,7 @@ export default function Modal({
                 <p className="absolute left-0 top-[-40px]">
                   {stepsLength}단계 중
                   <span className="text-red-400">
-                    {currentStep === 3 ? "마지막" : currentStep}단계
+                    {currentStep === 4 ? "마지막" : currentStep}단계
                   </span>
                   에요
                 </p>

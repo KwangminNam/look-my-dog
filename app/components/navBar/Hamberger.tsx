@@ -44,7 +44,19 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       >
         강아지 자랑하기
       </button>
-      <div className="p-4 border border-solid border-neutral-400 cursor-pointer flex gap-2 hover:shadow-md rounded-2xl" onClick={setToggleOpen}>
+      <div
+        className="
+          p-4
+          border
+          border-solid
+          border-neutral-400
+          cursor-pointer
+          flex
+          gap-2
+          hover:shadow-md
+          rounded-2xl"
+        onClick={setToggleOpen}
+      >
         <AiOutlineMenu size={30} />
         <Avator imgSrc={loggedInUser?.image} />
       </div>

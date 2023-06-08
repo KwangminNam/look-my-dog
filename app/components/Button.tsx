@@ -26,7 +26,7 @@ function Button({
         w-full
         rounded-md
         h-12
-        disabled:opacity-70
+        disabled:opacity-40
         disabled:cursor-not-allowed
         ${bgColor ? "bg-red-500" : "bg-sky-500"}
         text-2xl

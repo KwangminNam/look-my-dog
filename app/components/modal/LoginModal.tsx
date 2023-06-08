@@ -122,6 +122,7 @@ export default function LoginModal() {
       bodyContent={loginBodyContent}
       footerContent={loginFooterContent}
       disabled={isLoading}
+      isLoading={isLoading}
     />
   );
 }

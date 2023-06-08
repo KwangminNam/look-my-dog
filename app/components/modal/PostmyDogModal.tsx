@@ -11,14 +11,38 @@ import PostDogInput from "../Input/PostDogInput";
 import AgeCounter from "../AgeCounter";
 import SelectSex from "../Input/SelectSex";
 import ImageUpload from "../ImageUpload";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ZodType, z } from "zod";
+import SelectPersonality from "../Input/SelectPersonality";
 
 enum POST_STEPS {
   TITLE = 0,
-  CONTENT = 1,
-  IMAGE = 2
+  INFO = 1,
+  DESC = 2,
+  IMAGE = 3
 }
 
+type ValidationType = {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
+
 const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
+
+const PERSONALTY_DATA = [
+  { personlityDog: "온순한 편이에요" },
+  { personlityDog: "사회성이 좋은편이에요" },
+  { personlityDog: "낯을 많이 가려요." },
+  { personlityDog: "성격이 사나운편이에요." },
+]
+
+const validation: ZodType<any> = z.object({
+  title: z.string().min(2, "이름은 두글자 이상 이여야 합니다.").max(5, "이름은 다섯글자 이하 여야 합니다."),
+  dogName: z.string().min(5, "비밀번호는 5글자 이상 이여야합니다").max(10, "비밀번호는 10글자 이하 여야합니다"),
+  weight: z.string().min(5, "비밀번호는 5글자 이상 이여야합니다").max(10, "비밀번호는 10글자 이하 여야합니다"),
+})
 
 export default function PostmyDogModal() {
   const {
@@ -27,34 +51,40 @@ export default function PostmyDogModal() {
     register,
     formState: { errors }
   } = useForm<FieldValues>({
+    resolver: zodResolver(validation),
     defaultValues: {
       title: "",
       dogType: "",
       dogAge: 1,
       male: "",
-      imageSrc:''
+      imageSrc: "",
+      personality: "",
+      dogMonth: "",
+      dogName: "",
+      weight: "",
     }
   });
   const postModal = usePostModal();
+
   const stepsArray = Object.keys(POST_STEPS)
     .filter((key) => isNaN(Number(key)))
     .map((key) => POST_STEPS[key as any]);
   const stepsLength = stepsArray.length;
 
-  console.log(stepsLength);
 
   const [step, setStep] = useState(POST_STEPS.TITLE);
   const [label, setLabel] = useState("");
+  const [showMonthAge, setShowMonthAge] = useState(false);
+
+  const onToggle = () => setShowMonthAge(prev => !prev);
 
   const dogType = watch("dogType");
   const dogAge = watch("dogAge");
   const male = watch("male");
   const imageSrc = watch('imageSrc');
-
-  console.log(dogType);
-  console.log(male);
-  console.log(dogAge);
-  console.log(imageSrc)
+  const monthValue = watch('dogMonth');
+  const dogName = watch('dogName');
+  const weight = watch('dogWeight');
 
   useEffect(() => {
     if (postModal.isOpen === false) {
@@ -63,7 +93,8 @@ export default function PostmyDogModal() {
   }, [postModal.isOpen]);
 
   const nextStep = () => {
-    if (dogType === "") return;
+    if (step === POST_STEPS.TITLE && dogType === "") return;
+    if (step === POST_STEPS.INFO && dogName === "") return;
     setStep((prev) => prev + 1);
   };
 
@@ -89,8 +120,10 @@ export default function PostmyDogModal() {
     switch (step) {
       case POST_STEPS.TITLE:
         return "강아지 종류 선택해주세요";
-      case POST_STEPS.CONTENT:
+      case POST_STEPS.INFO:
         return "강아지에 대해 간단한 정보를 알려주세요";
+      case POST_STEPS.DESC:
+        return "강아지 성격을 알려주세요.";
       case POST_STEPS.IMAGE:
         return "강아지 사진을 올려주세요";
       default:
@@ -102,7 +135,7 @@ export default function PostmyDogModal() {
     if (step === POST_STEPS.IMAGE) return "등록하기";
     if (dogType === "") return "강아지 종류를 선택해주세요!";
     return "다음 단계";
-  }, [step,dogType]);
+  }, [step, dogType]);
 
 
   const secondActionLabel = useMemo(() => {
@@ -131,7 +164,7 @@ export default function PostmyDogModal() {
     </div>
   );
 
-  if (step === POST_STEPS.CONTENT) {
+  if (step === POST_STEPS.INFO) {
     bodyModal = (
       <div>
         {label ? (
@@ -157,13 +190,26 @@ export default function PostmyDogModal() {
               )}
             </div>
             <div className="flex-col flex items-center">
-              <Input
-                id="dogName"
-                register={register}
-                errors={errors}
-                label="강아지 이름"
-              />
-
+              <div className="flex gap-4">
+                <Input
+                  id="dogName"
+                  register={register}
+                  errors={errors}
+                  label="강아지 이름"
+                  requiredField={dogName === "" ? true : false}
+                  required
+                />
+                <Input
+                  id="weight"
+                  type="number"
+                  register={register}
+                  errors={errors}
+                  label="몸무게"
+                  required
+                  requiredField={weight === "" ? true : false}
+                  formatWeight
+                />
+              </div>
               <div className="mt-4 flex py-6 w-full justify-between border-t border-b border-solid border-neutral-300">
                 <span className="text-2xl">성별을 골라주세요</span>
                 <div className="flex">
@@ -183,6 +229,10 @@ export default function PostmyDogModal() {
                 <AgeCounter
                   value={dogAge}
                   onChange={(age) => setCustumValue("dogAge", age)}
+                  showMonth={showMonthAge}
+                  onToggle={onToggle}
+                  onMonthChange={(month) => setCustumValue("dogMonth", month)}
+                  monthValue={monthValue}
                 />
               </div>
             </div>
@@ -197,12 +247,34 @@ export default function PostmyDogModal() {
     );
   }
 
+  if (step === POST_STEPS.DESC) {
+    bodyModal = (
+      <div>
+        <Input
+          id="desc"
+          label="강아지에 대해 자랑해주세요"
+          required
+          errors={errors}
+          register={register}
+        />
+        <div>
+          {PERSONALTY_DATA.map((item) => (
+            <SelectPersonality
+              selected={false}
+              value={item.personlityDog}
+              onClick={() => { }}
+            />
+          ))}
+        </div>
+      </div>)
+  }
+
   if (step === POST_STEPS.IMAGE) {
     bodyModal = (
       <div>
         <ImageUpload
           value={imageSrc}
-          onChange={(value)=>setCustumValue("imageSrc",value)}
+          onChange={(value) => setCustumValue("imageSrc", value)}
         />
       </div>
     )
@@ -220,6 +292,7 @@ export default function PostmyDogModal() {
       secondActionOnclick={step !== POST_STEPS.TITLE ? prevStep : undefined}
       stepsLength={stepsLength}
       currentStep={step + 1}
+      disabled={dogType === "" ? true : false}
     />
   );
 }

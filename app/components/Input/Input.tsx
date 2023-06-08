@@ -2,27 +2,33 @@
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import Validation from "../Validation";
+import { GiWeightScale } from 'react-icons/gi'
 
 interface InputProps {
   id: string;
   label: string;
   type?: string;
-  register: UseFormRegister<FieldValues>;
   errors: FieldErrors | undefined;
   required?: boolean;
+  formatWeight?: boolean;
+  requiredField?: boolean;
+  register: UseFormRegister<FieldValues>;
 }
 
 export default function Input({
   id,
   label,
   type = 'text',
-  register,
+  formatWeight,
   required,
-  errors
+  errors,
+  requiredField,
+  register
 }: InputProps) {
 
   return (
     <div className='w-full relative'>
+      {formatWeight && <GiWeightScale size={35} className="absolute top-[20px] right-[25px] text-neutral-500" />}
       <input
         id={id}
         {...register(id, { required })}
@@ -35,13 +41,14 @@ export default function Input({
           pt-6
           font-light
           bg-white
-          border-2
+          border-3
           rounded-md
           outline-none
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
           text-2xl
+          ${requiredField ? 'border-red-500' : ''}
         `}
       />
       <label
@@ -63,7 +70,7 @@ export default function Input({
           `}>
         {label}
       </label>
-      {errors?.[id] && <Validation validation={errors[id]?.message as string}/>}
+      {errors?.[id] && <Validation validation={errors[id]?.message as string} />}
     </div>
   )
 }
