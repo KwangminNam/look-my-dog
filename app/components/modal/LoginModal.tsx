@@ -45,6 +45,7 @@ export default function LoginModal() {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
     setIsLoading(true);
     signIn("credentials", {
       ...data,

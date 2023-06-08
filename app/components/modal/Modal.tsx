@@ -38,9 +38,6 @@ export default function Modal({
   secondActionOnclick
 }: ModalProps) {
 
-  console.log(disabled);
-  console.log(isLoading)
-
   return isOpen ? (
     <div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
       <div
@@ -84,13 +81,13 @@ export default function Modal({
             </div>
             {/* BUTTON */}
             <div className="flex justify-between gap-7 pb-2">
-              {secondActionLabel && secondActionOnclick ? (
+              {secondActionLabel && secondActionOnclick && (
                 <Button
                   label={secondActionLabel}
                   onClick={secondActionOnclick}
                   disabled={disabled}
                 />
-              ) : undefined}
+              )}
               <Button
                 label={actionLabel}
                 onClick={actionOnclick}

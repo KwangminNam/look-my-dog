@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import usePostModal from "../../hooks/usePostModal";
 import Modal from "./Modal";
 import Input from "../Input/Input";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { TYPE_OF_DOG } from "../TypeDogs";
 import Image from "next/image";
 import PostDogInput from "../Input/PostDogInput";
@@ -14,9 +14,12 @@ import ImageUpload from "../ImageUpload";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodType, z } from "zod";
 import SelectPersonality from "../Input/SelectPersonality";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 enum POST_STEPS {
-  TITLE = 0,
+  DOGTYPE = 0,
   INFO = 1,
   DESC = 2,
   IMAGE = 3
@@ -35,25 +38,35 @@ const PERSONALTY_DATA = [
   { personlityDog: "온순한 편이에요" },
   { personlityDog: "사회성이 좋은편이에요" },
   { personlityDog: "낯을 많이 가려요." },
-  { personlityDog: "성격이 사나운편이에요." },
-]
+  { personlityDog: "성격이 사나운편이에요." }
+];
 
-const validation: ZodType<any> = z.object({
-  title: z.string().min(2, "이름은 두글자 이상 이여야 합니다.").max(5, "이름은 다섯글자 이하 여야 합니다."),
-  dogName: z.string().min(5, "비밀번호는 5글자 이상 이여야합니다").max(10, "비밀번호는 10글자 이하 여야합니다"),
-  weight: z.string().min(5, "비밀번호는 5글자 이상 이여야합니다").max(10, "비밀번호는 10글자 이하 여야합니다"),
-})
+// const validation: ZodType<any> = z.object({
+//   title: z
+//     .string()
+//     .min(2, "이름은 두글자 이상 이여야 합니다.")
+//     .max(5, "이름은 다섯글자 이하 여야 합니다."),
+//   dogName: z
+//     .string()
+//     .min(5, "비밀번호는 5글자 이상 이여야합니다")
+//     .max(10, "비밀번호는 10글자 이하 여야합니다"),
+//   weight: z
+//     .string()
+//     .min(5, "비밀번호는 5글자 이상 이여야합니다")
+//     .max(10, "비밀번호는 10글자 이하 여야합니다")
+// });
 
 export default function PostmyDogModal() {
   const {
     watch,
     setValue,
     register,
+    reset,
+    handleSubmit,
     formState: { errors }
   } = useForm<FieldValues>({
-    resolver: zodResolver(validation),
+    // resolver: zodResolver(validation),
     defaultValues: {
-      title: "",
       dogType: "",
       dogAge: 1,
       male: "",
@@ -62,39 +75,42 @@ export default function PostmyDogModal() {
       dogMonth: "",
       dogName: "",
       weight: "",
+      desc: ""
     }
   });
   const postModal = usePostModal();
+  const router = useRouter();
 
   const stepsArray = Object.keys(POST_STEPS)
     .filter((key) => isNaN(Number(key)))
     .map((key) => POST_STEPS[key as any]);
   const stepsLength = stepsArray.length;
 
-
-  const [step, setStep] = useState(POST_STEPS.TITLE);
+  const [step, setStep] = useState(POST_STEPS.DOGTYPE);
   const [label, setLabel] = useState("");
   const [showMonthAge, setShowMonthAge] = useState(false);
+  const [isLoading ,setIsLoading] = useState(false);
 
-  const onToggle = () => setShowMonthAge(prev => !prev);
+  const onToggle = () => setShowMonthAge((prev) => !prev);
 
   const dogType = watch("dogType");
   const dogAge = watch("dogAge");
   const male = watch("male");
-  const imageSrc = watch('imageSrc');
-  const monthValue = watch('dogMonth');
-  const dogName = watch('dogName');
-  const weight = watch('dogWeight');
+  const imageSrc = watch("imageSrc");
+  const monthValue = watch("dogMonth");
+  const dogName = watch("dogName");
+  const weight = watch("dogWeight");
+  const personality = watch("personality");
 
   useEffect(() => {
     if (postModal.isOpen === false) {
-      setStep(POST_STEPS.TITLE);
+      setStep(POST_STEPS.DOGTYPE);
     }
   }, [postModal.isOpen]);
 
   const nextStep = () => {
-    if (step === POST_STEPS.TITLE && dogType === "") return;
-    if (step === POST_STEPS.INFO && dogName === "") return;
+    // if (step === POST_STEPS.DOGTYPE && dogType === "") return;
+    // if (step === POST_STEPS.INFO && dogName === "") return;
     setStep((prev) => prev + 1);
   };
 
@@ -111,14 +127,37 @@ export default function PostmyDogModal() {
     setCustumValue("male", value);
   };
 
-  const onSubmit = () => {
-    if (step !== POST_STEPS.IMAGE) return nextStep();
-    //TODO: return last step function
+  const selectPersonality = (value: string) => {
+    setCustumValue("personality", value);
   };
 
+  console.log(step)
+
+  const onSubmit = (data:any) => {
+    if(step !== POST_STEPS.IMAGE) {
+      return nextStep();
+    }
+    setIsLoading(true);
+
+    axios.post('/api/listing',data)
+    .then(()=>{
+      toast.success("리스트 생성완료");
+      router.refresh();
+      reset();
+
+    })
+    .catch((err)=>{
+      toast.error('something went worng');
+      console.log(err)
+    })
+    .finally(()=>{
+      setIsLoading(false);
+      console.log(data)
+    })
+  }
   const headerLabel = useMemo(() => {
     switch (step) {
-      case POST_STEPS.TITLE:
+      case POST_STEPS.DOGTYPE:
         return "강아지 종류 선택해주세요";
       case POST_STEPS.INFO:
         return "강아지에 대해 간단한 정보를 알려주세요";
@@ -137,9 +176,8 @@ export default function PostmyDogModal() {
     return "다음 단계";
   }, [step, dogType]);
 
-
   const secondActionLabel = useMemo(() => {
-    if (step === POST_STEPS.TITLE) return undefined;
+    if (step === POST_STEPS.DOGTYPE) return undefined;
     return "뒤로";
   }, [step]);
 
@@ -159,6 +197,7 @@ export default function PostmyDogModal() {
           src={item.src}
           selected={dogType === item.label}
           onClick={selectDogType}
+          key={item.label}
         />
       ))}
     </div>
@@ -260,13 +299,14 @@ export default function PostmyDogModal() {
         <div>
           {PERSONALTY_DATA.map((item) => (
             <SelectPersonality
-              selected={false}
+              selected={personality === item.personlityDog}
               value={item.personlityDog}
-              onClick={() => { }}
+              onClick={selectPersonality}
             />
           ))}
         </div>
-      </div>)
+      </div>
+    );
   }
 
   if (step === POST_STEPS.IMAGE) {
@@ -277,7 +317,7 @@ export default function PostmyDogModal() {
           onChange={(value) => setCustumValue("imageSrc", value)}
         />
       </div>
-    )
+    );
   }
 
   return (
@@ -287,9 +327,9 @@ export default function PostmyDogModal() {
       closeAction={postModal.actionClose}
       bodyContent={bodyModal}
       actionLabel={actionLabel}
-      actionOnclick={onSubmit}
+      actionOnclick={handleSubmit(onSubmit)}
       secondActionLabel={secondActionLabel}
-      secondActionOnclick={step !== POST_STEPS.TITLE ? prevStep : undefined}
+      secondActionOnclick={step !== POST_STEPS.DOGTYPE ? prevStep : undefined}
       stepsLength={stepsLength}
       currentStep={step + 1}
       disabled={dogType === "" ? true : false}

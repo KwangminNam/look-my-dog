@@ -47,14 +47,14 @@ model Account {
 
 model DogListing {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
+  desc String
   imageSrc String
   createdAt DateTime @default(now())
   dogType String
   dogAge Int
+  dogName String
   weight Int
-  dogMonth Int?
+  dogMonth String?
   male String
   personality String
   userId String @db.ObjectId

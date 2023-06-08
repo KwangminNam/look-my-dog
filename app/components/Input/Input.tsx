@@ -26,6 +26,8 @@ export default function Input({
   register
 }: InputProps) {
 
+  console.log(errors);
+  console.log(register)
   return (
     <div className='w-full relative'>
       {formatWeight && <GiWeightScale size={35} className="absolute top-[20px] right-[25px] text-neutral-500" />}
@@ -42,13 +44,14 @@ export default function Input({
           font-light
           bg-white
           border-3
+          border-solid
           rounded-md
           outline-none
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
           text-2xl
-          ${requiredField ? 'border-red-500' : ''}
+          ${requiredField ? 'border-red-500' : 'border-black'}
         `}
       />
       <label
