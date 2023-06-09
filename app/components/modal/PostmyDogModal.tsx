@@ -141,18 +141,18 @@ export default function PostmyDogModal() {
 
     axios.post('/api/listing',data)
     .then(()=>{
-      toast.success("리스트 생성완료");
+      toast.success("강아지 등록 완료!");
       router.refresh();
+      postModal.actionClose();
       reset();
 
     })
     .catch((err)=>{
       toast.error('something went worng');
-      console.log(err)
+      console.log(err);
     })
     .finally(()=>{
       setIsLoading(false);
-      console.log(data)
     })
   }
   const headerLabel = useMemo(() => {

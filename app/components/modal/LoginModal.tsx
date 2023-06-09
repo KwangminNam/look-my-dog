@@ -18,6 +18,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// SNS LOGIN TYPE
 type SnsName = 'github' | 'google';
 
 export default function LoginModal() {
@@ -27,7 +28,6 @@ export default function LoginModal() {
 
   const [isLoading, setIsLoading] = useState(false);
   
-
   const {
     register,
     handleSubmit,

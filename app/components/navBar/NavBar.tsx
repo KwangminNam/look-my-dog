@@ -14,7 +14,7 @@ interface NavBarProps {
 export default function NavBar({loggedInUser}:NavBarProps) {
   return (
     <>
-      <div className="w-full bg-white z-10 shadow-xl">
+      <nav className="w-full bg-white z-10 shadow-xl">
         <Container>
           <div className="flex flex-row justify-between py-7 items-center">
             <Logo />
@@ -22,7 +22,7 @@ export default function NavBar({loggedInUser}:NavBarProps) {
             <Hamberger loggedInUser={loggedInUser} />
           </div>
         </Container>
-      </div>
+      </nav>
       <TypeDogs />
     </>
   );
