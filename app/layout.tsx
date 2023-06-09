@@ -26,7 +26,7 @@ export default async function RootLayout({
       <body className={jua.className}>
         <ToasterProvider />
         <NavBar loggedInUser={loggedInUser} />
-        <HeroBox />
+        {/* <HeroBox /> */}
         <LoginModal />
         <RegisterModal />
         <PostmyDogModal />
