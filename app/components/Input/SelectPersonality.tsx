@@ -1,8 +1,8 @@
 "use client";
 
 interface SelectPersonality {
-  onClick: (value: string) => void;
-  selected: boolean;
+  onClick: any;
+  selected?: boolean;
   value: any;
 }
 

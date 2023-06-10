@@ -71,7 +71,7 @@ export default function PostmyDogModal() {
       dogAge: 1,
       male: "",
       imageSrc: "",
-      personality: "",
+      personality: [],
       dogMonth: "",
       dogName: "",
       weight: "",
@@ -100,7 +100,9 @@ export default function PostmyDogModal() {
   const monthValue = watch("dogMonth");
   const dogName = watch("dogName");
   const weight = watch("dogWeight");
-  const personality = watch("personality");
+  const personality = watch("personality") || [];
+
+  console.log(personality)
 
   useEffect(() => {
     if (postModal.isOpen === false) {
@@ -127,11 +129,10 @@ export default function PostmyDogModal() {
     setCustumValue("male", value);
   };
 
-  const selectPersonality = (value: string) => {
-    setCustumValue("personality", value);
-  };
+  // const selectPersonality = (value: string) => {
+  //   setCustumValue("personality", value);
+  // };
 
-  console.log(step)
 
   const onSubmit = (data:any) => {
     if(step !== POST_STEPS.IMAGE) {
@@ -188,6 +189,30 @@ export default function PostmyDogModal() {
       shouldTouch: true
     });
   };
+
+  const setCustumValue2 = (id: string, value: any) => {
+    const newPersonality = Array.isArray(value)
+      ? value
+      : [value];
+    setValue(id, newPersonality, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true
+    });
+  };
+
+  const selectPersonality = (value: string) => {
+    const newPersonality = [...personality];
+    const index = newPersonality.indexOf(value);
+    if (index > -1) {
+      newPersonality.splice(index, 1);
+    } else {
+      newPersonality.push(value);
+    }
+    setCustumValue("personality", newPersonality);
+  };
+  
+  
 
   let bodyModal = (
     <div className="grid grid-cols-2 gap-4">

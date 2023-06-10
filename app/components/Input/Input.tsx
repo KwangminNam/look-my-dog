@@ -26,8 +26,7 @@ export default function Input({
   register
 }: InputProps) {
 
-  console.log(errors);
-  console.log(register)
+  
   return (
     <div className='w-full relative'>
       {formatWeight && <GiWeightScale size={35} className="absolute top-[20px] right-[25px] text-neutral-500" />}
