@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { useMemo } from "react";
 import { GiMale, GiFemale } from "react-icons/gi";
+import {AiOutlineLike } from "react-icons/ai";
+
+
 
 interface DogListCardProps {
   desc: string;
@@ -13,7 +16,7 @@ interface DogListCardProps {
   weight: number;
   dogMonth?: string;
   male: string;
-  personality: string;
+  personality: string[];
 }
 
 export default function DogListCard({
@@ -21,7 +24,7 @@ export default function DogListCard({
   imageSrc,
   dogType,
   male,
-  personality,
+  personality = [],
   dogAge,
   dogMonth,
   dogName
@@ -48,10 +51,11 @@ export default function DogListCard({
     >
       <h4>{dogName}</h4>
       <span>{maleLabel}</span>
-      <p>성향은 {personality}</p>
+      <div>성향은 {personality.map(item => <div>{item}</div>)}</div>
       <p>나이는 : {dogAge}</p>
       {dogMonth && <span>{dogMonth} 입니다.</span>}
       <span>설명은 {desc}</span>
+      <button>좋아요 <AiOutlineLike size={20}/></button>
       <Image src={imageSrc} alt={dogName} width={150} height={200}/>
     </div>
   );

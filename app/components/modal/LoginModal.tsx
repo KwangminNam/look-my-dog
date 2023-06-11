@@ -16,7 +16,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // SNS LOGIN TYPE
 type SnsName = 'github' | 'google';
@@ -28,6 +28,8 @@ export default function LoginModal() {
 
   const [isLoading, setIsLoading] = useState(false);
   
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const {
     register,
     handleSubmit,
@@ -72,7 +74,6 @@ export default function LoginModal() {
   }
 
 
-
   const loginBodyContent = (
     <div className="flex flex-col gap-4">
       <Input
@@ -81,6 +82,7 @@ export default function LoginModal() {
         register={register}
         errors={errors}
         required
+        focus
       />
       <Input
         id="password"

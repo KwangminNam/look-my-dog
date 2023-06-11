@@ -190,17 +190,19 @@ export default function PostmyDogModal() {
     });
   };
 
-  const setCustumValue2 = (id: string, value: any) => {
-    const newPersonality = Array.isArray(value)
-      ? value
-      : [value];
-    setValue(id, newPersonality, {
-      shouldDirty: true,
-      shouldValidate: true,
-      shouldTouch: true
-    });
-  };
+  // const setCustumValue2 = (id: string, value: any) => {
+  //   const newPersonality = Array.isArray(value)
+  //     ? value
+  //     : [value];
+  //   setValue(id, newPersonality, {
+  //     shouldDirty: true,
+  //     shouldValidate: true,
+  //     shouldTouch: true
+  //   });
+  // };
 
+  
+// TODO : 코드 파악하기.
   const selectPersonality = (value: string) => {
     const newPersonality = [...personality];
     const index = newPersonality.indexOf(value);
@@ -310,7 +312,6 @@ export default function PostmyDogModal() {
       </div>
     );
   }
-
   if (step === POST_STEPS.DESC) {
     bodyModal = (
       <div>
@@ -324,7 +325,7 @@ export default function PostmyDogModal() {
         <div>
           {PERSONALTY_DATA.map((item) => (
             <SelectPersonality
-              selected={personality === item.personlityDog}
+              selected={personality}
               value={item.personlityDog}
               onClick={selectPersonality}
             />

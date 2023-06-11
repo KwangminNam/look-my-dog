@@ -2,7 +2,7 @@
 
 interface SelectPersonality {
   onClick: any;
-  selected?: boolean;
+  selected?: any;
   value: any;
 }
 
@@ -11,6 +11,9 @@ export default function SelectPersonality({
   selected,
   value
 }: SelectPersonality) {
+  
+  const isSelected = selected.includes(value);
+  console.log(isSelected);
   return (
     <div className="cursor-pointer" onClick={() => onClick(value)}>
       <span
@@ -22,12 +25,12 @@ export default function SelectPersonality({
         p-3
         mr-1
         ${
-          selected
+          isSelected
             ? "bg-red-400 border-red-400 text-yellow-50"
             : "border-neutral-300"
         }
         ${
-          selected
+          isSelected
             ? "bg-blue-500 border-blue-500 text-yellow-50"
             : "border-neutral-300"
         }

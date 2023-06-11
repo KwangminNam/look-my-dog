@@ -3,6 +3,7 @@
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import Validation from "../Validation";
 import { GiWeightScale } from 'react-icons/gi'
+import { use, useEffect, useRef } from "react";
 
 interface InputProps {
   id: string;
@@ -12,6 +13,7 @@ interface InputProps {
   required?: boolean;
   formatWeight?: boolean;
   requiredField?: boolean;
+  focus?:boolean;
   register: UseFormRegister<FieldValues>;
 }
 
@@ -23,14 +25,18 @@ export default function Input({
   required,
   errors,
   requiredField,
+  focus,
   register
 }: InputProps) {
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   
   return (
     <div className='w-full relative'>
       {formatWeight && <GiWeightScale size={35} className="absolute top-[20px] right-[25px] text-neutral-500" />}
       <input
+        autoFocus={focus}
         id={id}
         {...register(id, { required })}
         placeholder=" "
@@ -42,15 +48,16 @@ export default function Input({
           pt-6
           font-light
           bg-white
-          border-3
+          border-2
           border-solid
+          border-neutral-400
           rounded-md
           outline-none
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
           text-2xl
-          ${requiredField ? 'border-red-500' : 'border-black'}
+
         `}
       />
       <label
