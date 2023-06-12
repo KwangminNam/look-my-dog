@@ -56,7 +56,7 @@ model DogListing {
   weight Int
   dogMonth String?
   male String
-  personality String
+  personality String[]
   userId String @db.ObjectId
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]

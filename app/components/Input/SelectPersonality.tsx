@@ -11,33 +11,33 @@ export default function SelectPersonality({
   selected,
   value
 }: SelectPersonality) {
-  
+
   const isSelected = selected.includes(value);
-  console.log(isSelected);
+
   return (
-    <div className="cursor-pointer" onClick={() => onClick(value)}>
-      <span
-        className={`
+    <div
+      className={`
+        cursor-pointer
         text-2xl
         rounded-xl
         border-[3px]
         border-solid
         p-3
         mr-1
-        ${
-          isSelected
-            ? "bg-red-400 border-red-400 text-yellow-50"
-            : "border-neutral-300"
-        }
-        ${
-          isSelected
-            ? "bg-blue-500 border-blue-500 text-yellow-50"
-            : "border-neutral-300"
-        }
-        `}
-      >
+        flex-1
+        ${isSelected
+        ? "bg-red-400 border-red-400 text-yellow-50"
+        : "border-neutral-300"
+      }
+        ${isSelected
+        ? "bg-blue-500 border-blue-500 text-yellow-50"
+        : "border-neutral-300"
+      } `}
+      onClick={() => onClick(value)}>
+      <span>
         {value}
       </span>
     </div>
+
   );
 }

@@ -21,9 +21,10 @@ export default async function Home() {
         sm:px-2
         px-4"
     >
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-4 gap-3">
         {getDogList?.map((item: any) => (
           <DogListCard
+            id={item.id}
             key={item.dogName}
             dogName={item.dogName}
             dogAge={item.dogAge}

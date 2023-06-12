@@ -36,9 +36,9 @@ const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
 
 const PERSONALTY_DATA = [
   { personlityDog: "온순한 편이에요" },
+  { personlityDog: "성격이 사나운편이에요." },
   { personlityDog: "사회성이 좋은편이에요" },
   { personlityDog: "낯을 많이 가려요." },
-  { personlityDog: "성격이 사나운편이에요." }
 ];
 
 // const validation: ZodType<any> = z.object({
@@ -89,7 +89,7 @@ export default function PostmyDogModal() {
   const [step, setStep] = useState(POST_STEPS.DOGTYPE);
   const [label, setLabel] = useState("");
   const [showMonthAge, setShowMonthAge] = useState(false);
-  const [isLoading ,setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onToggle = () => setShowMonthAge((prev) => !prev);
 
@@ -102,7 +102,7 @@ export default function PostmyDogModal() {
   const weight = watch("dogWeight");
   const personality = watch("personality") || [];
 
-  console.log(personality)
+
 
   useEffect(() => {
     if (postModal.isOpen === false) {
@@ -134,27 +134,29 @@ export default function PostmyDogModal() {
   // };
 
 
-  const onSubmit = (data:any) => {
-    if(step !== POST_STEPS.IMAGE) {
+  const onSubmit = (data: any) => {
+    if (step !== POST_STEPS.IMAGE) {
       return nextStep();
     }
     setIsLoading(true);
 
-    axios.post('/api/listing',data)
-    .then(()=>{
-      toast.success("강아지 등록 완료!");
-      router.refresh();
-      postModal.actionClose();
-      reset();
+    console.log(data);
 
-    })
-    .catch((err)=>{
-      toast.error('something went worng');
-      console.log(err);
-    })
-    .finally(()=>{
-      setIsLoading(false);
-    })
+    axios.post('/api/listing', data)
+      .then(() => {
+        toast.success("강아지 등록 완료!");
+        router.refresh();
+        postModal.actionClose();
+        reset();
+
+      })
+      .catch((err) => {
+        toast.error('something went worng');
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
   const headerLabel = useMemo(() => {
     switch (step) {
@@ -201,11 +203,12 @@ export default function PostmyDogModal() {
   //   });
   // };
 
-  
-// TODO : 코드 파악하기.
-  const selectPersonality = (value: string) => {
+
+  // TODO : 코드 파악하기.
+  const selectPersonalityFn = (value: string) => {
     const newPersonality = [...personality];
     const index = newPersonality.indexOf(value);
+    console.log(index);
     if (index > -1) {
       newPersonality.splice(index, 1);
     } else {
@@ -213,8 +216,8 @@ export default function PostmyDogModal() {
     }
     setCustumValue("personality", newPersonality);
   };
-  
-  
+
+
 
   let bodyModal = (
     <div className="grid grid-cols-2 gap-4">
@@ -232,117 +235,108 @@ export default function PostmyDogModal() {
 
   if (step === POST_STEPS.INFO) {
     bodyModal = (
-      <div>
-        {label ? (
-          <>
-            <div className="flex justify-center items-center mb-4">
-              <div className="text-xl">
-                나의 강아지 종류는 <span className="text-red-400">{label}</span>
-              </div>
-              {TYPE_OF_DOG.filter((item) => item.label === label).map(
-                (item) => (
-                  <Image
-                    className="
-                      border-2
-                      border-neutral-300
-                      border-solid
-                      rounded-full"
-                    src={`${item.src}.jpeg`}
-                    alt={label}
-                    width={70}
-                    height={70}
-                  />
-                )
-              )}
-            </div>
-            <div className="flex-col flex items-center">
-              <div className="flex gap-4">
-                <Input
-                  id="dogName"
-                  register={register}
-                  errors={errors}
-                  label="강아지 이름"
-                  requiredField={dogName === "" ? true : false}
-                  required
-                />
-                <Input
-                  id="weight"
-                  type="number"
-                  register={register}
-                  errors={errors}
-                  label="몸무게"
-                  required
-                  requiredField={weight === "" ? true : false}
-                  formatWeight
-                />
-              </div>
-              <div className="mt-4 flex py-6 w-full justify-between border-t border-b border-solid border-neutral-300">
-                <span className="text-2xl">성별을 골라주세요</span>
-                <div className="flex">
-                  {MALE_DATA.map((item) => (
-                    <SelectSex
-                      onClick={selectMaleType}
-                      key={item.male}
-                      value={item.male}
-                      selected={male === item.male}
-                    />
-                  ))}
-                </div>
-              </div>
-              <hr />
-              <div className="flex pt-6 w-full justify-between">
-                <span className="text-2xl">강아지의 나이는 몇살인가요?</span>
-                <AgeCounter
-                  value={dogAge}
-                  onChange={(age) => setCustumValue("dogAge", age)}
-                  showMonth={showMonthAge}
-                  onToggle={onToggle}
-                  onMonthChange={(month) => setCustumValue("dogMonth", month)}
-                  monthValue={monthValue}
-                />
-              </div>
-            </div>
-          </>
-        ) : (
-          <div className="h-full bg-red-50">
-            <p>강아지종류 선택을 하지않으셨습니다.</p>
-            <span>이전 단계에서 강아지를 선택해주세요</span>
+      <>
+        <div className="flex justify-center items-center mb-4">
+          <div className="text-xl">
+            나의 강아지 종류는 <span className="text-red-400">{label}</span>
           </div>
-        )}
-      </div>
+          {TYPE_OF_DOG.filter((item) => item.label === label).map(
+            (item) => (
+              <Image
+                className="
+                  border-2
+                  border-neutral-300
+                  border-solid
+                  rounded-full"
+                src={`${item.src}.jpeg`}
+                alt={label}
+                width={70}
+                height={70}
+              />
+            )
+          )}
+        </div>
+        <div className="flex-col flex items-center">
+          <div className="flex gap-4">
+            <Input
+              id="dogName"
+              register={register}
+              errors={errors}
+              label="강아지 이름"
+              requiredField={dogName === "" ? true : false}
+              required
+            />
+            <Input
+              id="weight"
+              type="number"
+              register={register}
+              errors={errors}
+              label="몸무게"
+              required
+              min={0}
+              requiredField={weight === "" ? true : false}
+              formatWeight
+            />
+          </div>
+          <div className="mt-4 flex py-6 w-full justify-between border-t border-b border-solid border-neutral-300">
+            <span className="text-2xl">성별을 골라주세요</span>
+            <div className="flex">
+              {MALE_DATA.map((item) => (
+                <SelectSex
+                  onClick={selectMaleType}
+                  key={item.male}
+                  value={item.male}
+                  selected={male === item.male}
+                />
+              ))}
+            </div>
+          </div>
+          <hr />
+          <div className="flex pt-6 w-full justify-between">
+            <span className="text-2xl">강아지의 나이는 몇살인가요?</span>
+            <AgeCounter
+              value={dogAge}
+              showMonth={showMonthAge}
+              onToggle={onToggle}
+              monthValue={monthValue}
+              onMonthChange={(month) => setCustumValue("dogMonth", month)}
+              onChange={(age) => setCustumValue("dogAge", age)}
+            />
+          </div>
+        </div>
+
+      </>
     );
   }
   if (step === POST_STEPS.DESC) {
     bodyModal = (
-      <div>
-        <Input
-          id="desc"
-          label="강아지에 대해 자랑해주세요"
-          required
-          errors={errors}
-          register={register}
-        />
-        <div>
+      <>
+        <div className="flex flex-col flex-wrap justify-center gap-2 mb-5">
           {PERSONALTY_DATA.map((item) => (
             <SelectPersonality
               selected={personality}
               value={item.personlityDog}
-              onClick={selectPersonality}
+              onClick={selectPersonalityFn}
             />
           ))}
         </div>
-      </div>
+       <Input
+          id="desc"
+          label="추가 설명해주세요"
+          required
+          errors={errors}
+          register={register}
+        />
+      </>
     );
   }
 
   if (step === POST_STEPS.IMAGE) {
     bodyModal = (
-      <div>
-        <ImageUpload
-          value={imageSrc}
-          onChange={(value) => setCustumValue("imageSrc", value)}
-        />
-      </div>
+      <ImageUpload
+        value={imageSrc}
+        onChange={(value) => setCustumValue("imageSrc", value)}
+      />
     );
   }
 
