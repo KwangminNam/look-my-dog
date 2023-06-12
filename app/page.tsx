@@ -2,9 +2,11 @@ import Image from "next/image";
 import getListing from "./actions/getDogListing";
 import EmptyState from "./components/EmptyState";
 import DogListCard from "./components/list/DogListCard";
+import getLoggedInUser from "./actions/getLoginedUser";
 
 export default async function Home() {
   const getDogList = await getListing();
+  const getLoggedinuser = await getLoggedInUser();
   const emptyList = getDogList?.length === 0;
 
   if (emptyList) {
@@ -21,9 +23,10 @@ export default async function Home() {
         sm:px-2
         px-4"
     >
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-4 gap-9">
         {getDogList?.map((item: any) => (
           <DogListCard
+            loggedInUser={getLoggedinuser}
             id={item.id}
             key={item.dogName}
             dogName={item.dogName}
