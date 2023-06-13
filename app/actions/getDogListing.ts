@@ -7,7 +7,13 @@ export default async function getListing() {
         createdAt: 'desc'
       }
     })
-    return getDogList;
+
+    const safeList = getDogList.map((item)=>({
+      ...item,
+      createdAt:item.createdAt.toISOString(),
+    }))
+
+    return safeList;
   } catch (error: any) {
     console.log(error)
   }

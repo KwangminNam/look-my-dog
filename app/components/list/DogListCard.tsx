@@ -6,6 +6,7 @@ import { GiMale, GiFemale } from "react-icons/gi";
 import { AiOutlineLike } from "react-icons/ai";
 import LikeButton from "../LikeButton";
 import { SafeUser } from "@/app/types";
+import { useRouter } from "next/navigation";
 
 interface DogListCardProps {
   id: any;
@@ -34,6 +35,9 @@ export default function DogListCard({
   dogName,
   loggedInUser
 }: DogListCardProps) {
+  
+   const router = useRouter();
+
    const maleLabel = useMemo(() => {
     switch (male) {
       case "남자":
@@ -43,10 +47,12 @@ export default function DogListCard({
     }
   }, [male]);
 
+  console.log(id);
+
   if(true){
     return (
       <div 
-      // onClick={() => router.push(`/listings/${data.id}`)} 
+      onClick={() => router.push(`/listing/${id}`)} 
       className=""
     >
       <div className="flex flex-col gap-2 w-full">

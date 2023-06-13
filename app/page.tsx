@@ -23,7 +23,7 @@ export default async function Home() {
         sm:px-2
         px-4"
     >
-      <div className="grid grid-cols-4 gap-9">
+      <div className="grid grid-cols-6 gap-9">
         {getDogList?.map((item: any) => (
           <DogListCard
             loggedInUser={getLoggedinuser}
