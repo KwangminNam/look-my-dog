@@ -1,6 +1,8 @@
-Look My Dog / 룩마독
+## Project name
+  Look My Dog / 룩마독
 
-NextJS 13 , TypeScript Prisma Client.
+## What do I use? 
+  NextJS 13 ,TypeScript, Prisma Client , mongoDB
 
 style
 -Tailwind.css
