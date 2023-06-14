@@ -84,6 +84,7 @@ export default function PostmyDogModal() {
   const stepsArray = Object.keys(POST_STEPS)
     .filter((key) => isNaN(Number(key)))
     .map((key) => POST_STEPS[key as any]);
+    
   const stepsLength = stepsArray.length;
 
   const [step, setStep] = useState(POST_STEPS.DOGTYPE);

@@ -47,9 +47,6 @@ export default function DogListCard({
     }
   }, [male]);
 
-  console.log(id);
-
-  if(true){
     return (
       <div 
       onClick={() => router.push(`/listing/${id}`)} 
@@ -89,7 +86,7 @@ export default function DogListCard({
         <div className="font-light text-neutral-500 flex">
           <div>나이는:{dogAge}살</div>
           {dogMonth && <div>{dogMonth}</div>}
-          <div>성별은:{male}</div>
+          <div>성별은:{maleLabel}</div>
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">
@@ -101,36 +98,3 @@ export default function DogListCard({
     )
   }
 
-
-
-  return (
-    <div
-      className="
-        flex
-        flex-col
-        border-solid
-        border-2
-        border-neutral-400
-        rounded-md
-      "
-    >
-      <h4>{dogName}</h4>
-      <div>{dogType}</div>
-      <span>{maleLabel}</span>
-      <div>
-        성향은{" "}
-        {personality.map((item) => (
-          <div>{item}</div>
-        ))}
-      </div>
-      <p>나이는 : {dogAge}</p>
-      {dogMonth && <span>{dogMonth} 입니다.</span>}
-      <span>설명은 {desc}</span>
-      <button>
-        좋아요 <AiOutlineLike size={20} />
-      </button>
-      <div>몸무게는 {weight}</div>
-      <Image src={imageSrc} alt={dogName} width={150} height={200} />
-    </div>
-  );
-}

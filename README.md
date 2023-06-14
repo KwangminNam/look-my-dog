@@ -1,35 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Look My Dog / 룩마독
 
-## Getting Started
+NextJS 13 , TypeScript Prisma Client.
 
-First, run the development server:
+style
+-Tailwind.css
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+state mangement
+-Zustand
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+library
+  -axios
+  -react-hook-from
+  -react-hot-toatst
+  -query-string
+  -react-select
+  -react-spinners
+  -zod
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  -서버사이드 렌더링을 위해 Prisma Client 를 이용
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  Project Status
+    React-hook-form 라이브러러리를 이용하여 http 통신
+    서버사이드 렌더링 Prisma Client를 이용해  클라이언트에서 fetch API 가 아닌 서버와 함께 바로 통신
+    Next Auth 로 SNS Login 구현.
+    Query-string 을 이용해 url 파라미터 컨트롤
+    React hot toast로 http 통신 시 succsee , fail(reject) 클라이언트에게 표시
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Work Flow 사이드프로젝트 하면서 느꼈던 점 밑 방향성 
+-폴더구조 
+ -action:
+   1.서버사이드 렌더링을 하기위한 폴더 Prisma Client로 서버와 다이렉트로 통신하여 데이터를 갖고옴 
+   2.데이터를 렌더링 할 page파일에 action에 선언 해놓은 요청을 갖고와서 하위 컴포넌트(클라이엍느 컴포넌트)로 전달해줘서 서버사이드렌더링과 클라이언트사이드 렌더링을 같이 진행시킴
+-api:
+  http 통신할 api 들을 선언해놓음. 여기서 또한 prisma client를 이용해서 Resopnse를 제공해줌.
+  -auth:
+    Nextjs의 login auth 관리 . provider에서 sns 로그인 관리.
+-hooks:
+  Zustand를 이용해 Modal의 상태관리 (on , off , action on/off)를 관리함.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# look-my-dog
