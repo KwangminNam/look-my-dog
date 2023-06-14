@@ -9,17 +9,17 @@ import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 
 interface DogListCardProps {
-  id: any;
-  desc: string;
+  id?: any;
+  desc?: string;
   imageSrc: string;
   dogType: string;
-  dogAge: number;
+  dogAge?: number;
   dogName: string;
-  weight: number;
+  weight?: number;
   dogMonth?: string;
   male: string;
-  personality: string[];
-  loggedInUser:SafeUser | null;
+  personality?: string[];
+  loggedInUser?:SafeUser | null;
 }
 
 export default function DogListCard({
@@ -87,11 +87,6 @@ export default function DogListCard({
           <div>나이는:{dogAge}살</div>
           {dogMonth && <div>{dogMonth}</div>}
           <div>성별은:{maleLabel}</div>
-        </div>
-        <div className="flex flex-row items-center gap-1">
-          <div className="font-semibold">
-            {desc}
-          </div>
         </div>
       </div>
     </div>

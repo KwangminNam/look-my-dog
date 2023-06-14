@@ -37,7 +37,6 @@ export default async function Home() {
             male={item.male}
             personality={item.personality}
             imageSrc={item.imageSrc}
-            desc={item.desc}
           />
         ))}
       </div>
