@@ -1,14 +1,15 @@
 'use client';
 
 import DogListCard from "../components/list/DogListCard";
+import { LostDogTypes } from "./type";
 
-export default function LostDogClient({ lostGetDogList }: any) {
+export default function LostDogClient({ lostGetDogList }:any) {
 
   console.log(lostGetDogList);
 
   return (
     <>
-      {lostGetDogList.map((item: any) => (
+      {lostGetDogList.map((item: LostDogTypes) => (
         <DogListCard
           imageSrc={item.filename}
           male={item.sexCd}

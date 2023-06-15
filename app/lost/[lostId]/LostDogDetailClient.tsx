@@ -3,7 +3,6 @@
 import Container from "@/app/components/Container";
 import DogListCard from "@/app/components/list/DogListCard";
 import Image from "next/image";
-import { useMemo } from "react";
 import { LostDogTypes } from "../type";
 
 
@@ -61,10 +60,6 @@ export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogLis
                   .filter((item)=> item.desertionNo !== getDetailLostDog.desertionNo)
                   .splice(0, 4)
                   .map((item: any) => (
-                    // <>
-                    //   <div>{item.dogType}</div>
-                    //   <div>{item.dogName}</div>
-                    // </>
                     <DogListCard
                       dogType={dogLabel}
                       dogName={item.dogName}

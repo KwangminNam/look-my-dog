@@ -1,9 +1,10 @@
 import getLostDogList from "../actions/getLostDogListing";
 import LostDogClient from "./LostDogClient";
+import { LostDogTypes } from "./type";
 
 export default async function LostDog() {
 
-  const getLostDogListt = await getLostDogList();
+  const getLostDogListt:LostDogTypes[] = await getLostDogList();
 
   return (
     <div
