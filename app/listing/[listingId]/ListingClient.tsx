@@ -80,6 +80,8 @@ export default function ListingClient({ dogList, loggedInUser, allDogList }: Lis
                       dogName={item.dogName}
                       male={item.male}
                       imageSrc={item.imageSrc}
+                      id={item.id}
+                      paramsName='listing'
                     />
                   ))
               }

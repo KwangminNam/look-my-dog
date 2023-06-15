@@ -44,6 +44,16 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       >
         강아지 자랑하기
       </button>
+      <button
+        className="
+          border
+          border-neutral-200
+          rounded-xl
+          shadow-md
+          p-3"
+          onClick={() => router.push('/lost')}>
+          유기견 강아지 보기     
+      </button>
       <div
         className="
           p-4

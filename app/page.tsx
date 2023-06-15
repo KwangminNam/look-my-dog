@@ -5,9 +5,14 @@ import DogListCard from "./components/list/DogListCard";
 import getLoggedInUser from "./actions/getLoginedUser";
 
 export default async function Home() {
+
   const getDogList = await getListing();
   const getLoggedinuser = await getLoggedInUser();
+  // const getLostDogListt = await getLostDogList();
   const emptyList = getDogList?.length === 0;
+
+  // console.log(getLostDogListt);
+
 
   if (emptyList) {
     return <EmptyState />;
@@ -37,9 +42,19 @@ export default async function Home() {
             male={item.male}
             personality={item.personality}
             imageSrc={item.imageSrc}
+            paramsName="listing"
           />
         ))}
       </div>
+      {/* <div className="grid grid-cols-6 gap-9">
+        {getLostDogListt.map((item:any)=>(
+          <DogListCard
+            imageSrc={item.filename}
+            male={item.sexCd}
+            dogType={item.kindCd}
+          />
+        ))}
+      </div> */}
     </div>
   );
 }

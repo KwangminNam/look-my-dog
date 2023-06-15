@@ -13,9 +13,6 @@ export default async function List({params}:{params:IParams}){
   const allDogList = await getListing();
   const loggedInUser = await getLoggedInUser();
 
-  console.log(params)
-  console.log(dogList);
-
   return(
     <ListingClient loggedInUser={loggedInUser} dogList={dogList} allDogList={allDogList}/>
   )
