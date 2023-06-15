@@ -20,7 +20,7 @@ interface DogListCardProps {
   male: string;
   personality?: string[];
   loggedInUser?: SafeUser | null;
-  paramsName?:string;
+  paramsName?: string;
 }
 
 export default function DogListCard({
@@ -42,9 +42,15 @@ export default function DogListCard({
   const maleLabel = useMemo(() => {
     switch (male) {
       case "남자":
-        return <GiMale />;
+        return <GiMale color="blue"/>;
       case "여자":
         return <GiFemale />;
+      case "M":
+        return <GiMale />
+      case "F":
+        return <GiFemale />
+      default:
+        male
     }
   }, [male]);
 
@@ -83,12 +89,12 @@ export default function DogListCard({
           </div>
           <div className="font-semibold text-lg flex gap-3">
             <p>{dogType}</p>
-            <p className="text-neutral-400">이름은:{dogName}</p>
+            {dogName && <p className="text-neutral-400">이름은:{dogName}</p>}
           </div>
           <div className="font-light text-neutral-500 flex">
-            <div>나이는:{dogAge}살</div>
+            {dogAge && <div>나이는:{dogAge}살</div>}
             {dogMonth && <div>{dogMonth}</div>}
-            <div>성별은:{maleLabel}</div>
+            <div>{maleLabel || male}</div>
           </div>
         </div>
       </div>

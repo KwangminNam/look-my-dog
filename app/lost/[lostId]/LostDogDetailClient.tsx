@@ -13,9 +13,8 @@ interface LostDogDetailClientProps {
 
 export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogListing }: LostDogDetailClientProps) {
 
-  console.log(getDetailLostDog.kindCd.replaceAll('[개]',''))
 
-  const dogLabel = getDetailLostDog.kindCd.replaceAll('[개]','')
+  const dogLabel = getDetailLostDog.kindCd.replaceAll('[개]', '')
 
   return (
     <Container>
@@ -31,21 +30,23 @@ export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogLis
             />
           </div>
           <div className="w-[750px] m-auto">
-            <div className="py-11 border-y-2 border-neutral-200 mb-10">
+            <div className="py-11 mb-10">
               <h2 className="text-4xl mb-3">{dogLabel}</h2>
               <div>
                 <p className="text-3xl">{getDetailLostDog.age}</p>
               </div>
             </div>
-            <div>
-              특징{getDetailLostDog.specialMark}
-              보호센터:{getDetailLostDog.careAddr}
-              유기 된날:{getDetailLostDog.happenDt}
-              찾은곳:{getDetailLostDog.happenPlace}
-              현재 상태:{getDetailLostDog.processState}
-            </div>
-            <div>
-              <a href={`tel:${getDetailLostDog.careTel}`}>보호소 전화하기</a>
+            <div className="py-11 border-y-2 border-neutral-200 mb-10">
+              <div>
+                특징{getDetailLostDog.specialMark}
+                보호센터:{getDetailLostDog.careAddr}
+                유기 된날:{getDetailLostDog.happenDt}
+                찾은곳:{getDetailLostDog.happenPlace}
+                현재 상태:{getDetailLostDog.processState}
+              </div>
+              <div>
+                <a href={`tel:${getDetailLostDog.careTel}`}>보호소 전화하기</a>
+              </div>
             </div>
             {/* Reletated DogType */}
             {/*
@@ -53,11 +54,11 @@ export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogLis
               prisma client에서 allDogList에서 갖고온 데이터와 상세페이지에 있는 dogList 와 filter 로 대조해서 강아지 타입이 같은 리스트를 나열한다. 
               여기서 현재 보고있는 게시물은 리스트에 포함이 안되기 때문에 allDogList.id 와 dogList.id 를 필터 처리 해줌.
             */}
-            <h3 className="text-2xl mb-6">다</h3>
+            <h3 className="text-2xl mb-6">다른 유기견 보기</h3>
             <div className="grid grid-cols-4 gap-9 after:mt-9">
               {
                 getAllLostDogListing
-                  .filter((item)=> item.desertionNo !== getDetailLostDog.desertionNo)
+                  .filter((item) => item.desertionNo !== getDetailLostDog.desertionNo)
                   .splice(0, 4)
                   .map((item: any) => (
                     <DogListCard

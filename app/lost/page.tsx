@@ -1,6 +1,23 @@
 import getLostDogList from "../actions/getLostDogListing";
 import LostDogClient from "./LostDogClient";
 import { LostDogTypes } from "./type";
+import { Metadata, ResolvingMetadata } from 'next';
+type Props = {
+  params: { lostId: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+ 
+export async function generateMetadata({ params, searchParams }: Props
+): Promise<Metadata> {
+  // read route params
+  const id = params.lostId
+ 
+  // fetch data
+ 
+  return {
+    title: "룩마독 | 유기견 확인",
+  }
+}
 
 export default async function LostDog() {
 
