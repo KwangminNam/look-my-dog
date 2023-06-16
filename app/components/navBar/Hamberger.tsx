@@ -10,6 +10,7 @@ import { signOut } from "next-auth/react";
 import Avator from "../Avator";
 import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface HambergerMenuProps {
   loggedInUser?: SafeUser | null;
@@ -44,6 +45,17 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       >
         강아지 자랑하기
       </button>
+      <Link
+        href='/lost'
+        className="
+          border
+          border-neutral-200
+          rounded-xl
+          shadow-md
+          p-3"
+        >
+          유기견 강아지 보기     
+      </Link>
       <button
         className="
           border
@@ -51,8 +63,8 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
           rounded-xl
           shadow-md
           p-3"
-          onClick={() => router.push('/lost')}>
-          유기견 강아지 보기     
+          onClick={() => router.push('/test')}>
+          테스트
       </button>
       <div
         className="

@@ -2,6 +2,7 @@
 
 import Container from "@/app/components/Container";
 import DogListCard from "@/app/components/list/DogListCard";
+import RelatedDogListCard from "@/app/components/list/RelatedDogListCard";
 import { SafeListing, SafeUser } from "@/app/types";
 import Image from "next/image";
 
@@ -60,32 +61,11 @@ export default function ListingClient({ dogList, loggedInUser, allDogList }: Lis
               </div>
             </div>
             {/* Reletated DogType */}
-            {/*
-              관련된 상품 같이 보기
-              prisma client에서 allDogList에서 갖고온 데이터와 상세페이지에 있는 dogList 와 filter 로 대조해서 강아지 타입이 같은 리스트를 나열한다. 
-              여기서 현재 보고있는 게시물은 리스트에 포함이 안되기 때문에 allDogList.id 와 dogList.id 를 필터 처리 해줌.
-            */}
-            <h3 className="text-2xl mb-6">다른 {dogList.dogType} 보기</h3>
-            <div className="grid grid-cols-4 gap-9 after:mt-9">
-              {
-                allDogList
-                  ?.filter((item: any) => item.dogType === dogList.dogType && item.id !== dogList.id)
-                  .map((item: any) => (
-                    // <>
-                    //   <div>{item.dogType}</div>
-                    //   <div>{item.dogName}</div>
-                    // </>
-                    <DogListCard
-                      dogType={item.dogType}
-                      dogName={item.dogName}
-                      male={item.male}
-                      imageSrc={item.imageSrc}
-                      id={item.id}
-                      paramsName='listing'
-                    />
-                  ))
-              }
-            </div>
+            <RelatedDogListCard 
+                getAllLostDogListing={allDogList}
+                title={`다른 ${dogList.dogType} 보기`}
+                getDogListing={dogList}
+              />
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import LikeButton from "../LikeButton";
 import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface DogListCardProps {
   id?: any;
@@ -42,22 +43,23 @@ export default function DogListCard({
   const maleLabel = useMemo(() => {
     switch (male) {
       case "남자":
-        return <GiMale color="blue"/>;
-      case "여자":
-        return <GiFemale />;
       case "M":
-        return <GiMale />
+        return <GiMale color="blue" />;
+        
+      case "여자":
       case "F":
-        return <GiFemale />
+        return <GiFemale color="red" />;
       default:
-        male
+        return male;
     }
   }, [male]);
+  
 
   return (
     <>
-      <div
-        onClick={() => router.push(`/${paramsName}/${id}`)}
+      <Link
+        href={`/${paramsName}/${id}`}
+        shallow
         className=""
       >
         <div className="flex flex-col gap-2 w-full">
@@ -97,7 +99,7 @@ export default function DogListCard({
             <div>{maleLabel || male}</div>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   )
 }

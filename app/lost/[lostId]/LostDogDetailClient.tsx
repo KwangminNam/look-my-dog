@@ -4,6 +4,7 @@ import Container from "@/app/components/Container";
 import DogListCard from "@/app/components/list/DogListCard";
 import Image from "next/image";
 import { LostDogTypes } from "../type";
+import RelatedDogListCard from "@/app/components/list/RelatedDogListCard";
 
 
 interface LostDogDetailClientProps {
@@ -54,24 +55,12 @@ export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogLis
               prisma client에서 allDogList에서 갖고온 데이터와 상세페이지에 있는 dogList 와 filter 로 대조해서 강아지 타입이 같은 리스트를 나열한다. 
               여기서 현재 보고있는 게시물은 리스트에 포함이 안되기 때문에 allDogList.id 와 dogList.id 를 필터 처리 해줌.
             */}
-            <h3 className="text-2xl mb-6">다른 유기견 보기</h3>
-            <div className="grid grid-cols-4 gap-9 after:mt-9">
-              {
-                getAllLostDogListing
-                  .filter((item) => item.desertionNo !== getDetailLostDog.desertionNo)
-                  .splice(0, 4)
-                  .map((item: any) => (
-                    <DogListCard
-                      dogType={dogLabel}
-                      dogName={item.dogName}
-                      male={item.sexCd}
-                      imageSrc={item.filename}
-                      id={item.id}
-                      paramsName='listing'
-                    />
-                  ))
-              }
-            </div>
+            <RelatedDogListCard
+              getAllLostDogListing={getAllLostDogListing}
+              getDogListing={getDetailLostDog}
+              dogLabel={dogLabel}
+              title="다른 유기견 보기"
+            />
           </div>
         </div>
       </div>

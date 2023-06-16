@@ -11,9 +11,6 @@ export async function generateMetadata({ params, searchParams }: Props
 ): Promise<Metadata> {
   // read route params
   const id = params.lostId
- 
-  // fetch data
- 
   return {
     title: "룩마독 | 유기견 확인",
   }
