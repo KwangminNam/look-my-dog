@@ -31,10 +31,10 @@ export default function TypeDogBox({
 
     const updatedQuery: any = {
       ...currentQuery,
-      puppy: urlString
+      dogType: encodeURIComponent(label)
     };
 
-    if (params?.get("puppy") === urlString) {
+    if (params?.get("dogType") === label) {
       delete updatedQuery.puppy;
     }
 

@@ -1,16 +1,43 @@
 import prisma from '@/app/libs/prismadb';
 
-export default async function getListing() {
+export interface IListingParmas {
+  userId?: string;
+  dogAge: string | number;
+  dogName: string;
+  dogType:string;
+  male: string;
+}
+
+export default async function getListing(params: IListingParmas) {
   try {
+
+    const { dogType, dogAge, dogName, male } = params;
+
+    console.log( dogType ,dogAge, dogName, male);
+
+    let query: any = {};
+
+
+    if (dogAge) {
+      query.dogAge = Number(dogAge);
+    }
+
+    if (dogName) query.dogName = decodeURIComponent(dogName);
+    if (male) query.male = decodeURIComponent(male);
+    if (dogType) query.dogType = decodeURIComponent(dogType);
+
+    console.log(query)
+
     const getDogList = await prisma.dogListing.findMany({
+      where: query,
       orderBy: {
         createdAt: 'desc'
       }
     })
 
-    const safeList = getDogList.map((item)=>({
+    const safeList = getDogList.map((item) => ({
       ...item,
-      createdAt:item.createdAt.toISOString(),
+      createdAt: item.createdAt.toISOString(),
     }))
 
     return safeList;

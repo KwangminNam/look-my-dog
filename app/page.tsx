@@ -1,12 +1,16 @@
 import Image from "next/image";
-import getListing from "./actions/getDogListing";
+import getListing, { IListingParmas } from "./actions/getDogListing";
 import EmptyState from "./components/EmptyState";
 import DogListCard from "./components/list/DogListCard";
 import getLoggedInUser from "./actions/getLoginedUser";
 
-export default async function Home() {
+interface HomeProps {
+  searchParams:IListingParmas
+}
 
-  const getDogList = await getListing();
+export default async function Home({searchParams}:HomeProps) {
+
+  const getDogList = await getListing(searchParams);
   const getLoggedinuser = await getLoggedInUser();
   // const getLostDogListt = await getLostDogList();
   const emptyList = getDogList?.length === 0;
@@ -33,7 +37,7 @@ export default async function Home() {
           <DogListCard
             loggedInUser={getLoggedinuser}
             id={item.id}
-            key={item.dogName}
+            key={item.id}
             dogName={item.dogName}
             dogAge={item.dogAge}
             dogType={item.dogType}

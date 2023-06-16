@@ -19,7 +19,7 @@ export async function generateMetadata({ params, searchParams }: Props
 export default async function LostDog() {
 
   const getLostDogListt:LostDogTypes[] = await getLostDogList();
-
+  console.log(getLostDogListt);
   return (
     <div
       className=" 

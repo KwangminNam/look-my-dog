@@ -1,9 +1,16 @@
 'use client';
+
+import useSearchModal from '@/app/hooks/useSearchModal';
 import { BiSearch } from 'react-icons/bi'
 
 export default function SearchBar() {
+
+  const searchModal = useSearchModal();
+
+
   return (
     <div
+      onClick={searchModal.actionOpen}
       className="
           flex
           gap-3

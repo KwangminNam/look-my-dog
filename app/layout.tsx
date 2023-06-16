@@ -7,6 +7,7 @@ import RegisterModal from "./components/modal/RegisterModal";
 import NavBar from "./components/navBar/NavBar";
 import "./globals.css";
 import { Jua } from "next/font/google";
+import SearchModal from "./components/modal/SearchModal";
 
 const jua = Jua({ subsets: ["latin"], weight: "400" });
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <NavBar loggedInUser={loggedInUser} />
         {/* <HeroBox /> */}
+        <SearchModal/>
         <LoginModal />
         <RegisterModal />
         <PostmyDogModal />

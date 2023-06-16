@@ -10,7 +10,7 @@ interface IParams {
 // useParams() 같은 훅으로 안갖고오는 이유는 서버컴포넌트이기때문에입니다 . 서버컴포넌트에 파라미터에 url parmeter값을 갖고올수있어서 아래와 같은 방식으로 진행합니다.
 export default async function List({params}:{params:IParams}){
   const dogList = await getListById(params);
-  const allDogList = await getListing();
+  const allDogList = await getListing(params as any);
   const loggedInUser = await getLoggedInUser();
 
   return(

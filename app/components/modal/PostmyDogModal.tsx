@@ -32,13 +32,13 @@ type ValidationType = {
   passwordConfirm: string;
 };
 
-const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
+export const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
 
 const PERSONALTY_DATA = [
   { personlityDog: "온순한 편이에요" },
   { personlityDog: "성격이 사나운편이에요." },
   { personlityDog: "사회성이 좋은편이에요" },
-  { personlityDog: "낯을 많이 가려요." },
+  { personlityDog: "낯을 많이 가려요." }
 ];
 
 // const validation: ZodType<any> = z.object({
@@ -57,6 +57,9 @@ const PERSONALTY_DATA = [
 // });
 
 export default function PostmyDogModal() {
+  const postModal = usePostModal();
+  const router = useRouter();
+
   const {
     watch,
     setValue,
@@ -78,13 +81,11 @@ export default function PostmyDogModal() {
       desc: ""
     }
   });
-  const postModal = usePostModal();
-  const router = useRouter();
 
   const stepsArray = Object.keys(POST_STEPS)
     .filter((key) => isNaN(Number(key)))
     .map((key) => POST_STEPS[key as any]);
-    
+
   const stepsLength = stepsArray.length;
 
   const [step, setStep] = useState(POST_STEPS.DOGTYPE);
@@ -102,8 +103,6 @@ export default function PostmyDogModal() {
   const dogName = watch("dogName");
   const weight = watch("dogWeight");
   const personality = watch("personality") || [];
-
-
 
   useEffect(() => {
     if (postModal.isOpen === false) {
@@ -134,7 +133,6 @@ export default function PostmyDogModal() {
   //   setCustumValue("personality", value);
   // };
 
-
   const onSubmit = (data: any) => {
     if (step !== POST_STEPS.IMAGE) {
       return nextStep();
@@ -143,22 +141,22 @@ export default function PostmyDogModal() {
 
     console.log(data);
 
-    axios.post('/api/listing', data)
+    axios
+      .post("/api/listing", data)
       .then(() => {
         toast.success("강아지 등록 완료!");
         router.refresh();
         postModal.actionClose();
         reset();
-
       })
       .catch((err) => {
-        toast.error('something went worng');
+        toast.error("something went worng");
         console.log(err);
       })
       .finally(() => {
         setIsLoading(false);
-      })
-  }
+      });
+  };
   const headerLabel = useMemo(() => {
     switch (step) {
       case POST_STEPS.DOGTYPE:
@@ -204,7 +202,6 @@ export default function PostmyDogModal() {
   //   });
   // };
 
-
   // TODO : 코드 파악하기.
   const selectPersonalityFn = (value: string) => {
     const newPersonality = [...personality];
@@ -217,8 +214,6 @@ export default function PostmyDogModal() {
     }
     setCustumValue("personality", newPersonality);
   };
-
-
 
   let bodyModal = (
     <div className="grid grid-cols-2 gap-4">
@@ -241,21 +236,19 @@ export default function PostmyDogModal() {
           <div className="text-xl">
             나의 강아지 종류는 <span className="text-red-400">{label}</span>
           </div>
-          {TYPE_OF_DOG.filter((item) => item.label === label).map(
-            (item) => (
-              <Image
-                className="
+          {TYPE_OF_DOG.filter((item) => item.label === label).map((item) => (
+            <Image
+              className="
                   border-2
                   border-neutral-300
                   border-solid
                   rounded-full"
-                src={`${item.src}.jpeg`}
-                alt={label}
-                width={70}
-                height={70}
-              />
-            )
-          )}
+              src={`${item.src}.jpeg`}
+              alt={label}
+              width={70}
+              height={70}
+            />
+          ))}
         </div>
         <div className="flex-col flex items-center">
           <div className="flex gap-4">
@@ -308,6 +301,7 @@ export default function PostmyDogModal() {
       </>
     );
   }
+
   if (step === POST_STEPS.DESC) {
     bodyModal = (
       <>
@@ -320,7 +314,7 @@ export default function PostmyDogModal() {
             />
           ))}
         </div>
-       <Input
+        <Input
           id="desc"
           label="추가 설명해주세요"
           required

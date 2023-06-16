@@ -4,6 +4,7 @@ interface PostDogInput {
   label: string;
   src: string;
   selected: boolean;
+  urlString?: string;
   onClick: (value: string) => void;
 }
 
@@ -11,12 +12,13 @@ export default function PostDogInput({
   label,
   src,
   selected,
+  urlString,
   onClick 
 }:PostDogInput) {
 
   return (
     <div
-      onClick={() => onClick(label)}
+      onClick={() => onClick(urlString as string || label)}
       className={`
         relative
         border-2

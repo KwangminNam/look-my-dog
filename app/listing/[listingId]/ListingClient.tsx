@@ -1,7 +1,6 @@
 'use client';
 
 import Container from "@/app/components/Container";
-import DogListCard from "@/app/components/list/DogListCard";
 import RelatedDogListCard from "@/app/components/list/RelatedDogListCard";
 import { SafeListing, SafeUser } from "@/app/types";
 import Image from "next/image";

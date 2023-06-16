@@ -86,7 +86,7 @@ export const TYPE_OF_DOG = [
 
 export default function TypeDogs() {
   const params = useSearchParams();
-  const category = params?.get("puppy");
+  const dogTypeParams = params?.get("dogType");
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(true);
@@ -99,23 +99,13 @@ export default function TypeDogs() {
   return (
     <Container>
       <div className="relative">
-        {/* <button
-          className="absolute right-1/2 top-[-20px] translate-x-1/2 bg-red-400 rounded-full"
-          onClick={openToggle}
-        >
-          {isOpen ? (
-            <MdOutlineKeyboardDoubleArrowUp size={50} color="#fff" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowDown size={50} />
-          )}
-        </button> */}
         <ul className="py-11 grid grid-cols-5 gap-3 h-0s translate-y-0">
           {TYPE_OF_DOG.map((item) => (
             <TypeDogBox
               src={item.src}
               label={item.label}
               desc={item.desc}
-              selected={category === item.urlString}
+              selected={dogTypeParams === encodeURIComponent(item.label)}
               key={item.label}
               urlString={item.urlString}
             />
