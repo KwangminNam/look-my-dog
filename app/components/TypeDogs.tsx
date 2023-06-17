@@ -14,7 +14,6 @@ export const TYPE_OF_DOG = [
     label: "말티즈",
     desc: "/images/puppy/malti",
     src: "/images/puppy/malti",
-    urlString: "malt"
   },
   {
     label: "골든리트리버",
@@ -107,7 +106,6 @@ export default function TypeDogs() {
               desc={item.desc}
               selected={dogTypeParams === encodeURIComponent(item.label)}
               key={item.label}
-              urlString={item.urlString}
             />
           ))}
         </ul>

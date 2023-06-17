@@ -27,8 +27,7 @@ export default function LoginModal() {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
-  
-  const inputRef = useRef<HTMLInputElement>(null);
+
 
   const {
     register,

@@ -8,6 +8,7 @@ interface ButtonProps {
   bgColor?: boolean;
   borderColor?: boolean;
   disabled?: boolean;
+  halfWidth?:boolean;
   icon?: IconType;
   onClick: () => void;
 }
@@ -16,6 +17,7 @@ function Button({
   borderColor,
   label,
   bgColor,
+  halfWidth,
   disabled,
   onClick,
   icon: Icon
@@ -23,7 +25,9 @@ function Button({
   return (
     <button
       className={`
-        w-full
+        ${halfWidth  ? 'w-1/3': 'w-full'}
+        ${borderColor ? 'border-2 border-neutral-400' : null}
+        ${borderColor ? 'bg-none' : null}
         rounded-md
         h-12
         disabled:opacity-40

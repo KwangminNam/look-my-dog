@@ -10,7 +10,6 @@ interface TypeDogBoxProps {
   desc: string;
   src: string;
   selected: boolean;
-  urlString: string;
 }
 
 export default function TypeDogBox({
@@ -18,7 +17,6 @@ export default function TypeDogBox({
   desc,
   src,
   selected,
-  urlString
 }: TypeDogBoxProps) {
   const router = useRouter();
   const params = useSearchParams();
@@ -47,7 +45,7 @@ export default function TypeDogBox({
     );
 
     router.push(url);
-  }, [label, params, router, urlString]);
+  }, [label, params, router]);
 
   return (
     <li
