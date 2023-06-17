@@ -1,19 +1,16 @@
 "use client";
 
-import {
-  MdOutlineKeyboardDoubleArrowDown,
-  MdOutlineKeyboardDoubleArrowUp
-} from "react-icons/md";
 import Container from "./Container";
 import TypeDogBox from "./TypeDogBox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import Button from "./Button";
 
 export const TYPE_OF_DOG = [
   {
     label: "말티즈",
     desc: "/images/puppy/malti",
-    src: "/images/puppy/malti",
+    src: "/images/puppy/malti"
   },
   {
     label: "골든리트리버",
@@ -80,6 +77,18 @@ export const TYPE_OF_DOG = [
     desc: "포메라이언 설명!",
     src: "/images/puppy/malti",
     urlString: "fug"
+  },
+  {
+    label: "코커 스패니",
+    desc: "포메라이언 설명!",
+    src: "/images/puppy/malti",
+    urlString: "koker"
+  },
+  {
+    label: "퍼그",
+    desc: "포메라이언 설명!",
+    src: "/images/puppy/malti",
+    urlString: "fug"
   }
 ];
 
@@ -91,15 +100,36 @@ export default function TypeDogs() {
   const [isOpen, setIsOpen] = useState(true);
   const openToggle = () => setIsOpen((prev) => !prev);
 
-  const isMainPage = pathname === "/";
+  const [showAll, setShowAll] = useState(false);
+  const [typeDogs, setTypeDogs] = useState(
+    showAll ? TYPE_OF_DOG : TYPE_OF_DOG.slice(0, 10)
+  );
+  const onToggle = () => {
+    setShowAll((prev) => !prev);
+  };
 
+  const toggleItems = () => {
+    if (showAll) {
+      setTypeDogs(TYPE_OF_DOG.slice(0, 10));
+    } else {
+      setTypeDogs(TYPE_OF_DOG);
+    }
+    onToggle();
+  };
+
+  const buttonLabel = useMemo(() => {
+    if (showAll) return "축소하기";
+    return "모든 강아지 보기";
+  }, [showAll]);
+
+  const isMainPage = pathname === "/";
   if (!isMainPage) return null;
 
   return (
     <Container>
-      <div className="relative">
-        <ul className="py-11 grid grid-cols-5 gap-3 h-0s translate-y-0">
-          {TYPE_OF_DOG.map((item) => (
+      <div className="relative flex flex-col items-center">
+        <ul className="w-full py-11 grid grid-cols-5 gap-3 h-0s translate-y-0">
+          {typeDogs.map((item) => (
             <TypeDogBox
               src={item.src}
               label={item.label}
@@ -109,6 +139,7 @@ export default function TypeDogs() {
             />
           ))}
         </ul>
+        <Button label={buttonLabel} onClick={toggleItems} halfWidth />
       </div>
     </Container>
   );

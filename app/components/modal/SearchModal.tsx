@@ -28,20 +28,18 @@ export default function SearchModal() {
   const [male, setMale] = useState("남자");
 
 
+
   const onSubmit = async () => {
     let currentQuery = {};
-
     if (params) {
       currentQuery = qs.parse(params.toString());
     }
-
     const updatedQuery: any = {
       ...currentQuery,
       dogAge: dogAge,
       dogName: encodeURIComponent(dogName),
       male: encodeURIComponent(male)
     };
-
     const url = qs.stringifyUrl(
       {
         url: "/",
@@ -49,15 +47,8 @@ export default function SearchModal() {
       },
       { skipNull: true }
     );
-    // ...rest of codes
-
     searchModal.actionClose();
-
-    console.log(url);
-    console.log(male);
-    console.log(dogAge);
-    console.log(updatedQuery);
-
+      
     // 최종 라우터 푸쉬
     router.push(url);
   };

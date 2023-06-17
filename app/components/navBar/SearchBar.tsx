@@ -2,6 +2,7 @@
 
 import useSearchModal from '@/app/hooks/useSearchModal';
 import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 import { BiSearch } from 'react-icons/bi'
 
 export default function SearchBar() {
@@ -17,6 +18,17 @@ export default function SearchBar() {
   console.log(dogAge)
   console.log(male)
 
+  const nameLabel = useMemo(()=>{
+    if(dogName) return decodeURIComponent(dogName);
+    return "검색"
+  },[dogName]);
+
+  const ageLabel = useMemo(()=>{
+    if(dogAge) return dogAge+"살";
+    return "";
+  },[dogAge])
+
+
   return (
     <div
       onClick={searchModal.actionOpen}
@@ -31,11 +43,11 @@ export default function SearchBar() {
           text-3xl
     "
     >
-      <div>{decodeURIComponent(dogName as string)}</div>
-      <div>{decodeURIComponent(male as string)}</div>
+      <div>{nameLabel}</div>
+      <div>{ageLabel}</div>
       <div className='p-2 bg-[#28a649] rounded-full text-white'>
         <BiSearch  />
-      </div>
+      </div>  
     </div>
   )
 }

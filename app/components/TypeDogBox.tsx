@@ -16,7 +16,7 @@ export default function TypeDogBox({
   label,
   desc,
   src,
-  selected,
+  selected
 }: TypeDogBoxProps) {
   const router = useRouter();
   const params = useSearchParams();
@@ -45,6 +45,12 @@ export default function TypeDogBox({
     );
 
     router.push(url);
+
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior:'smooth'
+    })
+
   }, [label, params, router]);
 
   return (
@@ -52,30 +58,28 @@ export default function TypeDogBox({
       onClick={handleClick}
       className={`
       bg-white
-      rounded-xl
+      border
+      border-neutral-200
       cursor-pointer
       flex
+      py-6
       justify-center
       items-center
-      border
-      border-solid
-      border-blue-900
-      p-5
       relative
       hover:shadow-2xl
-      ${selected ? 'border border-solid border-red-300' : 'border-neutral-300'}
+      ${selected ? "border border-solid border-red-300" : "border-neutral-300"}
       `}
       key={label}
     >
-      <span>{label}</span>
-      <div className="absolute right-2">
+      <div className="flex flex-col items-center">
         <Image
           alt={label}
           src={`${src}.jpeg`}
           width={65}
           height={65}
-          className="rounded-full"
+          className="rounded-full w-14 h-14"
         />
+        <span>{label}</span>
       </div>
     </li>
   );

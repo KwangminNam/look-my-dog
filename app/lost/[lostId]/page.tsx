@@ -15,7 +15,10 @@ export async function generateMetadata({ params, searchParams }: Props,
 
   // fetch data
   const getAllLostDogListing: LostDogTypes[] = await getLostDogList()
-  const getDetailLostDog: LostDogTypes | undefined = getAllLostDogListing.find((item) => item.desertionNo === params.lostId);
+  const getDetailLostDog: LostDogTypes | undefined = getAllLostDogListing?.find((item) => item.desertionNo === params.lostId);
+
+  console.log(getAllLostDogListing);
+  console.log(getDetailLostDog);
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || []

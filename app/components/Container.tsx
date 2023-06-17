@@ -8,7 +8,7 @@ export default function Container({children}:ContainerProps) {
   return (
     <div 
     className="
-      max-w=[2250px]
+      w-[1600px]
       mx-auto
       xl:px-20
       md:px-10

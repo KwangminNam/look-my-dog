@@ -3,13 +3,13 @@ import getListing, { IListingParmas } from "./actions/getDogListing";
 import EmptyState from "./components/EmptyState";
 import DogListCard from "./components/list/DogListCard";
 import getLoggedInUser from "./actions/getLoginedUser";
+import Container from "./components/Container";
 
 interface HomeProps {
-  searchParams:IListingParmas
+  searchParams: IListingParmas;
 }
 
-export default async function Home({searchParams}:HomeProps) {
-
+export default async function Home({ searchParams }: HomeProps) {
   const getDogList = await getListing(searchParams);
   const getLoggedinuser = await getLoggedInUser();
   // const getLostDogListt = await getLostDogList();
@@ -17,21 +17,13 @@ export default async function Home({searchParams}:HomeProps) {
 
   // console.log(getLostDogListt);
 
-
   if (emptyList) {
     return <EmptyState />;
   }
 
   return (
-    <div
-      className="
-        max-w=[2250px]
-        mx-auto
-        xl:px-20
-        md:px-10
-        sm:px-2
-        px-4"
-    >
+    <Container>
+      <h2 className="text-4xl text-center pb-11">강아지 자랑하기</h2>
       <div className="grid grid-cols-6 gap-9">
         {getDogList?.map((item: any) => (
           <DogListCard
@@ -50,15 +42,6 @@ export default async function Home({searchParams}:HomeProps) {
           />
         ))}
       </div>
-      {/* <div className="grid grid-cols-6 gap-9">
-        {getLostDogListt.map((item:any)=>(
-          <DogListCard
-            imageSrc={item.filename}
-            male={item.sexCd}
-            dogType={item.kindCd}
-          />
-        ))}
-      </div> */}
-    </div>
+    </Container>
   );
 }

@@ -84,13 +84,13 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       </div>
       {isOpen && (
         <div className="absolute top-16 right-0 z-[100]">
-          <div className="w-[120px] flex flex-col bg-white rounded-xl border border-solid border-black">
+          <div className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>
                 <MenuItem label="로그아웃" onClick={() => { signOut() }} />
+                <MenuItem label="나의 강아지" onClick={()=>{router.push('/mypost')}} />
                 <MenuItem label="이동" onClick={() => { router.push('/test') }} />
-                <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
-                <MenuItem label="내 정보" onClick={registerModal.actionOpen} />
+                <MenuItem label="좋아요 한 게시판" onClick={registerModal.actionOpen} />
               </>
             ) : (
               <>
