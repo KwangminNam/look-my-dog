@@ -1,12 +1,21 @@
 'use client';
 
 import useSearchModal from '@/app/hooks/useSearchModal';
+import { useSearchParams } from 'next/navigation';
 import { BiSearch } from 'react-icons/bi'
 
 export default function SearchBar() {
 
   const searchModal = useSearchModal();
+  const params = useSearchParams();
 
+  const dogName = params?.get('dogName');
+  const dogAge = params?.get('dogAge');
+  const male = params?.get('male');
+
+  console.log(dogName);
+  console.log(dogAge)
+  console.log(male)
 
   return (
     <div
@@ -22,10 +31,10 @@ export default function SearchBar() {
           text-3xl
     "
     >
-      <div>강아지 이름</div>
-      <div>테스트</div>
-      <div className='p-2 bg-rose-500 rounded-full text-white'>
-        <BiSearch />
+      <div>{decodeURIComponent(dogName as string)}</div>
+      <div>{decodeURIComponent(male as string)}</div>
+      <div className='p-2 bg-[#28a649] rounded-full text-white'>
+        <BiSearch  />
       </div>
     </div>
   )

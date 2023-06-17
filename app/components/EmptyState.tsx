@@ -12,7 +12,7 @@ export default function EmptyState() {
   return (
     <Container>
       <div className="flex flex-col justify-center items-center">
-        <SiDatadog size={250} />
+        <SiDatadog size={250} color="green" />
         <p className="text-3xl mb-3">강아지 정보가 없습니다.</p>
         <Button label="내 강아지 자랑하기" onClick={postModal.actionOpen} borderColor halfWidth />
       </div>
