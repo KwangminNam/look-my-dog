@@ -58,6 +58,7 @@ export default function MyPostListClinet({
             male={item.male}
             dogType={item.dogType}
             onAction={onDelete}
+            disabled={item.id === deleteId}
           />
         ))}
       </div>

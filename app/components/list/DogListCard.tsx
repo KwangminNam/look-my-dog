@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useMemo } from "react";
 import { GiMale, GiFemale } from "react-icons/gi";
-import { AiOutlineLike } from "react-icons/ai";
 import LikeButton from "../LikeButton";
 import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
@@ -25,6 +24,7 @@ export interface DogListCardProps {
   loggedInUser?: SafeUser | null;
   paramsName?: string;
   lostDogStatus?:string;
+  disabled?:boolean;
   onAction?:(id:string) => void;
 }
 
@@ -41,6 +41,7 @@ export default function DogListCard({
   lostDogStatus,
   loggedInUser,
   paramsName,
+  disabled,
   onAction
 }: DogListCardProps) {
 
@@ -113,7 +114,7 @@ export default function DogListCard({
           </div>
         </div>
       </Link>
-      {onAction && <Button onClick={handleDelete} label="게시글 삭제하기"/>}
+      {onAction && <Button disabled={disabled} onClick={handleDelete} label="게시글 삭제하기"/>}
     </div>
   )
 }
