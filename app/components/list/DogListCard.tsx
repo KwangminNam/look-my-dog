@@ -9,7 +9,7 @@ import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface DogListCardProps {
+export interface DogListCardProps {
   id?: any;
   desc?: string;
   imageSrc: string;
