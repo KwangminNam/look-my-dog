@@ -33,7 +33,7 @@ export default function TypeDogBox({
     };
 
     if (params?.get("dogType") === label) {
-      delete updatedQuery.puppy;
+      delete updatedQuery.dogType;
     }
 
     const url = qs.stringifyUrl(

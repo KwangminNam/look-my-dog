@@ -9,6 +9,7 @@ import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import StatusTag from "../tag/StatusTag";
+import Button from "../Button";
 
 export interface DogListCardProps {
   id?: any;
@@ -24,6 +25,7 @@ export interface DogListCardProps {
   loggedInUser?: SafeUser | null;
   paramsName?: string;
   lostDogStatus?:string;
+  onAction?:(id:string) => void;
 }
 
 export default function DogListCard({
@@ -39,9 +41,15 @@ export default function DogListCard({
   lostDogStatus,
   loggedInUser,
   paramsName,
+  onAction
 }: DogListCardProps) {
 
   const router = useRouter();
+
+  const handleDelete = (e:React.MouseEvent<HTMLButtonElement>) =>{
+    e.stopPropagation();
+    onAction?.(id)
+  }
 
   const maleLabel = useMemo(() => {
     switch (male) {
@@ -59,7 +67,7 @@ export default function DogListCard({
   
 
   return (
-    <>
+    <div className="flex flex-col">
       <Link
         href={`/${paramsName}/${id}`}
         shallow
@@ -105,7 +113,8 @@ export default function DogListCard({
           </div>
         </div>
       </Link>
-    </>
+      {onAction && <Button onClick={handleDelete} label="게시글 삭제하기"/>}
+    </div>
   )
 }
 

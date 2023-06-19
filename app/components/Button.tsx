@@ -10,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
   halfWidth?:boolean;
   icon?: IconType;
-  onClick: () => void;
+  onClick: (e:React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Button({
