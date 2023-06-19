@@ -2,24 +2,29 @@ import prisma from '@/app/libs/prismadb';
 
 export interface IListingParmas {
   userId?: string;
-  dogAge: string | number;
-  dogName: string;
-  dogType:string;
-  male: string;
+  dogAge?: string | number;
+  dogName?: string;
+  dogType?:string;
+  male?: string;
 }
 
 export default async function getListing(params: IListingParmas) {
   try {
 
-    const { dogType, dogAge, dogName, male } = params;
+    const { dogType, dogAge, dogName, male , userId} = params;
 
     console.log( dogType ,dogAge, dogName, male);
+    console.log(userId)
 
     let query: any = {};
 
 
     if (dogAge) {
       query.dogAge = Number(dogAge);
+    }
+
+    if(userId){
+      query.userId = userId
     }
 
     if (dogName) query.dogName = decodeURIComponent(dogName);

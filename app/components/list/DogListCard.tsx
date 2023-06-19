@@ -8,6 +8,7 @@ import LikeButton from "../LikeButton";
 import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import StatusTag from "../tag/StatusTag";
 
 export interface DogListCardProps {
   id?: any;
@@ -22,6 +23,7 @@ export interface DogListCardProps {
   personality?: string[];
   loggedInUser?: SafeUser | null;
   paramsName?: string;
+  lostDogStatus?:string;
 }
 
 export default function DogListCard({
@@ -34,6 +36,7 @@ export default function DogListCard({
   dogAge,
   dogMonth,
   dogName,
+  lostDogStatus,
   loggedInUser,
   paramsName,
 }: DogListCardProps) {
@@ -85,6 +88,7 @@ export default function DogListCard({
               src={imageSrc}
               alt="Listing"
             />
+            {lostDogStatus && <StatusTag label={lostDogStatus}/>}
           </div>
           <div>
             <LikeButton currentUser={loggedInUser} listingId={id} />
@@ -93,6 +97,7 @@ export default function DogListCard({
             <p>{dogType}</p>
             {dogName && <p className="text-neutral-400">이름은:{dogName}</p>}
           </div>
+          
           <div className="font-light text-neutral-500 flex">
             {dogAge && <div>나이는:{dogAge}살</div>}
             {dogMonth && <div>{dogMonth}</div>}

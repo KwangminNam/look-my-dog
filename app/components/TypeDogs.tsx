@@ -15,80 +15,52 @@ export const TYPE_OF_DOG = [
   {
     label: "골든리트리버",
     desc: "골든리트리버 설명!",
-    src: "/images/puppy/golden",
-    urlString: "golden"
+    src: "/images/puppy/golden"
   },
   {
     label: "비숑",
     desc: "비숑 설명!",
-    src: "/images/puppy/bichon",
-    urlString: "bichont"
+    src: "/images/puppy/bichon"
   },
   {
     label: "시츄",
     desc: "시츄",
-    src: "/images/puppy/pome",
-    urlString: "sichew"
+    src: "/images/puppy/pome"
   },
   {
     label: "치와와",
     desc: "치와와 설명!",
-    src: "/images/puppy/chiwawa",
-    urlString: "chiwawa"
+    src: "/images/puppy/chiwawa"
   },
   {
     label: "포메라이언",
     desc: "포메라이언 설명!",
-    src: "/images/puppy/malti",
-    urlString: "pome"
+    src: "/images/puppy/malti"
   },
   {
     label: "비글",
     desc: "비글 설명!",
-    src: "/images/puppy/malti",
-    urlString: "biggle"
+    src: "/images/puppy/malti"
   },
   {
     label: "닥스훈트",
     desc: "닥스훈트 설명!",
-    src: "/images/puppy/malti",
-    urlString: "docs"
+    src: "/images/puppy/malti"
   },
   {
     label: "푸들",
     desc: "푸들 설명!",
-    src: "/images/puppy/malti",
-    urlString: "poddle"
+    src: "/images/puppy/malti"
   },
   {
     label: "시베리안허스키",
     desc: "시베리안허스키 설명!",
-    src: "/images/puppy/malti",
-    urlString: "husky"
+    src: "/images/puppy/malti"
   },
   {
     label: "코커 스패니",
     desc: "포메라이언 설명!",
-    src: "/images/puppy/malti",
-    urlString: "koker"
-  },
-  {
-    label: "퍼그",
-    desc: "포메라이언 설명!",
-    src: "/images/puppy/malti",
-    urlString: "fug"
-  },
-  {
-    label: "코커 스패니",
-    desc: "포메라이언 설명!",
-    src: "/images/puppy/malti",
-    urlString: "koker"
-  },
-  {
-    label: "퍼그",
-    desc: "포메라이언 설명!",
-    src: "/images/puppy/malti",
-    urlString: "fug"
+    src: "/images/puppy/malti"
   }
 ];
 

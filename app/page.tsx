@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: HomeProps) {
   // console.log(getLostDogListt);
 
   if (emptyList) {
-    return <EmptyState />;
+    return <EmptyState title="텅 비었습니다!" showButton />;
   }
 
   return (

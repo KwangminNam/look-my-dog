@@ -59,6 +59,7 @@ export default function TypeDogBox({
       className={`
       bg-white
       border
+      rounded-xl
       border-neutral-200
       cursor-pointer
       flex

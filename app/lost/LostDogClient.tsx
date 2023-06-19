@@ -29,6 +29,7 @@ export default function LostDogClient({ lostGetDogList }: any) {
           paramsName="lost"
           id={item.desertionNo}
           dogMonth={item.age}
+          lostDogStatus={item.processState}
         />
       ))}
     </>
