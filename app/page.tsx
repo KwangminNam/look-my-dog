@@ -5,6 +5,7 @@ import DogListCard from "./components/list/DogListCard";
 import getLoggedInUser from "./actions/getLoginedUser";
 import Container from "./components/Container";
 import HeroBox from "./components/HeroBox";
+import Link from "next/link";
 
 interface HomeProps {
   searchParams: IListingParmas;
@@ -43,6 +44,11 @@ export default async function Home({ searchParams }: HomeProps) {
               paramsName="listing"
             />
           ))}
+        </div>
+        <div className="flex justify-center">
+          <Link href="/doglist" className="text-2xl underline">
+            더 많은 강아지보기
+          </Link>
         </div>
       </Container>
     </>

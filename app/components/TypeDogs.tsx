@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "./Container";
+
 import TypeDogBox from "./TypeDogBox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -94,25 +94,23 @@ export default function TypeDogs() {
     return "모든 강아지 보기";
   }, [showAll]);
 
-  // const isMainPage = pathname === "/";
-  // if (!isMainPage) return null;
+  const isDogListPage = pathname === "/doglist";
+  if (!isDogListPage) return null;
 
   return (
-    <Container>
-      <div className="relative flex flex-col items-center">
-        <ul className="w-full py-11 grid grid-cols-5 gap-3 h-0s translate-y-0">
-          {typeDogs.map((item) => (
-            <TypeDogBox
-              src={item.src}
-              label={item.label}
-              desc={item.desc}
-              selected={dogTypeParams === encodeURIComponent(item.label)}
-              key={item.label}
-            />
-          ))}
-        </ul>
-        <Button label={buttonLabel} onClick={toggleItems} halfWidth />
-      </div>
-    </Container>
+    <div className="relative flex flex-col items-center">
+      <ul className="w-full py-11 grid grid-cols-5 gap-3 h-0s translate-y-0">
+        {typeDogs.map((item) => (
+          <TypeDogBox
+            src={item.src}
+            label={item.label}
+            desc={item.desc}
+            selected={dogTypeParams === encodeURIComponent(item.label)}
+            key={item.label}
+          />
+        ))}
+      </ul>
+      <Button label={buttonLabel} onClick={toggleItems} halfWidth />
+    </div>
   );
 }
