@@ -4,6 +4,7 @@ import EmptyState from "./components/EmptyState";
 import DogListCard from "./components/list/DogListCard";
 import getLoggedInUser from "./actions/getLoginedUser";
 import Container from "./components/Container";
+import HeroBox from "./components/HeroBox";
 
 interface HomeProps {
   searchParams: IListingParmas;
@@ -22,26 +23,28 @@ export default async function Home({ searchParams }: HomeProps) {
   }
 
   return (
-    <Container>
-      <h2 className="text-4xl text-center pb-11">강아지 자랑하기</h2>
-      <div className="grid grid-cols-6 gap-9">
-        {getDogList?.map((item: any) => (
-          <DogListCard
-            loggedInUser={getLoggedinuser}
-            id={item.id}
-            key={item.id}
-            dogName={item.dogName}
-            dogAge={item.dogAge}
-            dogType={item.dogType}
-            weight={item.weight}
-            dogMonth={item.dogMonth}
-            male={item.male}
-            personality={item.personality}
-            imageSrc={item.imageSrc}
-            paramsName="listing"
-          />
-        ))}
-      </div>
-    </Container>
+    <>
+      <HeroBox />
+      <Container>
+        <div className="grid grid-cols-4 gap-9 pb-20 pt-44">
+          {getDogList?.slice(0, 8).map((item: any) => (
+            <DogListCard
+              loggedInUser={getLoggedinuser}
+              id={item.id}
+              key={item.id}
+              dogName={item.dogName}
+              dogAge={item.dogAge}
+              dogType={item.dogType}
+              weight={item.weight}
+              dogMonth={item.dogMonth}
+              male={item.male}
+              personality={item.personality}
+              imageSrc={item.imageSrc}
+              paramsName="listing"
+            />
+          ))}
+        </div>
+      </Container>
+    </>
   );
 }

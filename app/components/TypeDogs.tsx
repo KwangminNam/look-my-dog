@@ -94,8 +94,8 @@ export default function TypeDogs() {
     return "모든 강아지 보기";
   }, [showAll]);
 
-  const isMainPage = pathname === "/";
-  if (!isMainPage) return null;
+  // const isMainPage = pathname === "/";
+  // if (!isMainPage) return null;
 
   return (
     <Container>

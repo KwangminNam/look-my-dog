@@ -38,7 +38,7 @@ export default function TypeDogBox({
 
     const url = qs.stringifyUrl(
       {
-        url: "/",
+        url: "/doglist",
         query: updatedQuery
       },
       { skipNull: true }

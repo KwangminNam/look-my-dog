@@ -63,8 +63,8 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
           rounded-xl
           shadow-md
           p-3"
-          onClick={() => router.push('/test')}>
-          테스트
+          onClick={() => router.push('/doglist')}>
+          전체강아지
       </button>
       <div
         className="
@@ -90,7 +90,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
                 <MenuItem label="로그아웃" onClick={() => { signOut() }} />
                 <MenuItem label="나의 강아지" onClick={()=>{router.push('/mypost')}} />
                 <MenuItem label="이동" onClick={() => { router.push('/test') }} />
-                <MenuItem label="좋아요 한 게시판" onClick={registerModal.actionOpen} />
+                <MenuItem label="좋아요 한 게시판" onClick={()=>router.push('/favorite')} />
               </>
             ) : (
               <>

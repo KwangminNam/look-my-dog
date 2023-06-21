@@ -23,7 +23,6 @@ export default function NavBar({loggedInUser}:NavBarProps) {
           </div>
         </Container>
       </nav>
-      <TypeDogs />
     </>
   );
 }

@@ -27,12 +27,11 @@ export default async function RootLayout({
       <body className={jua.className}>
         <ToasterProvider />
         <NavBar loggedInUser={loggedInUser} />
-        {/* <HeroBox /> */}
         <SearchModal/>
         <LoginModal />
         <RegisterModal />
         <PostmyDogModal />
-        <div className="pb-20 pt-28">{children}</div>
+        <div className="pb-20">{children}</div>
       </body>
     </html>
   );
