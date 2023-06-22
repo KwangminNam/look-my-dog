@@ -20,7 +20,7 @@ export default async function Home({ searchParams }: HomeProps) {
   // console.log(getLostDogListt);
 
   if (emptyList) {
-    return <EmptyState title="텅 비었습니다!" showButton />;
+    return <EmptyState title="등록된 리스트가 없습니다." showButton />;
   }
 
   return (
