@@ -21,7 +21,7 @@ export default async function DogList({ searchParams }: DogListProps) {
   return (
     <Container>
       <TypeDogs/>
-      <h2 className="text-4xl text-center pb-11">강아지 자랑하기</h2>
+      <h2 className="text-4xl text-center pb-11">나의 강아지</h2>
       <div className="grid grid-cols-6 gap-9">
         {getDogList?.map((item: any) => (
           <DogListCard
