@@ -15,12 +15,19 @@ export default async function DogList({ searchParams }: DogListProps) {
   const emptyList = getDogList?.length === 0;
 
   if (emptyList) {
-    return <EmptyState title="텅 비었습니다!" showButton />;
+    return (
+      <>
+        <Container>
+          <TypeDogs />
+        </Container>
+        <EmptyState title="텅 비었습니다!" showButton />
+      </>
+    );
   }
 
   return (
     <Container>
-      <TypeDogs/>
+      <TypeDogs />
       <h2 className="text-4xl text-center pb-11">나의 강아지</h2>
       <div className="grid grid-cols-6 gap-9">
         {getDogList?.map((item: any) => (

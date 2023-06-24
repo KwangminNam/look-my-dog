@@ -107,6 +107,7 @@ export default function PostmyDogModal() {
   useEffect(() => {
     if (postModal.isOpen === false) {
       setStep(POST_STEPS.DOGTYPE);
+      setCustumValue("dogType","");
     }
   }, [postModal.isOpen]);
 
@@ -129,17 +130,11 @@ export default function PostmyDogModal() {
     setCustumValue("male", value);
   };
 
-  // const selectPersonality = (value: string) => {
-  //   setCustumValue("personality", value);
-  // };
-
   const onSubmit = (data: any) => {
     if (step !== POST_STEPS.IMAGE) {
       return nextStep();
     }
     setIsLoading(true);
-
-    console.log(data);
 
     axios
       .post("/api/listing", data)
@@ -334,11 +329,16 @@ export default function PostmyDogModal() {
     );
   }
 
+  const checkBeforeClose = () => {
+    const checking = confirm('창을 닫으시면 이때까지 입력한 정보가 모두 날라갑니다');
+    if(checking) postModal.actionClose();
+  }
+
   return (
     <Modal
       title={headerLabel}
       isOpen={postModal.isOpen}
-      closeAction={postModal.actionClose}
+      closeAction={checkBeforeClose}
       bodyContent={bodyModal}
       actionLabel={actionLabel}
       actionOnclick={handleSubmit(onSubmit)}

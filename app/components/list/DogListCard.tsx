@@ -23,9 +23,9 @@ export interface DogListCardProps {
   personality?: string[];
   loggedInUser?: SafeUser | null;
   paramsName?: string;
-  lostDogStatus?:string;
-  disabled?:boolean;
-  onAction?:(id:string) => void;
+  lostDogStatus?: string;
+  disabled?: boolean;
+  onAction?: (id: string) => void;
 }
 
 export default function DogListCard({
@@ -44,20 +44,19 @@ export default function DogListCard({
   disabled,
   onAction
 }: DogListCardProps) {
-
   const router = useRouter();
 
-  const handleDelete = (e:React.MouseEvent<HTMLButtonElement>) =>{
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    onAction?.(id)
-  }
+    onAction?.(id);
+  };
 
   const maleLabel = useMemo(() => {
     switch (male) {
       case "남자":
       case "M":
         return <GiMale color="blue" />;
-        
+
       case "여자":
       case "F":
         return <GiFemale color="red" />;
@@ -65,15 +64,10 @@ export default function DogListCard({
         return male;
     }
   }, [male]);
-  
 
   return (
-    <div className="flex flex-col">
-      <Link
-        href={`/${paramsName}/${id}`}
-        shallow
-        className=""
-      >
+    <article className="flex flex-col relative">
+      <Link href={`/${paramsName}/${id}`} shallow className="">
         <div className="flex flex-col gap-2 w-full">
           <div
             className="
@@ -97,16 +91,13 @@ export default function DogListCard({
               src={imageSrc}
               alt="Listing"
             />
-            {lostDogStatus && <StatusTag label={lostDogStatus}/>}
-          </div>
-          <div>
-            <LikeButton currentUser={loggedInUser} listingId={id} />
+            {lostDogStatus && <StatusTag label={lostDogStatus} />}
           </div>
           <div className="font-semibold text-lg flex gap-3">
             <p>{dogType}</p>
             {dogName && <p className="text-neutral-400">이름은:{dogName}</p>}
           </div>
-          
+
           <div className="font-light text-neutral-500 flex">
             {dogAge && <div>나이는:{dogAge}살</div>}
             {dogMonth && <div>{dogMonth}</div>}
@@ -114,8 +105,16 @@ export default function DogListCard({
           </div>
         </div>
       </Link>
-      {onAction && <Button disabled={disabled} onClick={handleDelete} label="게시글 삭제하기"/>}
-    </div>
-  )
-}
+  
+        <LikeButton currentUser={loggedInUser} listingId={id} />
 
+      {onAction && (
+        <Button
+          disabled={disabled}
+          onClick={handleDelete}
+          label="게시글 삭제하기"
+        />
+      )}
+    </article>
+  );
+}

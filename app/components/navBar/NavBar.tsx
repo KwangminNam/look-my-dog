@@ -11,18 +11,16 @@ interface NavBarProps {
   loggedInUser?: SafeUser | null;
 }
 
-export default function NavBar({loggedInUser}:NavBarProps) {
+export default function NavBar({ loggedInUser }: NavBarProps) {
   return (
-    <>
-      <nav className="w-full bg-white z-10 shadow-xl">
-        <Container>
-          <div className="flex flex-row justify-between py-7 items-center">
-            <Logo />
-            <SearchBar />
-            <Hamberger loggedInUser={loggedInUser} />
-          </div>
-        </Container>
-      </nav>
-    </>
+    <nav className="w-full bg-white z-10 shadow-xl">
+      <Container nonPadding>
+        <div className="flex flex-row justify-between items-center">
+          <Logo />
+          <SearchBar />
+          <Hamberger loggedInUser={loggedInUser} />
+        </div>
+      </Container>
+    </nav>
   );
 }

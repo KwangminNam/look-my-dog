@@ -25,7 +25,7 @@ function Button({
   return (
     <button
       className={`
-        ${halfWidth  ? 'w-1/3': 'w-full'}
+        ${halfWidth  ? 'w-[200px]': 'w-full'}
         ${borderColor ? 'border-2 border-neutral-400' : null}
         ${borderColor ? 'bg-none' : null}
         rounded-md

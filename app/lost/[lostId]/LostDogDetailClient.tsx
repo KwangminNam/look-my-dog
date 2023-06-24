@@ -1,21 +1,41 @@
-'use client';
+"use client";
 
 import Container from "@/app/components/Container";
 import DogListCard from "@/app/components/list/DogListCard";
 import Image from "next/image";
 import { LostDogTypes } from "../type";
 import RelatedDogListCard from "@/app/components/list/RelatedDogListCard";
-
+import { GiFemale, GiMale } from "react-icons/gi";
+import { BsTelephoneFill } from "react-icons/bs";
+import { useMemo } from "react";
 
 interface LostDogDetailClientProps {
   getDetailLostDog: LostDogTypes;
   getAllLostDogListing: LostDogTypes[];
 }
 
-export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogListing }: LostDogDetailClientProps) {
+export default function LostDogDetailClient({
+  getDetailLostDog,
+  getAllLostDogListing
+}: LostDogDetailClientProps) {
+  const dogLabel = getDetailLostDog.kindCd.replaceAll("[개]", "");
 
+  console.log(getDetailLostDog);
+  console.log(getAllLostDogListing);
 
-  const dogLabel = getDetailLostDog.kindCd.replaceAll('[개]', '')
+  const maleLabel = useMemo(() => {
+    switch (getDetailLostDog.sexCd) {
+      case "남자":
+      case "M":
+        return <GiMale color="blue" />;
+
+      case "여자":
+      case "F":
+        return <GiFemale color="red" />;
+      default:
+        return getDetailLostDog.sexCd;
+    }
+  }, [getDetailLostDog.sexCd]);
 
   return (
     <Container>
@@ -31,22 +51,33 @@ export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogLis
             />
           </div>
           <div className="w-[750px] m-auto">
-            <div className="py-11 mb-10">
-              <h2 className="text-4xl mb-3">{dogLabel}</h2>
+            <div className="py-11">
+              <h2 className="text-4xl mb-3 flex gap-2">
+                {dogLabel} <span>{maleLabel}</span>
+              </h2>
               <div>
                 <p className="text-3xl">{getDetailLostDog.age}</p>
+                <span className="text-neutral-400">상태: {getDetailLostDog.processState}</span>
               </div>
             </div>
             <div className="py-11 border-y-2 border-neutral-200 mb-10">
-              <div>
-                특징{getDetailLostDog.specialMark}
-                보호센터:{getDetailLostDog.careAddr}
-                유기 된날:{getDetailLostDog.happenDt}
-                찾은곳:{getDetailLostDog.happenPlace}
-                현재 상태:{getDetailLostDog.processState}
-              </div>
-              <div>
-                <a href={`tel:${getDetailLostDog.careTel}`}>보호소 전화하기</a>
+              <div>특징{getDetailLostDog.specialMark}</div>
+              <div>보호센터:{getDetailLostDog.careAddr}</div>
+              <div>유기 된날:{getDetailLostDog.happenDt}</div>
+              <div>찾은곳:{getDetailLostDog.happenPlace}</div>
+              <div className="border-2 rounded-md p-4 border-[#34C759]">
+                <a
+                  className="
+                  block
+                  text-[#34C759]
+                  text-center
+                  relative
+                  "
+                  href={`tel:${getDetailLostDog.careTel}`}
+                >
+                  보호소 전화하기 {getDetailLostDog.careTel}
+                  <BsTelephoneFill size={25} color="#34C759" className="absolute top-[-50%] translate-y-1/2 left-52" />
+                </a>
               </div>
             </div>
             {/* Reletated DogType */}
@@ -64,7 +95,6 @@ export default function LostDogDetailClient({ getDetailLostDog, getAllLostDogLis
           </div>
         </div>
       </div>
-
     </Container>
-  )
+  );
 }
