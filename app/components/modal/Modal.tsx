@@ -3,6 +3,7 @@
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
 import Loading from "../Loader/Loading";
+import { useEffect } from "react";
 
 interface ModalProps {
   title: string | undefined;
@@ -18,7 +19,7 @@ interface ModalProps {
   secondActionOnclick?: () => void;
   closeAction: () => void;
   actionOnclick: () => void;
-  isLoading?:boolean;
+  isLoading?: boolean;
 }
 
 export default function Modal({
@@ -37,6 +38,9 @@ export default function Modal({
   closeAction,
   secondActionOnclick
 }: ModalProps) {
+  useEffect(() => {
+    isOpen ? document.body.style.overflow = "hidden" : document.body.style.overflow = "unset";
+  }, [isOpen]);
 
   return isOpen ? (
     <div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
@@ -72,9 +76,9 @@ export default function Modal({
                 <p className="absolute left-0 top-[-40px]">
                   {stepsLength}단계 중
                   <span className="text-red-400">
-                    {currentStep === 4 ? "마지막" : currentStep}단계
+                    &nbsp;{currentStep === 4 ? "마지막" : currentStep}단계&nbsp;
                   </span>
-                  에요
+                  에요.
                 </p>
               )}
               {/* FOOTER CONTENT */}

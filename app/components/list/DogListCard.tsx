@@ -67,7 +67,7 @@ export default function DogListCard({
 
   return (
     <article className="flex flex-col relative">
-      <Link href={`/${paramsName}/${id}`} shallow className="">
+      <Link href={`/${paramsName}/${id}`} shallow className="group">
         <div className="flex flex-col gap-2 w-full">
           <div
             className="
@@ -85,7 +85,7 @@ export default function DogListCard({
               object-cover 
               h-full 
               w-full 
-              group-hover:scale-110 
+              group-hover:scale-110
               transition
             "
               src={imageSrc}
@@ -98,7 +98,7 @@ export default function DogListCard({
             {dogName && <p className="text-neutral-400">이름은:{dogName}</p>}
           </div>
 
-          <div className="font-light text-neutral-500 flex">
+          <div className="font-light text-neutral-500 flex items-center">
             {dogAge && <div>나이는:{dogAge}살</div>}
             {dogMonth && <div>{dogMonth}</div>}
             <div>{maleLabel || male}</div>

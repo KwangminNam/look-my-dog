@@ -2,6 +2,7 @@ import getLostDogList from "@/app/actions/getLostDogListing";
 import LostDogDetailClient from "./LostDogDetailClient";
 import { LostDogTypes } from "../type";
 import { Metadata, ResolvingMetadata } from 'next';
+import EmptyState from "@/app/components/EmptyState";
 type Props = {
   params: { lostId: string }
   searchParams: { [key: string]: string | string[] | undefined }
@@ -44,7 +45,7 @@ export default async function page({ params }: { params: IParams }) {
   console.log(getDetailLostDog);
 
   if (!getDetailLostDog) {
-    return <div>EMPTY</div>
+    return <EmptyState title="등록된 유기견 강아지가 없습니다."/>
   }
 
   return (

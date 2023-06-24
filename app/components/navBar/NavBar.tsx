@@ -13,7 +13,7 @@ interface NavBarProps {
 
 export default function NavBar({ loggedInUser }: NavBarProps) {
   return (
-    <nav className="w-full bg-white z-10 shadow-xl">
+    <nav className="w-full bg-white z-10 fixed border-b-[1px] border-neutral-300">
       <Container nonPadding>
         <div className="flex flex-row justify-between items-center">
           <Logo />

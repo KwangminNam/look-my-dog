@@ -36,9 +36,10 @@ export const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
 
 const PERSONALTY_DATA = [
   { personlityDog: "온순한 편이에요" },
-  { personlityDog: "성격이 사나운편이에요." },
+  { personlityDog: "사나운편이에요." },
   { personlityDog: "사회성이 좋은편이에요" },
-  { personlityDog: "낯을 많이 가려요." }
+  { personlityDog: "낯을 많이 가려요." },
+  { personlityDog: "사람을 좋아해요" },
 ];
 
 // const validation: ZodType<any> = z.object({
@@ -227,7 +228,7 @@ export default function PostmyDogModal() {
   if (step === POST_STEPS.INFO) {
     bodyModal = (
       <>
-        <div className="flex justify-center items-center mb-4">
+        <div className="flex justify-center items-center mb-4 gap-3">
           <div className="text-xl">
             나의 강아지 종류는 <span className="text-red-400">{label}</span>
           </div>

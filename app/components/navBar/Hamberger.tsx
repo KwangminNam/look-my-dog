@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { BsPlusSquare } from "react-icons/bs";
 import MenuItem from "./MenuItem";
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
@@ -30,53 +31,59 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       return loginModal.actionOpen();
     }
     postModal.actionOpen();
-  }
+  };
 
   return (
-    <div className="relative flex items-center gap-10 text-2xl">
-      <button
-        className="
-        border
-        border-neutral-200
-        rounded-xl
-        shadow-md
-        p-3"
-        onClick={onOpenPostModal}
-      >
-        강아지 자랑하기
-      </button>
-      <Link
-        href='/lost'
-        className="
-          border
-          border-neutral-200
-          rounded-xl
-          shadow-md
+    <>
+      <ul className="relative flex items-center gap-10 text-2xl">
+        <li>
+          {" "}
+          <button
+            className="
+              border-2
+              border-neutral-300
+              rounded-xl
+              py-3
+              pr-12
+              pl-10
+              relative
+            "
+            onClick={onOpenPostModal}
+          >
+            <BsPlusSquare className="absolute right-3 top-[50%] translate-y-[-50%]" />
+            <span className="text-lg">강아지 자랑하기</span>
+          </button>
+        </li>
+        <li>
+          <Link
+            href="/doglist"
+            className="
           p-3"
-        >
-          유기견 강아지 보기     
-      </Link>
-      <button
-        className="
-          border
-          border-neutral-200
-          rounded-xl
-          shadow-md
+          >
+            강아지 보기
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/lost"
+            className="
           p-3"
-          onClick={() => router.push('/doglist')}>
-          전체강아지
-      </button>
+          >
+            유기견 강아지
+          </Link>
+        </li>
+      </ul>
       <div
         className="
-          p-4
-          border
-          border-solid
-          border-neutral-400
-          cursor-pointer
-          flex
-          gap-2
-          hover:shadow-md
-          rounded-2xl"
+            p-4
+            border
+            border-solid
+            border-neutral-400
+            cursor-pointer
+            flex
+            gap-2
+            hover:shadow-md
+            rounded-2xl"
         onClick={setToggleOpen}
       >
         <AiOutlineMenu size={30} />
@@ -84,13 +91,31 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
       </div>
       {isOpen && (
         <div className="absolute top-16 right-0 z-[100]">
-          <div className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
+          <ul className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>
-                <MenuItem label="로그아웃" onClick={() => { signOut() }} />
-                <MenuItem label="나의 강아지" onClick={()=>{router.push('/mypost')}} />
-                <MenuItem label="이동" onClick={() => { router.push('/test') }} />
-                <MenuItem label="좋아요 한 게시판" onClick={()=>router.push('/favorite')} />
+                <MenuItem
+                  label="로그아웃"
+                  onClick={() => {
+                    signOut();
+                  }}
+                />
+                <MenuItem
+                  label="나의 강아지"
+                  onClick={() => {
+                    router.push("/mypost");
+                  }}
+                />
+                <MenuItem
+                  label="이동"
+                  onClick={() => {
+                    router.push("/test");
+                  }}
+                />
+                <MenuItem
+                  label="좋아요 한 게시판"
+                  onClick={() => router.push("/favorite")}
+                />
               </>
             ) : (
               <>
@@ -98,9 +123,9 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
                 <MenuItem label="회원가입" onClick={registerModal.actionOpen} />
               </>
             )}
-          </div>
+          </ul>
         </div>
       )}
-    </div>
+    </>
   );
 }

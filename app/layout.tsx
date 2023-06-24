@@ -26,12 +26,12 @@ export default async function RootLayout({
     <html lang="ko">
       <body className={jua.className}>
         <ToasterProvider />
-        <NavBar loggedInUser={loggedInUser} />
         <SearchModal/>
         <LoginModal />
         <RegisterModal />
         <PostmyDogModal />
-        <div className="pb-20">{children}</div>
+        <NavBar loggedInUser={loggedInUser} />
+        <div className="w-[1600px] mx-auto py-24 px-4">{children}</div>
       </body>
     </html>
   );

@@ -24,12 +24,24 @@ export default async function Home({ searchParams }: HomeProps) {
   }
 
   return (
-    <>
+    <div className="w-full bg-red">
       <HeroBox />
       <Container>
         <div className="pt-8">
-          <h2 className="text-4xl text-center mb-16">강아지 포스트</h2>
-          <div className="grid grid-cols-4 gap-9 pb-20">
+          <h2 className="text-4xl text-center">강아지 포스트</h2>
+          <div
+            className="
+            pt-20
+            grid-cols-1
+            sm:grid-cols-2
+            grid
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-6
+            md:grid-cols-3
+            gap-8
+            "
+          >
             {getDogList?.slice(0, 8).map((item: any) => (
               <DogListCard
                 loggedInUser={getLoggedinuser}
@@ -54,6 +66,6 @@ export default async function Home({ searchParams }: HomeProps) {
           </Link>
         </div>
       </Container>
-    </>
+    </div>
   );
 }
