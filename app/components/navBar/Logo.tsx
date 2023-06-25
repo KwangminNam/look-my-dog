@@ -10,8 +10,8 @@ export default function Logo() {
     <h1>
       <Image
         alt="look my dog logo"
-        src="/images/doglogo.png"
-        className="cursor-pointer"
+        src="/images/dog-nose.png"
+        className="cursor-pointer border-[5px] border-black rounded-full p-2"
         width={100}
         height={100}
         onClick={() => router.push("/")}

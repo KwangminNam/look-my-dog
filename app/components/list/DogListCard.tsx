@@ -47,8 +47,14 @@ export default function DogListCard({
   const router = useRouter();
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    onAction?.(id);
+    const confirm = "게시글을 삭제하시겠습니까?";
+
+    if (confirm) {
+      e.stopPropagation();
+      onAction?.(id);
+    }else{
+      return;
+    }
   };
 
   const maleLabel = useMemo(() => {
@@ -88,7 +94,7 @@ export default function DogListCard({
               group-hover:scale-110
               transition
             "
-              src={imageSrc}
+              src={imageSrc || '/images/dog-placeholder.png'}
               alt="Listing"
             />
             {lostDogStatus && <StatusTag label={lostDogStatus} />}
@@ -105,8 +111,8 @@ export default function DogListCard({
           </div>
         </div>
       </Link>
-  
-        <LikeButton currentUser={loggedInUser} listingId={id} />
+
+      <LikeButton currentUser={loggedInUser} listingId={id} />
 
       {onAction && (
         <Button

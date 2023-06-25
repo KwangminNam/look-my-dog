@@ -42,20 +42,12 @@ const PERSONALTY_DATA = [
   { personlityDog: "사람을 좋아해요" },
 ];
 
-// const validation: ZodType<any> = z.object({
-//   title: z
-//     .string()
-//     .min(2, "이름은 두글자 이상 이여야 합니다.")
-//     .max(5, "이름은 다섯글자 이하 여야 합니다."),
-//   dogName: z
-//     .string()
-//     .min(5, "비밀번호는 5글자 이상 이여야합니다")
-//     .max(10, "비밀번호는 10글자 이하 여야합니다"),
-//   weight: z
-//     .string()
-//     .min(5, "비밀번호는 5글자 이상 이여야합니다")
-//     .max(10, "비밀번호는 10글자 이하 여야합니다")
-// });
+const validation: ZodType<any> = z.object({
+  // dogName: z
+  //   .string()
+  //   .min(5, "비밀번호는 5글자 이상 이여야합니다")
+  //   .max(10, "비밀번호는 10글자 이하 여야합니다"),
+});
 
 export default function PostmyDogModal() {
   const postModal = usePostModal();
@@ -239,7 +231,7 @@ export default function PostmyDogModal() {
                   border-neutral-300
                   border-solid
                   rounded-full"
-              src={`${item.src}.jpeg`}
+              src={`${item.src}.png`}
               alt={label}
               width={70}
               height={70}

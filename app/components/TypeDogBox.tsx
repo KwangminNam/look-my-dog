@@ -60,22 +60,21 @@ export default function TypeDogBox({
       bg-white
       border
       rounded-xl
-      border-neutral-200
       cursor-pointer
       flex
       py-6
       justify-center
       items-center
       relative
-      hover:shadow-2xl
-      ${selected ? "border border-solid border-red-300" : "border-neutral-300"}
+      hover:border-blue-400
+      ${selected ? "border-[3px] border-solid border-blue-500" : "border-neutral-300"}
       `}
       key={label}
     >
       <div className="flex flex-col items-center">
         <Image
           alt={label}
-          src={`${src}.jpeg`}
+          src={`${src}.png`}
           width={65}
           height={65}
           className="rounded-full w-14 h-14"

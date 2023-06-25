@@ -10,7 +10,7 @@ import { Jua } from "next/font/google";
 import SearchModal from "./components/modal/SearchModal";
 
 const jua = Jua({ subsets: ["latin"], weight: "400" });
-
+// https://www.flaticon.com/search?word=bichon
 export const metadata = {
   title: "Look my Dog",
   description: "Dog pictures of blog"
