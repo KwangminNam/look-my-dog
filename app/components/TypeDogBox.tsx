@@ -62,7 +62,7 @@ export default function TypeDogBox({
       rounded-xl
       cursor-pointer
       flex
-      py-6
+      py-4
       justify-center
       items-center
       relative

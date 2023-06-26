@@ -2,7 +2,7 @@ import getListById from "@/app/actions/getListById";
 import ListingClient from "./ListingClient";
 import getLoggedInUser from "@/app/actions/getLoginedUser";
 import getListing from "@/app/actions/getDogListing";
-import Head from "next/head";
+
 
 interface IParams {
   listingId?: string;

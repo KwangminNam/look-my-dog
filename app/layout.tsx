@@ -31,7 +31,7 @@ export default async function RootLayout({
         <RegisterModal />
         <PostmyDogModal />
         <NavBar loggedInUser={loggedInUser} />
-        <div className="w-[1600px] mx-auto py-24 px-4">{children}</div>
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   );

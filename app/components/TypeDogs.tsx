@@ -108,8 +108,8 @@ export default function TypeDogs() {
   if (!isDogListPage) return null;
 
   return (
-    <div className="relative flex flex-col items-center mb-20">
-      <ul className="w-full pt-11 pb-5 grid grid-cols-5 gap-3 h-0s translate-y-0">
+    <div className="relative flex flex-col items-center mb-10 sm:mb-20">
+      <ul className="w-full pt-8 sm:pt-11 pb-4 sm:pb-5 grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 h-0s translate-y-0">
         {typeDogs.map((item) => (
           <TypeDogBox
             src={item.src}

@@ -24,10 +24,10 @@ export default async function Home({ searchParams }: HomeProps) {
   }
 
   return (
-    <div className="w-full bg-red">
+    <div>
       <HeroBox />
       <Container>
-        <div className="pt-8">
+        <>
           <h2 className="text-4xl text-center">강아지 포스트</h2>
           <div
             className="
@@ -59,7 +59,7 @@ export default async function Home({ searchParams }: HomeProps) {
               />
             ))}
           </div>
-        </div>
+        </>
         <div className="flex justify-center">
           <Link href="/doglist" className="text-xl underline">
             더 많은 강아지보기
