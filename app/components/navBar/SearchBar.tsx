@@ -30,10 +30,9 @@ export default function SearchBar() {
 
 
   return (
-    <div
+    <button
       onClick={searchModal.actionOpen}
       className="
-          flex
           gap-3
           items-center
           font-bold
@@ -41,13 +40,14 @@ export default function SearchBar() {
           hover:shadow-md
           transition
           text-3xl
+          flex
     "
     >
-      <div>{nameLabel}</div>
+      <div className='hidden md:flex'>{nameLabel}</div>
       <div>{ageLabel}</div>
       <div className='p-2 bg-[#28a649] rounded-full text-white'>
         <BiSearch  />
       </div>  
-    </div>
+    </button>
   )
 }

@@ -7,11 +7,11 @@ export default function Logo() {
   const router = useRouter();
 
   return (
-    <h1>
+    <h1 className="hidden md:block">
       <Image
         alt="look my dog logo"
         src="/images/dog-nose.png"
-        className="cursor-pointer border-[5px] border-black rounded-full p-2"
+        className="border-[5px] border-black rounded-full p-2 cursor-pointer"
         width={100}
         height={100}
         onClick={() => router.push("/")}

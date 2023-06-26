@@ -37,10 +37,9 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
     <>
       <ul className="relative flex items-center gap-10 text-2xl">
         <li>
-          {" "}
           <button
             className="
-              border-2
+              lg:border-2
               border-neutral-300
               rounded-xl
               py-3
@@ -51,7 +50,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             onClick={onOpenPostModal}
           >
             <BsPlusSquare className="absolute right-3 top-[50%] translate-y-[-50%]" />
-            <span className="text-lg">강아지 자랑하기</span>
+            <span className="text-lg hidden lg:block">강아지 자랑하기</span>
           </button>
         </li>
         <li>
