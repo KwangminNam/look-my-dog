@@ -16,6 +16,7 @@ export default function SelectSex({
       <span
         className={`
           text-sm
+          block
           md:text-2xl
           rounded-xl
           border-[3px]
