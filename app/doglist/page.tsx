@@ -29,7 +29,15 @@ export default async function DogList({ searchParams }: DogListProps) {
     <Container>
       <TypeDogs />
       <h2 className="text-4xl text-center pb-11">나의 강아지</h2>
-      <div className="grid grid-cols-6 gap-9">
+      <div className="            pt-20
+            grid-cols-1
+            sm:grid-cols-2
+            grid
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-6
+            md:grid-cols-3
+            gap-8">
         {getDogList?.map((item: any) => (
           <DogListCard
             loggedInUser={getLoggedInuser}

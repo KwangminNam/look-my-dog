@@ -36,16 +36,17 @@ export default async function LostDog() {
   return (
     <Container>
       <div
-        className=" 
-        max-w=[2250px]
-        mx-auto
-        xl:px-20
-        md:px-10
-        sm:px-2
-        px-4"
-      >
+        className="">
         <h2 className="text-4xl text-center pb-11">유기견</h2>
-        <div className="grid grid-cols-6 gap-9">
+        <div className="            pt-20
+            grid-cols-1
+            sm:grid-cols-2
+            grid
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-6
+            md:grid-cols-3
+            gap-8">
           <LostDogClient lostGetDogList={getLostDogListt} />
         </div>
       </div>

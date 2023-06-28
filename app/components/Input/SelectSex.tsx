@@ -15,7 +15,8 @@ export default function SelectSex({
     <div className="cursor-pointer" onClick={() => onClick(value)}>
       <span
         className={`
-          text-2xl
+          text-sm
+          md:text-2xl
           rounded-xl
           border-[3px]
           border-solid
