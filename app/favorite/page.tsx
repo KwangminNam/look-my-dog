@@ -30,7 +30,7 @@ export default async function Favoirte() {
       >
         <h2 className="text-4xl text-center pb-11">나의 좋아요 강아지들</h2>
         <div className="grid grid-cols-6 gap-9">
-          <FavoriteClient favoriteList={favoriteList} />
+          <FavoriteClient favoriteList={favoriteList} loggedInUser={getCurrentUser} />
         </div>
       </div>
 

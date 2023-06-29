@@ -35,7 +35,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
 
   return (
     <>
-      <ul className="relative flex items-center gap-10 text-2xl">
+      <ul className="relative flex items-center gap-10 text-sm md:text-2xl">
         <li>
           <button
             className="

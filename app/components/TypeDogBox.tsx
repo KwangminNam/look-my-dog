@@ -75,9 +75,9 @@ export default function TypeDogBox({
         <Image
           alt={label}
           src={`${src}.png`}
-          width={65}
-          height={65}
-          className="rounded-full w-14 h-14"
+          width={50}
+          height={50}
+          className="rounded-full w-14"
         />
         <span>{label}</span>
       </div>

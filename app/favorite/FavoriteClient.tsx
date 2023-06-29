@@ -2,7 +2,7 @@
 
 import DogListCard from "../components/list/DogListCard";
 
-export default function FavoriteClient({ favoriteList }: any) {
+export default function FavoriteClient({ favoriteList , loggedInUser }: any) {
   return (
     <>
       {favoriteList.map((item:any) => (
@@ -14,6 +14,7 @@ export default function FavoriteClient({ favoriteList }: any) {
           male={item.male}
           imageSrc={item.imageSrc}
           paramsName="listing"
+          loggedInUser={loggedInUser}
         />
       ))}
     </>
