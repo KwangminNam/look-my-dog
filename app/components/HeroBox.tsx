@@ -11,7 +11,7 @@ import 'swiper/css/autoplay';
 
 export default function HeroBox() {
   return (
-    <section className=" w-full">
+    <section className=" w-full mb-32">
       <Container>
         <Swiper
           autoplay
@@ -30,7 +30,7 @@ export default function HeroBox() {
             <Image
               src="/images/hero-banner.jpg"
               alt="heroBanner"
-              className="w-full h-[765px]"
+              className="w-full h-[400px] lg:h-[750px]"
               width="0"
               height="0"
               sizes="100vw"
@@ -40,7 +40,7 @@ export default function HeroBox() {
             <Image
               src="/images/hero-banner.jpg"
               alt="heroBanner"
-              className="w-full h-[765px]"
+              className="w-full h-[40 0px] lg:h-[750px]"
               width="0"
               height="0"
               sizes="100vw"
