@@ -25,6 +25,8 @@ export interface DogListCardProps {
   paramsName?: string;
   lostDogStatus?: string;
   disabled?: boolean;
+  dogList?:Array<any>;
+  showLikeButton?:boolean;
   onAction?: (id: string) => void;
 }
 
@@ -42,9 +44,10 @@ export default function DogListCard({
   loggedInUser,
   paramsName,
   disabled,
+  showLikeButton,
   onAction
 }: DogListCardProps) {
-  const router = useRouter();
+
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     const confirm = "게시글을 삭제하시겠습니까?";
@@ -112,7 +115,7 @@ export default function DogListCard({
         </div>
       </Link>
 
-      <LikeButton currentUser={loggedInUser} listingId={id} />
+      {showLikeButton && <LikeButton currentUser={loggedInUser} listingId={id} />}
 
       {onAction && (
         <Button

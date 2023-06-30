@@ -5,7 +5,7 @@ import Validation from "../Validation";
 import { GiWeight } from 'react-icons/gi'
 import { use, useEffect, useRef } from "react";
 
-interface InputProps {
+export interface InputProps {
   id: string;
   label: string;
   type?: string;

@@ -4,7 +4,7 @@ import { LostDogTypes } from "@/app/lost/type";
 import DogListCard from "./DogListCard";
 import { SafeListing } from "@/app/types";
 
-interface RelatedDogListCardProps {
+export interface RelatedDogListCardProps {
   getAllLostDogListing?: LostDogTypes[] | SafeListing | any;
   getDogListing?: any;
   dogLabel?: string;
