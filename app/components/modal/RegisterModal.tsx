@@ -55,7 +55,7 @@ export default function RegisterModal() {
     loginModal.actionOpen();
   }
 
-  const loginBodyContent = (
+  const registerBodyContent = (
     <div className="flex flex-col gap-5">
       <Input
         register={register}
@@ -90,7 +90,7 @@ export default function RegisterModal() {
     </div>
   );
 
-  const loginFooterContent = (
+  const registerFooterContent = (
     <div className="flex flex-col items-center  gap-6">
       <Button
         label="Github로 회원가입"
@@ -132,8 +132,8 @@ export default function RegisterModal() {
       closeAction={registerModal.actionClose}
       actionLabel="회원가입"
       actionOnclick={handleSubmit(onRegister)}
-      bodyContent={loginBodyContent}
-      footerContent={loginFooterContent}
+      bodyContent={registerBodyContent}
+      footerContent={registerFooterContent}
     />
   );
 }

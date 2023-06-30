@@ -5,7 +5,7 @@ import Button from "./Button";
 import Container from "./Container";
 import { SiDatadog } from "react-icons/si";
 
-interface EmptyStateProps {
+export interface EmptyStateProps {
   title: string;
   showButton?: boolean;
 }

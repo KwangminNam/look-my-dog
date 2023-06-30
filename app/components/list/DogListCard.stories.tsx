@@ -17,6 +17,7 @@ type Story = StoryObj<typeof DogListCard>;
 
 export const Doglist: Story = (args: DogListCardProps) => (
   <Container>
+    <h2 className="text-center text-3xl">TITLE</h2>
     <div
       className="
       pt-20
@@ -48,6 +49,7 @@ Doglist.args = {
       male: "남자",
       paramsName: "list",
       personality: ["good", "bad"],
+      showLikeButton:true,
     },
     {
       id: 2,
@@ -59,6 +61,7 @@ Doglist.args = {
       male: "남자",
       paramsName: "list",
       personality: ["good", "bad"],
+      showLikeButton:true,
     },
     {
       id: 3,
@@ -70,6 +73,7 @@ Doglist.args = {
       male: "남자",
       paramsName: "list",
       personality: ["good", "bad"],
+      showLikeButton:true,
     },
     {
       id: 4,
@@ -81,6 +85,7 @@ Doglist.args = {
       male: "여자",
       paramsName: "list",
       personality: ["good", "bad"],
+      showLikeButton:true,
     },
     {
       id: 5,
@@ -92,6 +97,7 @@ Doglist.args = {
       male: "여자",
       paramsName: "list",
       personality: ["good", "bad"],
+      showLikeButton:true,
     },
     {
       id: 6,
