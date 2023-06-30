@@ -3,7 +3,7 @@
 import { IconType } from "react-icons";
 
 
-interface ButtonProps {
+export interface ButtonProps {
   label: string;
   bgColor?: boolean;
   borderColor?: boolean;

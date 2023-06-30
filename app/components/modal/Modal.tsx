@@ -5,7 +5,7 @@ import Button from "../Button";
 import Loading from "../Loader/Loading";
 import { useEffect } from "react";
 
-interface ModalProps {
+export interface ModalProps {
   title: string | undefined;
   subtitle?: string;
   isOpen: boolean;
@@ -95,7 +95,7 @@ export default function Modal({
               />
             </div>
             <hr className="sm:hidden" />
-            <div className="pb-6 sm:pb-9">{footerContent}</div>
+            {footerContent && <div className="pb-6 sm:pb-9">{footerContent}</div>}
           </div>
         </div>
       </div>

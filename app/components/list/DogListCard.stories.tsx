@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import DogListCard, { DogListCardProps } from "./DogListCard";
+import Container from "../Container";
 
 const meta: Meta<typeof DogListCard> = {
   title: "Example/강아지리스트",
@@ -15,8 +16,9 @@ type Story = StoryObj<typeof DogListCard>;
 // }
 
 export const Doglist: Story = (args: DogListCardProps) => (
-  <div
-    className="
+  <Container>
+    <div
+      className="
       pt-20
       grid-cols-1
       sm:grid-cols-2
@@ -26,11 +28,12 @@ export const Doglist: Story = (args: DogListCardProps) => (
       2xl:grid-cols-6
       md:grid-cols-3
       gap-8"
-  >
-    {args.dogList?.map((item: DogListCardProps) => (
-      <DogListCard key={item.id} {...item} />
-    ))}
-  </div>
+    >
+      {args.dogList?.map((item: DogListCardProps) => (
+        <DogListCard key={item.id} {...item} />
+      ))}
+    </div>
+  </Container>
 );
 
 Doglist.args = {

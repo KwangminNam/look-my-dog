@@ -3,7 +3,7 @@
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import Validation from "../Validation";
 import { GiWeight } from 'react-icons/gi'
-import { use, useEffect, useRef } from "react";
+// import { use, useEffect,  } from "react";
 
 export interface InputProps {
   id: string;
@@ -31,7 +31,7 @@ export default function Input({
   register
 }: InputProps) {
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  // const inputRef = useRef<HTMLInputElement>(null);
 
   console.log(errors);
 

@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import RelatedDogListCard, { RelatedDogListCardProps } from "./RelatedDogListCard";
 import DogListCard from "./DogListCard";
+import Container from "../Container";
 
 const meta: Meta<typeof RelatedDogListCard> = {
   title: "Example/강아지리스트",
@@ -23,7 +24,11 @@ const getDogListing = { id: 1, dogType: "Type 1" };
 
 
 export const RelatedDogList: Story = (args:RelatedDogListCardProps) => {
-  return <RelatedDogListCard {...args}/>
+  return (
+    <Container>
+      <RelatedDogListCard {...args}/>
+    </Container>
+  )
 }
 
 RelatedDogList.args ={

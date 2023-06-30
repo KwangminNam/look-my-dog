@@ -16,7 +16,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // SNS LOGIN TYPE
 type SnsName = 'github' | 'google';
