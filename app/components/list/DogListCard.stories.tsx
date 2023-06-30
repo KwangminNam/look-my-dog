@@ -3,7 +3,7 @@ import DogListCard, { DogListCardProps } from "./DogListCard";
 import Container from "../Container";
 
 const meta: Meta<typeof DogListCard> = {
-  title: "Example/강아지리스트",
+  title: "List/강아지리스트",
   component: DogListCard,
   tags: ["autudocs"]
 };

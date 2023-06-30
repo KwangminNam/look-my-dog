@@ -1,7 +1,6 @@
 "use client";
 
 import Container from "../Container";
-import TypeDogs from "../TypeDogs";
 import Hamberger from "./Hamberger";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";

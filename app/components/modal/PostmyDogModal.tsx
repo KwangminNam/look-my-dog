@@ -18,7 +18,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-enum POST_STEPS {
+export enum POST_STEPS {
   DOGTYPE = 0,
   INFO = 1,
   DESC = 2,
@@ -34,7 +34,7 @@ type ValidationType = {
 
 export const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
 
-const PERSONALTY_DATA = [
+export const PERSONALTY_DATA = [
   { personlityDog: "온순한 편이에요" },
   { personlityDog: "사나운편이에요." },
   { personlityDog: "사회성이 좋은편이에요" },
@@ -105,8 +105,6 @@ export default function PostmyDogModal() {
   }, [postModal.isOpen]);
 
   const nextStep = () => {
-    // if (step === POST_STEPS.DOGTYPE && dogType === "") return;
-    // if (step === POST_STEPS.INFO && dogName === "") return;
     setStep((prev) => prev + 1);
   };
 
