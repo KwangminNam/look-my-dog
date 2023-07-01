@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface PostDogInput {
   label: string;
-  src: string;
+  src: string| StaticImageData;
   selected: boolean;
   urlString?: string;
   onClick: (value: string) => void;

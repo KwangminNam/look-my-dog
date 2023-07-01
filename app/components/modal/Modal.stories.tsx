@@ -8,12 +8,80 @@ import { FcGoogle } from "react-icons/fc";
 import { MALE_DATA, PERSONALTY_DATA, POST_STEPS } from "./PostmyDogModal";
 import { useMemo, useState } from "react";
 import PostDogInput from "../Input/PostDogInput";
-import { TYPE_OF_DOG } from "../TypeDogs";
 import Image from "next/image";
 import SelectSex from "../Input/SelectSex";
 import AgeCounter from "../AgeCounter";
 import SelectPersonality from "../Input/SelectPersonality";
 import ImageUpload from "../ImageUpload";
+import malti from '../../../public/images/puppy2/malti.png'
+
+ const TYPE_OF_DOG = [
+  {
+    label: "말티즈",
+    desc: "/images/puppy2/malti",
+    src: '../../../public/images/puppy2/malti'
+  },
+  {
+    label: "골든리트리버",
+    desc: "골든리트리버 설명!",
+    src: "/images/puppy2/golden-retriever"
+  },
+  {
+    label: "비숑 프리제",
+    desc: "비숑 설명!",
+    src: "/images/puppy2/bichon-frise"
+  },
+  {
+    label: "프렌치불독",
+    desc: "비숑 설명!",
+    src: "/images/puppy2/french-bulldog"
+  },
+  {
+    label: "시츄",
+    desc: "시츄",
+    src: "/images/puppy2/sichew"
+  },
+  {
+    label: "치와와",
+    desc: "치와와 설명!",
+    src: "/images/puppy2/chiwawa"
+  },
+  {
+    label: "포메라이언",
+    desc: "포메라이언 설명!",
+    src: "/images/puppy2/pomeranian"
+  },
+  {
+    label: "비글",
+    desc: "비글 설명!",
+    src: "/images/puppy2/beagle"
+  },
+  {
+    label: "닥스훈트",
+    desc: "닥스훈트 설명!",
+    src: "/images/puppy2/dachshund"
+  },
+  {
+    label: "푸들",
+    desc: "푸들 설명!",
+    src: "/images/puppy2/red-poodle"
+  },
+  {
+    label: "코커스페니엘",
+    desc: "푸들 설명!",
+    src: "/images/puppy2/cocker-spaniel"
+  },
+  {
+    label: "시베리안허스키",
+    desc: "시베리안허스키 설명!",
+    src: "/images/puppy2/husky"
+  },
+  {
+    label: "달마시안",
+    desc: "포메라이언 설명!",
+    src: "/images/puppy2/dalmatian"
+  }
+];
 
 const meta: Meta<typeof Modal> = {
   title: "Modal/ 모달창",
@@ -188,6 +256,7 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
   const weight = watch("dogWeight");
   const [showMonthAge, setShowMonthAge] = useState(false);
   const onToggle = () => setShowMonthAge((prev) => !prev);
+  
   const selectMaleType = (value: string) => {
     setCustumValue("male", value);
   };
@@ -420,5 +489,5 @@ RegisterModal.args = {
 PostMyDogModal.args = {
   subtitle: "모달 subtitle 입니다.",
   isOpen: true,
-  actionLabel: "모달 액션라벨",
+
 };
