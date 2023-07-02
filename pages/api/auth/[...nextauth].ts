@@ -23,10 +23,10 @@ export const authOptions: AuthOptions = {
     //   clientId: process.env.KAKAO_CLIENT_ID as string,
     //   clientSecret: process.env.KAKAO_CLIENT_SECRET as string
     // }),
-    // NaverProvider({
-    //   clientId: process.env.NAVER_CLIENT_ID as string,
-    //   clientSecret: process.env.NAVER_CLIENT_SECRET as string
-    // }),
+    NaverProvider({
+      clientId: process.env.NAVER_CLIENT_ID as string,
+      clientSecret: process.env.NAVER_CLIENT_SECRET as string
+    }),
     CredentialsProvider({
       name: 'credentials',
       credentials: {

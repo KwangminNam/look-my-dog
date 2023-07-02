@@ -61,7 +61,7 @@ export default function ListingClient({
               <div className="flex items-center gap-2">
                 <Image
                   className="rounded-full"
-                  src={dogList.user?.image || "/images/userPlaceholder.jpg"}
+                  src={dogList.user?.image || "/images/dog-placeholder.png"}
                   alt="사용자"
                   width={50}
                   height={50}

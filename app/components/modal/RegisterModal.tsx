@@ -11,7 +11,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { z, ZodType } from "zod";
-import {zodResolver} from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 
 type ValidationType = {
@@ -25,22 +25,33 @@ export default function RegisterModal() {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
-  const validation: ZodType<ValidationType> = z.object({
-    name: z.string().min(2,"이름은 두글자 이상 이여야 합니다.").max(5,"이름은 다섯글자 이하 여야 합니다."),
-    email:z.string().email("이메일 형식에 맞게 입력해주세요."),
-    password:z.string().min(5,"비밀번호는 5글자 이상 이여야합니다").max(10,"비밀번호는 10글자 이하 여야합니다"),
-    passwordConfirm:z.string().min(5,"비밀번호는 5글자 이상 이여야합니다").max(10,"비밀번호는 10글자 이하 여야합니다"),
-  }).refine((data)=> data.password === data.passwordConfirm , {
-    message:"비밀번호가 일치하지않습니다.",
-    path:["passwordConfirm"]
-  });
+  const validation: ZodType<ValidationType> = z
+    .object({
+      name: z
+        .string()
+        .min(2, "이름은 두글자 이상 이여야 합니다.")
+        .max(5, "이름은 다섯글자 이하 여야 합니다."),
+      email: z.string().email("이메일 형식에 맞게 입력해주세요."),
+      password: z
+        .string()
+        .min(5, "비밀번호는 5글자 이상 이여야합니다")
+        .max(10, "비밀번호는 10글자 이하 여야합니다"),
+      passwordConfirm: z
+        .string()
+        .min(5, "비밀번호는 5글자 이상 이여야합니다")
+        .max(10, "비밀번호는 10글자 이하 여야합니다")
+    })
+    .refine((data) => data.password === data.passwordConfirm, {
+      message: "비밀번호가 일치하지않습니다.",
+      path: ["passwordConfirm"]
+    });
 
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<FieldValues | ValidationType>({
-    resolver:zodResolver(validation),
+    resolver: zodResolver(validation),
     defaultValues: {
       name: "",
       email: "",
@@ -53,7 +64,7 @@ export default function RegisterModal() {
   const onToggleLogin = () => {
     registerModal.actionClose();
     loginModal.actionOpen();
-  }
+  };
 
   const registerBodyContent = (
     <div className="flex flex-col gap-5">
@@ -95,16 +106,30 @@ export default function RegisterModal() {
       <Button
         label="Github로 회원가입"
         bgColor
-        onClick={() => {signIn('github')}}
+        onClick={() => {
+          signIn("github");
+        }}
         icon={AiFillGithub}
       />
       <Button
         label="Google로 회원가입"
         bgColor
-        onClick={() => {signIn('google')}}
+        onClick={() => {
+          signIn("google");
+        }}
         icon={FcGoogle}
       />
-      <p onClick={onToggleLogin} className="cursor-pointer">이미 회원이신가요? <span className="text-red-400" >로그인</span></p>
+      <Button
+        label="네이버로 회원가입"
+        bgColor
+        onClick={() => {
+          signIn("naver");
+        }}
+        icon={FcGoogle}
+      />
+      <p onClick={onToggleLogin} className="cursor-pointer">
+        이미 회원이신가요? <span className="text-red-400">로그인</span>
+      </p>
     </div>
   );
 
