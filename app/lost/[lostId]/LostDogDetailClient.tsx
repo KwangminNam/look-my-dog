@@ -60,26 +60,29 @@ export default function LostDogDetailClient({
                 <span className="text-neutral-400">상태: {getDetailLostDog.processState}</span>
               </div>
             </div>
-            <div className="py-11 border-y-2 border-neutral-200 mb-10">
-              <div>특징{getDetailLostDog.specialMark}</div>
-              <div>보호센터:{getDetailLostDog.careAddr}</div>
-              <div>유기 된날:{getDetailLostDog.happenDt}</div>
-              <div>찾은곳:{getDetailLostDog.happenPlace}</div>
-              <div className="border-2 rounded-md p-4 border-[#34C759]">
+            <ul className="py-11 border-y-2 border-neutral-200 mb-10">
+              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">특징:</span>{getDetailLostDog.specialMark}</li>
+              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">보호 장소:</span>{getDetailLostDog.careAddr}</li>
+              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">유기 된 날짜:</span>{getDetailLostDog.happenDt}</li>
+              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">찾은곳:</span>{getDetailLostDog.happenPlace}</li>
+              <li className="border-2 rounded-md p-4 border-[#34C759] group hover:bg-[#34c759]">
                 <a
                   className="
                   block
+                  h-full
+                  w-full
                   text-[#34C759]
                   text-center
                   relative
+                  group-hover:text-[#fff]
                   "
                   href={`tel:${getDetailLostDog.careTel}`}
                 >
                   보호소 전화하기 {getDetailLostDog.careTel}
                   <BsTelephoneFill size={25} color="#34C759" className="absolute top-[-50%] translate-y-1/2 left-52" />
                 </a>
-              </div>
-            </div>
+              </li>
+            </ul>
             {/* Reletated DogType */}
             {/*
               관련된 상품 같이 보기
