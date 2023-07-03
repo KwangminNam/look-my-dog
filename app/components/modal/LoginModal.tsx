@@ -17,9 +17,17 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { type } from "os";
+import { ZodType, z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // SNS LOGIN TYPE
-type SnsName = 'github' | 'google';
+type SnsName = "github" | "google" | "naver";
+
+type ValidationType = {
+  email: string;
+  password: string;
+};
 
 export default function LoginModal() {
   const loginModal = useLoginModal();
@@ -28,12 +36,20 @@ export default function LoginModal() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const validation: ZodType<ValidationType> = z.object({
+    email: z.string().email("이메일 형식에 맞게 입력해주세요."),
+    password: z
+      .string()
+      .min(5, "비밀번호는 5글자 이상 이여야합니다")
+      .max(10, "비밀번호는 10글자 이하 여야합니다")
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<FieldValues>({
+    resolver: zodResolver(validation),
     defaultValues: {
       email: "",
       password: ""
@@ -43,7 +59,7 @@ export default function LoginModal() {
   const onToggleLogin = () => {
     loginModal.actionClose();
     registerModal.actionOpen();
-  }
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
@@ -67,11 +83,10 @@ export default function LoginModal() {
       .finally(() => setIsLoading(false));
   };
 
-  const onSnsLogin = (name:SnsName) => {
+  const onSnsLogin = (name: SnsName) => {
     setIsLoading(true);
     signIn(name);
-  }
-
+  };
 
   const loginBodyContent = (
     <div className="flex flex-col gap-4">
@@ -99,18 +114,33 @@ export default function LoginModal() {
       <Button
         label="Github로 로그인하기"
         bgColor
-        onClick={() => { onSnsLogin('github') }}
+        onClick={() => {
+          onSnsLogin("github");
+        }}
         icon={AiFillGithub}
         disabled={isLoading}
       />
       <Button
         label="Google로 로그인하기"
         bgColor
-        onClick={() => { onSnsLogin('google') }}
+        onClick={() => {
+          onSnsLogin("google");
+        }}
         icon={FcGoogle}
         disabled={isLoading}
       />
-      <p className="cursor-pointer" onClick={onToggleLogin}>룩마독이 처음이신가요? <span className="text-red-400">회원가입</span></p>
+      <Button
+        label="Google로 로그인하기"
+        bgColor
+        onClick={() => {
+          onSnsLogin("naver");
+        }}
+        icon={FcGoogle}
+        disabled={isLoading}
+      />
+      <p className="cursor-pointer" onClick={onToggleLogin}>
+        룩마독이 처음이신가요? <span className="text-red-400">회원가입</span>
+      </p>
     </div>
   );
 

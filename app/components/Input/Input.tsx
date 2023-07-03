@@ -53,7 +53,7 @@ export default function Input({
           p-4
           pt-6
           font-light
-          bg-white
+          
           border-solid
           rounded-md
           outline-none
@@ -64,7 +64,7 @@ export default function Input({
           text-2xl
           ${errors?.[id] ? "border-red-400" : "border-neutral-400"}
         `}
-      />
+      />  
       <label
         className={`
           absolute
