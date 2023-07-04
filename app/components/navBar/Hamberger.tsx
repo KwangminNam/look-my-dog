@@ -35,24 +35,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
 
   return (
     <>
-      <ul className="relative flex items-center gap-10 text-sm md:text-2xl">
-        <li>
-          <button
-            className="
-              lg:border-2
-              border-neutral-300
-              rounded-xl
-              py-3
-              pr-12
-              pl-10
-              relative
-            "
-            onClick={onOpenPostModal}
-          >
-            <BiAddToQueue className="absolute right-3 top-[50%] translate-y-[-50%]" />
-            <span className="text-lg hidden lg:block">강아지 자랑하기</span>
-          </button>
-        </li>
+      <ul className="relative flex items-center gap-3 md:gap-10 text-sm md:text-2xl">
         <li>
           <Link
             href="/doglist"
@@ -67,10 +50,29 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             유기견 강아지
           </Link>
         </li>
+        <li>
+          <button
+            className="
+              lg:border-2
+              border-black
+              rounded-xl
+              py-3
+              md:pr-12
+              md:pl-10
+              pl-6
+              relative
+            "
+            onClick={onOpenPostModal}
+          >
+            <BiAddToQueue size={30} className="absolute right-3 top-[50%] translate-y-[-50%]" />
+            <span className="text-lg hidden lg:block">강아지 자랑하기</span>
+          </button>
+        </li>
       </ul>
       <div
         className="
-            p-4
+            p-1
+            md:p-4
             border
             border-solid
             border-neutral-400
@@ -78,7 +80,8 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             flex
             gap-2
             hover:shadow-md
-            rounded-2xl"
+            rounded-md
+            md:rounded-2xl"
         onClick={setToggleOpen}
       >
         <AiOutlineMenu size={30} />

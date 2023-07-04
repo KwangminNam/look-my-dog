@@ -31,7 +31,7 @@ export default function PostDogInput({
       }>
       <span>{label}</span>
       <Image
-        className="w-[60px] h-[50px] rounded-full top-[-50%] translate-y-1/2 absolute right-0"
+        className="w-[60px] h-[60px] rounded-full top-[-50%] translate-y-1/2 absolute right-0"
         width={60}
         height={60}
         src={`${src}.png`}

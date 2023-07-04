@@ -7,24 +7,29 @@ import { HashNavigation, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import 'swiper/css/autoplay';
+import "swiper/css/autoplay";
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
-import {SiDatadog} from 'react-icons/si'
+import { SiDatadog } from "react-icons/si";
 
 export default function HeroBox() {
-
   const el = useRef(null);
-  useEffect(()=>{
+  useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ['안녕하세요!', '<span className="text-red-500">룩마독</span>에<br/> 오신것을 환영합니다.'  ,'Hello!', 'Thank you for visting Look My Dog!<br/> Welcome to Look My Dog.'],
+      strings: [
+        "안녕하세요!",
+        '<span className="text-red-500">룩마독</span>에<br/> 오신것을 환영합니다.',
+        "Hello!",
+        "Welcome to Look My Dog.",
+        "Thank you for visting Look My Dog!<br/>"
+      ],
       typeSpeed: 90,
-      loop:true,
-    }); 
+      loop: true
+    });
     return () => {
       typed.destroy();
-    }
-  },[])
+    };
+  }, []);
 
   return (
     <section className=" w-full mb-32">
@@ -43,10 +48,27 @@ export default function HeroBox() {
           className="mySwiper"
         >
           <SwiperSlide>
-            <div className="p-0 md:p-36 w-full h-[400px] justify-center flex items-center bg-[#2b323c] lg:h-[750px]">
-              <p className="text-center text-white text-3xl md:text-5xl" ref={el}></p>
+            <div
+              className="
+              relative
+              p-0
+              md:p-36
+              w-full
+              h-[400px]
+              justify-center
+              flex
+              items-center
+              bg-[url('/images/puppy2/dog-hero-bg.jpg')]
+              bg-cover
+              bg-no-repeat
+              lg:h-[750px]
+              "
+            >
+              <p
+                className="text-center text-neutral-700 text-3xl md:text-5xl"
+                ref={el}
+              ></p>
             </div>
-            
           </SwiperSlide>
           <SwiperSlide>
             <Image
