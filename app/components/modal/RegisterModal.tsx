@@ -7,6 +7,7 @@ import Input from "../Input/Input";
 import Modal from "./Modal";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import {SiNaver} from 'react-icons/si'
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -125,7 +126,8 @@ export default function RegisterModal() {
         onClick={() => {
           signIn("naver");
         }}
-        icon={FcGoogle}
+        icon={SiNaver}
+        iconColor='green'
       />
       <p onClick={onToggleLogin} className="cursor-pointer">
         이미 회원이신가요? <span className="text-red-400">로그인</span>

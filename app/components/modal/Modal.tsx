@@ -53,7 +53,7 @@ export default function Modal({
       >
         <div className="flex justify-center items-center h-full">
           {/* MODAL */}
-          <div className="bg-white w-full sm:w-[650px] rounded-2xl relative flex flex-col justify-between px-7">
+          <div className="pb-5 bg-white w-full sm:w-[650px] rounded-2xl relative flex flex-col justify-between px-7">
             {isLoading && <Loading />}
             <header className="py-6 sm:py-9 border-b-2 flex justify-center text-xl sm:text-2xl items-center">
               <span>{title}</span>
@@ -79,7 +79,7 @@ export default function Modal({
               {/* FOOTER CONTENT */}
             </div>
             {/* BUTTON */}
-            <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-7 pb-4 sm:pb-2">
+            <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 sm:gap-7 pb-4 sm:pb-2">
               {secondActionLabel && secondActionOnclick && (
                 <Button
                   label={secondActionLabel}

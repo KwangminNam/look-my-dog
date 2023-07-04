@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { BsPlusSquare } from "react-icons/bs";
 import MenuItem from "./MenuItem";
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
@@ -12,6 +11,7 @@ import Avator from "../Avator";
 import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import {BiAddToQueue} from 'react-icons/bi'
 
 interface HambergerMenuProps {
   loggedInUser?: SafeUser | null;
@@ -49,15 +49,13 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             "
             onClick={onOpenPostModal}
           >
-            <BsPlusSquare className="absolute right-3 top-[50%] translate-y-[-50%]" />
+            <BiAddToQueue className="absolute right-3 top-[50%] translate-y-[-50%]" />
             <span className="text-lg hidden lg:block">강아지 자랑하기</span>
           </button>
         </li>
         <li>
           <Link
             href="/doglist"
-            className="
-          p-3"
           >
             강아지 보기
           </Link>
@@ -65,8 +63,6 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
         <li>
           <Link
             href="/lost"
-            className="
-          p-3"
           >
             유기견 강아지
           </Link>

@@ -10,6 +10,7 @@ export interface ButtonProps {
   disabled?: boolean;
   halfWidth?:boolean;
   icon?: IconType;
+  iconColor?:string;
   onClick: (e:React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -19,6 +20,7 @@ function Button({
   bgColor,
   halfWidth,
   disabled,
+  iconColor,
   onClick,
   icon: Icon
 }: ButtonProps) {
@@ -32,7 +34,7 @@ function Button({
         h-12
         disabled:opacity-40
         disabled:cursor-not-allowed
-        ${bgColor ? "bg-red-500" : "bg-sky-500"}
+        ${bgColor ? "bg-slate-500" : "bg-sky-500"}
         text-2xl
         font-light
         relative
@@ -42,7 +44,7 @@ function Button({
       disabled={disabled}
     >
       <span>{label}</span>
-      {Icon && <Icon size={40} className="absolute left-28 top-3" />}
+      {Icon && <Icon size={35} color={iconColor} className="absolute left-28 top-1" />}
     </button>
   );
 }

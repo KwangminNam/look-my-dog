@@ -17,9 +17,9 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { type } from "os";
 import { ZodType, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {SiNaver} from 'react-icons/si'
 
 // SNS LOGIN TYPE
 type SnsName = "github" | "google" | "naver";
@@ -135,8 +135,9 @@ export default function LoginModal() {
         onClick={() => {
           onSnsLogin("naver");
         }}
-        icon={FcGoogle}
+        icon={SiNaver}
         disabled={isLoading}
+        iconColor="green"
       />
       <p className="cursor-pointer" onClick={onToggleLogin}>
         룩마독이 처음이신가요? <span className="text-red-400">회원가입</span>

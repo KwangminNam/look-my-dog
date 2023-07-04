@@ -43,8 +43,8 @@ export default function HeroBox() {
           className="mySwiper"
         >
           <SwiperSlide>
-            <div className="p-36 w-full h-[400px] justify-center flex items-center bg-[#2b323c] lg:h-[750px]">
-              <p className="text-center text-white text-5xl" ref={el}></p>
+            <div className="p-0 md:p-36 w-full h-[400px] justify-center flex items-center bg-[#2b323c] lg:h-[750px]">
+              <p className="text-center text-white text-3xl md:text-5xl" ref={el}></p>
             </div>
             
           </SwiperSlide>
