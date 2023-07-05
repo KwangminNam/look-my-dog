@@ -17,6 +17,9 @@ const getStyleLabel = (labelStyle:string) => {
   if(labelStyle === "기증"){
     return "bg-yellow-300"
   }
+  if(labelStyle === "보호중"){
+    return "bg-white"
+  }
 }
 
 export default function StatusTag({ label }: StatusTagProps) {
@@ -31,9 +34,11 @@ export default function StatusTag({ label }: StatusTagProps) {
       case label === "종료(기증)":
         return "기증";
       default:
-        return "보류";
+        return label;
     }
   }, [label]);
+
+  console.log(label);
 
   const customClasses = useMemo(()=>{
     const modeCalss = getStyleLabel(statusLabel);

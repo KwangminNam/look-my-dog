@@ -7,8 +7,6 @@ import { LostDogTypes } from "./type";
 export default function LostDogClient({ lostGetDogList }: any) {
   console.log(lostGetDogList);
 
-  let test = lostGetDogList.map((item: any) => item.kindCd).join("");
-
   return (
     <>
       {lostGetDogList.map((item: LostDogTypes) => (

@@ -47,13 +47,13 @@ export default function Modal({
   return isOpen ? (
     <div className="fixed z-[100] top-0 left-0 w-full h-full bg-opacity-80 bg-black">
       <div
-        className={`h-full transform transition-transform duration-300 ${
-          isOpen ? "translate-y-0" : "translate-y-full"
-        }`}
+        className={`h-full transform transition-transform duration-300 
+       "
+        `}
       >
         <div className="flex justify-center items-center h-full">
           {/* MODAL */}
-          <div className="pb-5 bg-white w-full sm:w-[650px] rounded-2xl relative flex flex-col justify-between px-7 transform translate-y-full sm:translate-y-0 transition-transform duration-300">
+          <div className="pb-5 bg-white w-full sm:w-[650px] h-full md:h-[unset] rounded-2xl relative flex flex-col justify-between px-7 transform translate-y-0 transition-transform duration-300">
             {isLoading && <Loading />}
             <header className="py-6 sm:py-9 border-b-2 flex justify-center text-sm md:text-2xl items-center">
               <span>{title}</span>

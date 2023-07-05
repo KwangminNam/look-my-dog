@@ -44,7 +44,7 @@ function Button({
       disabled={disabled}
     >
       <span>{label}</span>
-      {Icon && <Icon size={35} color={iconColor} className="absolute left-28 top-1" />}
+      {Icon && <Icon size={35} color={iconColor} className="absolute left-[0.5rem] md:left-28 top-1" />}
     </button>
   );
 }

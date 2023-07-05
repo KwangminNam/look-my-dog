@@ -3,11 +3,7 @@ import Container from "../components/Container";
 import EmptyState from "../components/EmptyState";
 import LostDogClient from "./LostDogClient";
 import { LostDogTypes } from "./type";
-import { Metadata, ResolvingMetadata } from "next";
-type Props = {
-  params: { lostId: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-};
+import { Metadata } from "next";
 
 export async function generateMetadata():Promise<Metadata> {
   // read route params
@@ -17,9 +13,9 @@ export async function generateMetadata():Promise<Metadata> {
 }
 
 export default async function LostDog() {
-  const getLostDogListt: LostDogTypes[] = await getLostDogList();
+  const getLostDogListing: LostDogTypes[] = await getLostDogList();
 
-  const emptyList = getLostDogListt.length === 0;
+  const emptyList = getLostDogListing.length === 0;
 
   if (emptyList) {
     return (
@@ -34,7 +30,8 @@ export default async function LostDog() {
       <div
         className="">
         <h2 className="text-4xl text-center pb-11">유기견</h2>
-        <div className="            pt-20
+        <section className="
+            pt-20
             grid-cols-1
             sm:grid-cols-2
             grid
@@ -43,8 +40,8 @@ export default async function LostDog() {
             2xl:grid-cols-6
             md:grid-cols-3
             gap-8">
-          <LostDogClient lostGetDogList={getLostDogListt} />
-        </div>
+          <LostDogClient lostGetDogList={getLostDogListing} />
+        </section>
       </div>
     </Container>
   );

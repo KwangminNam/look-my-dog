@@ -30,7 +30,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <Container>
         <>
           <h2 className="text-4xl text-center">강아지 포스트</h2>
-          <div
+          <section
             className="
             pt-20
             grid-cols-1
@@ -59,7 +59,7 @@ export default async function Home({ searchParams }: HomeProps) {
                 paramsName="listing"
               />
             ))}
-          </div>
+          </section>
         </>
         <div className="flex justify-center pt-16">
           <Link href="/doglist" className="text-xl underline">
