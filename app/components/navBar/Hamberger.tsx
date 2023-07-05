@@ -50,7 +50,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             유기견 강아지
           </Link>
         </li>
-        <li>
+        <li className="ml-12 md:m-0">
           <button
             className="
               lg:border-2
@@ -81,14 +81,15 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             gap-2
             hover:shadow-md
             rounded-md
-            md:rounded-2xl"
+            md:rounded-2xl
+          "
         onClick={setToggleOpen}
       >
         <AiOutlineMenu size={30} />
-        <Avator imgSrc={loggedInUser?.image} />
+        <Avator imgSrc={loggedInUser?.image}/>
       </div>
       {isOpen && (
-        <div className="absolute top-20 right-[90px] z-[100]">
+        <div className="absolute md:top-[80px] top-[45px] right-[15px] z-[100]">
           <ul className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>

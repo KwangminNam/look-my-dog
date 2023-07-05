@@ -1,4 +1,4 @@
-import ToasterProvider from "./provider/ToasterProvider";
+
 import getLoggedInUser from "./actions/getLoginedUser";
 import HeroBox from "./components/HeroBox";
 import LoginModal from "./components/modal/LoginModal";
@@ -8,9 +8,9 @@ import NavBar from "./components/navBar/NavBar";
 import "./globals.css";
 import { Jua } from "next/font/google";
 import SearchModal from "./components/modal/SearchModal";
+import ToasterProvider from "./Provider/ToasterProvider";
 
 const jua = Jua({ subsets: ["latin"], weight: "400" });
-// https://www.flaticon.com/search?word=bichon
 export const metadata = {
   title: "Look my Dog",
   description: "Dog pictures of blog"

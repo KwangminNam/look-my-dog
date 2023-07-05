@@ -3,9 +3,8 @@
 import useSearchModal from "@/app/hooks/useSearchModal";
 import Modal from "./Modal";
 import { useParams, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import {  useState } from "react";
 import qs from "query-string";
-import Image from "next/image";
 import { MALE_DATA } from "./PostmyDogModal";
 import SelectSex from "../Input/SelectSex";
 import AgeCounter from "../AgeCounter";
@@ -29,7 +28,7 @@ export default function SearchModal() {
 
 
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     let currentQuery = {};
     if (params) {
       currentQuery = qs.parse(params.toString());
@@ -51,6 +50,10 @@ export default function SearchModal() {
       
     // 최종 라우터 푸쉬
     router.push(url);
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior:'smooth'
+    })
   };
 
   const selectSexType = (value: string) => {

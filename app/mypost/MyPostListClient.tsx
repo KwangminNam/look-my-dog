@@ -21,19 +21,28 @@ export default function MyPostListClinet({
   const router = useRouter();
 
   const onDelete = (id: string) => {
-    axios
-      .delete(`/api/listing/${id}`)
-      .then(() => {
-        toast.success("삭제가 정상적으로 되었습니다.");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error(error);
-      })
-      .finally(() => {
-        setDeleteId("");
-      });
+    const checkDelete = confirm('게시글을 삭제하시겠습니까?');
+    if (checkDelete) {
+      axios
+        .delete(`/api/listing/${id}`)
+        .then(() => {
+          toast.success("삭제가 정상적으로 되었습니다.", {
+            icon: "🐶",
+          });
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error);
+        })
+        .finally(() => {
+          setDeleteId("");
+        });
+    }else{
+      return;
+    }
+
   };
+
 
   return (
     <Container>

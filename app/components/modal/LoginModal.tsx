@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  FieldValue,
   FieldValues,
   SubmitHandler,
   useForm
@@ -16,7 +15,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { ZodType, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {SiNaver} from 'react-icons/si'

@@ -67,7 +67,7 @@ export default function TypeDogBox({
       items-center
       relative
       hover:border-blue-400
-      ${selected ? "border-[3px] border-solid border-blue-500" : "border-neutral-300"}
+      ${selected ? "border-[3px] border-solid border-blue-500" : "border-neutral-500"}
       `}
       key={label}
     >

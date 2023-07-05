@@ -8,6 +8,7 @@ import RelatedDogListCard from "@/app/components/list/RelatedDogListCard";
 import { GiFemale, GiMale } from "react-icons/gi";
 import { BsTelephoneFill } from "react-icons/bs";
 import { useMemo } from "react";
+import LostDogDetialListItem from "@/app/components/LostDogDetialListItem";
 
 interface LostDogDetailClientProps {
   getDetailLostDog: LostDogTypes;
@@ -50,7 +51,7 @@ export default function LostDogDetailClient({
               height={200}
             />
           </div>
-          <div className="w-[750px] m-auto">
+          <div className="md:w-[750px] m-auto">
             <div className="py-11">
               <h2 className="text-4xl mb-3 flex gap-2">
                 {dogLabel} <span>{maleLabel}</span>
@@ -61,10 +62,14 @@ export default function LostDogDetailClient({
               </div>
             </div>
             <ul className="py-11 border-y-2 border-neutral-200 mb-10">
-              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">특징:</span>{getDetailLostDog.specialMark}</li>
+              <LostDogDetialListItem label="특징" value={getDetailLostDog.specialMark} />
+              <LostDogDetialListItem label="보호 장소" value={getDetailLostDog.careAddr} />
+              <LostDogDetialListItem label="유기 날짜" value={getDetailLostDog.happenDt} />
+              <LostDogDetialListItem label="찾은곳" value={getDetailLostDog.happenPlace} />
+              {/* <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">특징:</span>{getDetailLostDog.specialMark}</li>
               <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">보호 장소:</span>{getDetailLostDog.careAddr}</li>
               <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">유기 된 날짜:</span>{getDetailLostDog.happenDt}</li>
-              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">찾은곳:</span>{getDetailLostDog.happenPlace}</li>
+              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">찾은곳:</span>{getDetailLostDog.happenPlace}</li> */}
               <li className="border-2 rounded-md p-4 border-[#34C759] group hover:bg-[#34c759]">
                 <a
                   className="

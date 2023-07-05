@@ -12,7 +12,7 @@ interface NavBarProps {
 
 export default function NavBar({ loggedInUser }: NavBarProps) {
   return (
-    <nav className="w-full bg-white z-10 fixed border-b-[1px] border-neutral-300">
+    <nav className="w-full bg-white z-10 fixed border-b-[1px] border-neutral-300 py-4">
       <Container nonPadding>
         <div className="flex flex-row justify-between items-center md:gap-0">
           <Logo />

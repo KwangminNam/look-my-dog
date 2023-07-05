@@ -15,6 +15,7 @@ import { z, ZodType } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 
+
 type ValidationType = {
   name: string;
   email: string;
@@ -139,7 +140,9 @@ export default function RegisterModal() {
     axios
       .post("/api/register", data)
       .then(() => {
-        toast.success("회원가입 성공");
+        toast.success("회원가입 성공",{
+          icon:'🐶',
+        });
         registerModal.actionClose();
         loginModal.actionOpen();
         console.log("success");

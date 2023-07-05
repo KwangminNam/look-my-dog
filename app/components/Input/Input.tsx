@@ -37,6 +37,8 @@ export default function Input({
 
   console.log(errors?.root?.message)
 
+  
+
   return (
     <div className='w-full relative'>
       {formatWeight && <GiWeight size={35} className="text-neutral-500 absolute right-40 top-1/2 -translate-y-1/2" />}
@@ -53,7 +55,6 @@ export default function Input({
           p-4
           pt-6
           font-light
-          
           border-solid
           rounded-md
           outline-none

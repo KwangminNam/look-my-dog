@@ -16,6 +16,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const getLoggedinuser = await getLoggedInUser();
   // const getLostDogListt = await getLostDogList();
   const emptyList = getDogList?.length === 0;
+  console.log(searchParams);
 
   // console.log(getLostDogListt);
 
@@ -60,7 +61,7 @@ export default async function Home({ searchParams }: HomeProps) {
             ))}
           </div>
         </>
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-16">
           <Link href="/doglist" className="text-xl underline">
             더 많은 강아지보기
           </Link>

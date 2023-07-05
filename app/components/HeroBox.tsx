@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
-import { SiDatadog } from "react-icons/si";
+
 
 export default function HeroBox() {
   const el = useRef(null);
@@ -23,7 +23,7 @@ export default function HeroBox() {
         "Welcome to Look My Dog.",
         "Thank you for visting Look My Dog!<br/>"
       ],
-      typeSpeed: 90,
+      typeSpeed: 70,
       loop: true
     });
     return () => {
@@ -33,7 +33,7 @@ export default function HeroBox() {
 
   return (
     <section className=" w-full mb-32">
-      <Container>
+      <Container nonPadding>
         <Swiper
           autoplay
           spaceBetween={30}
@@ -65,7 +65,7 @@ export default function HeroBox() {
               "
             >
               <p
-                className="text-center text-neutral-700 text-3xl md:text-5xl"
+                className="text-center text-neutral-700 text-3xl md:text-6xl"
                 ref={el}
               ></p>
             </div>

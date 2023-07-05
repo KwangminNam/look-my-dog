@@ -25,12 +25,12 @@ export enum POST_STEPS {
   IMAGE = 3
 }
 
-type ValidationType = {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-};
+// type ValidationType = {
+//   name: string;
+//   email: string;
+//   password: string;
+//   passwordConfirm: string;
+// };
 
 export const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
 
@@ -42,12 +42,12 @@ export const PERSONALTY_DATA = [
   { personlityDog: "사람을 좋아해요" },
 ];
 
-const validation: ZodType<any> = z.object({
-  // dogName: z
-  //   .string()
-  //   .min(5, "비밀번호는 5글자 이상 이여야합니다")
-  //   .max(10, "비밀번호는 10글자 이하 여야합니다"),
-});
+// const validation: ZodType<any> = z.object({
+//   dogName: z
+//     .string()
+//     .min(5, "비밀번호는 5글자 이상 이여야합니다")
+//     .max(10, "비밀번호는 10글자 이하 여야합니다"),
+// });
 
 export default function PostmyDogModal() {
   const postModal = usePostModal();
@@ -101,6 +101,12 @@ export default function PostmyDogModal() {
     if (postModal.isOpen === false) {
       setStep(POST_STEPS.DOGTYPE);
       setCustumValue("dogType","");
+      setCustumValue("dogName","");
+      setCustumValue("weight","");
+      setCustumValue("dogAge",0);
+      setCustumValue("dogMonth","");
+      setCustumValue("personality","");
+      setCustumValue("personality","");
     }
   }, [postModal.isOpen]);
 
@@ -130,13 +136,15 @@ export default function PostmyDogModal() {
     axios
       .post("/api/listing", data)
       .then(() => {
-        toast.success("강아지 등록 완료!");
+        toast.success("강아지 등록 완료!",{
+          icon:'🐶',
+        });
         router.refresh();
         postModal.actionClose();
         reset();
       })
       .catch((err) => {
-        toast.error("something went worng");
+        toast.error("강아지 등록이 되질않았습니다!");
         console.log(err);
       })
       .finally(() => {
@@ -177,16 +185,6 @@ export default function PostmyDogModal() {
     });
   };
 
-  // const setCustumValue2 = (id: string, value: any) => {
-  //   const newPersonality = Array.isArray(value)
-  //     ? value
-  //     : [value];
-  //   setValue(id, newPersonality, {
-  //     shouldDirty: true,
-  //     shouldValidate: true,
-  //     shouldTouch: true
-  //   });
-  // };
 
   // TODO : 코드 파악하기.
   const selectPersonalityFn = (value: string) => {
@@ -321,7 +319,7 @@ export default function PostmyDogModal() {
   }
 
   const checkBeforeClose = () => {
-    const checking = confirm('창을 닫으시면 이때까지 입력한 정보가 모두 날라갑니다');
+    const checking = confirm('창을 닫으시면 정보가 모두 사라집니다.');
     if(checking) postModal.actionClose();
   }
 

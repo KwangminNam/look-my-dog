@@ -9,7 +9,7 @@ interface AvatorPropsType {
 export default function Avator({ imgSrc }: AvatorPropsType) {
   return (
     <Image
-      className="rounded-full"
+      className="hidden md:block rounded-full"
       src={imgSrc || "/images/userPlaceholder.jpg"}
       alt="사용자 placeholder"
       width={30}

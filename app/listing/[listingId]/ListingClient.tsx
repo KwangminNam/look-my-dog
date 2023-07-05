@@ -56,7 +56,7 @@ export default function ListingClient({
               height={500}
             />
           </div>
-          <div className="w-[750px] m-auto">
+          <div className="md:w-[750px] m-auto">
             <div className="py-7 flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <Image
