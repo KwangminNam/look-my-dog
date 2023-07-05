@@ -46,7 +46,7 @@ export default function MyPostListClinet({
 
   return (
     <Container>
-      <div
+      <section
         className="
           mt-10
           grid
@@ -70,7 +70,7 @@ export default function MyPostListClinet({
             disabled={item.id === deleteId}
           />
         ))}
-      </div>
+      </section>
     </Container>
   );
 }

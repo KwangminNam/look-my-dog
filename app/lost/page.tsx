@@ -5,7 +5,7 @@ import LostDogClient from "./LostDogClient";
 import { LostDogTypes } from "./type";
 import { Metadata } from "next";
 
-export async function generateMetadata():Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // read route params
   return {
     title: "룩마독 | 유기견 확인"
@@ -27,10 +27,8 @@ export default async function LostDog() {
 
   return (
     <Container>
-      <div
-        className="">
-        <h2 className="text-4xl text-center pb-11">유기견</h2>
-        <section className="
+      <h2 className="text-4xl text-center pb-11">유기견</h2>
+      <section className="
             pt-20
             grid-cols-1
             sm:grid-cols-2
@@ -40,9 +38,8 @@ export default async function LostDog() {
             2xl:grid-cols-6
             md:grid-cols-3
             gap-8">
-          <LostDogClient lostGetDogList={getLostDogListing} />
-        </section>
-      </div>
+        <LostDogClient lostGetDogList={getLostDogListing} />
+      </section>
     </Container>
   );
 }

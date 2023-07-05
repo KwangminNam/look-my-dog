@@ -6,19 +6,19 @@ interface StatusTagProps {
 
 const getStyleLabel = (labelStyle:string) => {
   if(labelStyle === "반환"){
-    return "bg-red-500"
+    return "bg-red-500";
   }
   if(labelStyle === "입양"){
-    return "bg-green-500"
+    return "bg-green-500";
   }
   if(labelStyle === "자연사"){
-    return " bg-blue-600 text-white"
+    return " bg-blue-600 text-white";
   }
   if(labelStyle === "기증"){
-    return "bg-yellow-300"
+    return "bg-yellow-300";
   }
   if(labelStyle === "보호중"){
-    return "bg-white"
+    return "bg-white";
   }
 }
 
