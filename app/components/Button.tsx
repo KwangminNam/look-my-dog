@@ -8,10 +8,11 @@ export interface ButtonProps {
   bgColor?: boolean;
   borderColor?: boolean;
   disabled?: boolean;
-  halfWidth?:boolean;
+  halfWidth?: boolean;
   icon?: IconType;
-  iconColor?:string;
-  onClick: (e:React.MouseEvent<HTMLButtonElement>) => void;
+  iconColor?: string;
+  textColor?: boolean;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Button({
@@ -21,24 +22,25 @@ function Button({
   halfWidth,
   disabled,
   iconColor,
+  textColor,
   onClick,
   icon: Icon
 }: ButtonProps) {
   return (
     <button
       className={`
-        ${halfWidth  ? 'w-[200px]': 'w-full'}
+        ${halfWidth ? 'w-[200px]' : 'w-full'}
         ${borderColor ? 'border-2 border-neutral-400' : null}
         ${borderColor ? 'bg-none' : null}
         rounded-md
         h-12
         disabled:opacity-40
         disabled:cursor-not-allowed
-        ${bgColor ? "bg-slate-500" : "bg-sky-500"}
+        ${bgColor ? "bg-white" : "bg-sky-500"}
         text-2xl
         font-light
         relative
-        text-white
+        ${textColor ? 'text-black' : 'text-white'}
       `}
       onClick={onClick}
       disabled={disabled}

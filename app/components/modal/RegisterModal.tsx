@@ -14,7 +14,10 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { z, ZodType } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
+import ModalFooterInfo from "./ModalFooterInfo";
 
+type SnsName = "github" | "google" | "naver";
 
 type ValidationType = {
   name: string;
@@ -26,6 +29,8 @@ type ValidationType = {
 export default function RegisterModal() {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+
+  const [isLoading ,setIsLoading ] = useState(false);
 
   const validation: ZodType<ValidationType> = z
     .object({
@@ -68,6 +73,11 @@ export default function RegisterModal() {
     loginModal.actionOpen();
   };
 
+  const onSnsRegister = (name:SnsName) => {
+    signIn(name);
+    setIsLoading(true);
+  }
+
   const registerBodyContent = (
     <div className="flex flex-col gap-5">
       <Input
@@ -104,35 +114,42 @@ export default function RegisterModal() {
   );
 
   const registerFooterContent = (
-    <div className="flex flex-col items-center  gap-6">
+    <div className="flex flex-col items-center  gap-4">
       <Button
         label="Github로 회원가입"
         bgColor
         onClick={() => {
-          signIn("github");
+          onSnsRegister("github");
         }}
         icon={AiFillGithub}
+        textColor
+        borderColor
+        disabled={isLoading}
       />
       <Button
         label="Google로 회원가입"
         bgColor
         onClick={() => {
-          signIn("google");
+          onSnsRegister("google");
         }}
         icon={FcGoogle}
+        textColor
+        borderColor
+        disabled={isLoading}
       />
       <Button
         label="네이버로 회원가입"
         bgColor
         onClick={() => {
-          signIn("naver");
+          onSnsRegister("naver");
         }}
         icon={SiNaver}
         iconColor='green'
+        textColor
+        borderColor
+        disabled={isLoading}
       />
-      <p onClick={onToggleLogin} className="cursor-pointer">
-        이미 회원이신가요? <span className="text-red-400">로그인</span>
-      </p>
+      <ModalFooterInfo label="이미 회원이신가요?" actionLabel="로그인" onToggleAction={onToggleLogin}/>
     </div>
   );
 

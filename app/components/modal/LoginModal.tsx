@@ -19,6 +19,7 @@ import {  useState } from "react";
 import { ZodType, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {SiNaver} from 'react-icons/si'
+import ModalFooterInfo from "./ModalFooterInfo";
 
 // SNS LOGIN TYPE
 type SnsName = "github" | "google" | "naver";
@@ -117,6 +118,8 @@ export default function LoginModal() {
           onSnsLogin("github");
         }}
         icon={AiFillGithub}
+        textColor
+        borderColor
         disabled={isLoading}
       />
       <Button
@@ -126,6 +129,8 @@ export default function LoginModal() {
           onSnsLogin("google");
         }}
         icon={FcGoogle}
+        textColor
+        borderColor
         disabled={isLoading}
       />
       <Button
@@ -136,11 +141,11 @@ export default function LoginModal() {
         }}
         icon={SiNaver}
         disabled={isLoading}
+        textColor
+        borderColor
         iconColor="green"
       />
-      <p className="cursor-pointer" onClick={onToggleLogin}>
-        룩마독이 처음이신가요? <span className="text-red-400">회원가입</span>
-      </p>
+      <ModalFooterInfo label="룩마독이 처음이신가요?" actionLabel="회원가입" onToggleAction={onToggleLogin}/>
     </div>
   );
 
