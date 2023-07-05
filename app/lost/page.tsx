@@ -6,15 +6,11 @@ import { LostDogTypes } from "./type";
 import { Metadata, ResolvingMetadata } from "next";
 type Props = {
   params: { lostId: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({
-  params,
-  searchParams
-}: Props): Promise<Metadata> {
+export async function generateMetadata():Promise<Metadata> {
   // read route params
-  const id = params.lostId;
   return {
     title: "룩마독 | 유기견 확인"
   };

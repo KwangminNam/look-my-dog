@@ -1,7 +1,16 @@
+import { Metadata } from "next";
 import getListing from "../actions/getDogListing";
 import getLoggedInUser from "../actions/getLoginedUser"
 import EmptyState from "../components/EmptyState";
 import MyPostListClinet from "./MyPostListClient";
+
+export async function generateMetadata(): Promise<Metadata> {
+  // read route params
+  return {
+    title: "룩마독 | 나의 강아지 목록"
+  };
+}
+
 
 export default async function MyPostPage(){
 

@@ -21,14 +21,8 @@ export async function generateMetadata({ params, searchParams }: Props,
   console.log(getAllLostDogListing);
   console.log(getDetailLostDog);
 
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || []
-
   return {
     title: "룩마독 | 유기견 | " + getDetailLostDog?.kindCd,
-    openGraph: {
-      images: ['/some-specific-page-image.jpg', ...previousImages],
-    },
   }
 }
 

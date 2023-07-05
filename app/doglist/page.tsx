@@ -4,9 +4,18 @@ import EmptyState from "../components/EmptyState";
 import Container from "../components/Container";
 import DogListCard from "../components/list/DogListCard";
 import TypeDogs from "../components/TypeDogs";
+import { Metadata, ResolvingMetadata } from "next";
 
 interface DogListProps {
   searchParams: IListingParmas;
+}
+
+
+export async function generateMetadata(): Promise<Metadata> {
+  // read route params
+  return {
+    title: "룩마독 | 강아지 목록"
+  };
 }
 
 export default async function DogList({ searchParams }: DogListProps) {

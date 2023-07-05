@@ -2,8 +2,25 @@ import getListById from "@/app/actions/getListById";
 import ListingClient from "./ListingClient";
 import getLoggedInUser from "@/app/actions/getLoginedUser";
 import getListing from "@/app/actions/getDogListing";
+import { Metadata, ResolvingMetadata } from "next";
+type Props = {
+  params: { listingId: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
+export async function generateMetadata({ params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.listingId;
+  const dogList = await getListById(params);
+  console.log(params);
 
+  // optionally access and extend (rather than replace) parent metadata
+  return {
+    title: `룩마독 | 상세페이지 | ${dogList?.dogType} | ${dogList?.dogName}`,
+  }
+}
 interface IParams {
   listingId?: string;
 }
