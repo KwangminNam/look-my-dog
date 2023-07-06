@@ -63,7 +63,7 @@ export const TYPE_OF_DOG = [
     src: "/images/puppy2/cocker-spaniel"
   },
   {
-    label: "시베리안허스키",
+    label: "허스키",
     desc: "시베리안허스키 설명!",
     src: "/images/puppy2/husky"
   },
