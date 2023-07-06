@@ -57,6 +57,7 @@ export default async function Home({ searchParams }: HomeProps) {
                 personality={item.personality}
                 imageSrc={item.imageSrc}
                 paramsName="listing"
+                showLikeButton
               />
             ))}
           </section>

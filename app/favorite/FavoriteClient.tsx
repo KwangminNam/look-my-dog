@@ -2,11 +2,12 @@
 
 import DogListCard from "../components/list/DogListCard";
 
-export default function FavoriteClient({ favoriteList , loggedInUser }: any) {
+export default function FavoriteClient({ favoriteList, loggedInUser }: any) {
   return (
     <>
-      {favoriteList.map((item:any) => (
+      {favoriteList.map((item: any) => (
         <DogListCard
+          showLikeButton
           id={item.id}
           dogType={item.dogType}
           dogAge={item.dogAge}
