@@ -7,6 +7,7 @@
 * TypeScript
 * Prisma Client
 * mongoDB
+* Storybook
   
 ## ⭐️상태관리 (State mangement) 
 * Zustand
