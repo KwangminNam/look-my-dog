@@ -45,6 +45,9 @@ Work Flow 사이드프로젝트 하면서 느꼈던 점 밑 방향성
     Nextjs의 login auth 관리 . provider에서 sns 로그인 관리.
  * hooks:
   Zustand를 이용해 Modal의 상태관리 (on , off , action on/off)를 관리함.
+ * components:
+  자주 사용되는 컴포넌트 
+ * Sever component , Client component 구분   
 ```
 
 

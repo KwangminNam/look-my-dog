@@ -61,7 +61,7 @@ export default function AgeCounter({
         <div>
           <button
             onClick={onToggle}
-            className="text-sm p-4 flex flex-col items-center border-2  rounded-md border-neutral-400"
+            className="text-sm p-4 flex items-center border-2  rounded-md border-neutral-400"
           >
             <span>개월 수 선택하기</span>
             <LuDog size={30} />
