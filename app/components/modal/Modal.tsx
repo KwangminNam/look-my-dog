@@ -53,7 +53,26 @@ export default function Modal({
       >
         <div className="flex justify-center items-center h-full">
           {/* MODAL */}
-          <div className="pb-5 bg-white w-full sm:w-[650px] h-full md:h-[unset] rounded-2xl relative flex flex-col justify-between px-7 transform translate-y-0 transition-transform duration-300">
+          <div
+            className="
+              pb-5
+              bg-white
+              w-full
+              sm:w-[650px]
+              h-full
+              md:h-[unset]
+              rounded-2xl
+              relative
+              flex
+              flex-col
+              justify-between
+              px-7
+              transform
+              translate-y-0
+              transition-transform
+              duration-300
+            "
+            >
             {isLoading && <Loading />}
             <header className="py-6 sm:py-9 border-b-2 flex justify-center text-sm md:text-2xl items-center">
               <span>{title}</span>
@@ -93,7 +112,6 @@ export default function Modal({
               <Button
                 label={actionLabel}
                 onClick={actionOnclick}
-                bgColor={actionLabel === "등록하기" ? true : false}
                 disabled={disabled}
               />
             </div>
@@ -104,5 +122,5 @@ export default function Modal({
       </div>
     </div>
   ) : null;
-  
+
 }

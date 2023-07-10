@@ -9,9 +9,10 @@ export interface ButtonProps {
   borderColor?: boolean;
   disabled?: boolean;
   halfWidth?: boolean;
-  icon?: IconType;
   iconColor?: string;
   textColor?: boolean;
+  icon?: IconType;
+
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 

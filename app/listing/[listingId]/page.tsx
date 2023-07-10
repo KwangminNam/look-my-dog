@@ -12,7 +12,6 @@ export async function generateMetadata({ params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
-  const id = params.listingId;
   const dogList = await getListById(params);
   console.log(params);
 
