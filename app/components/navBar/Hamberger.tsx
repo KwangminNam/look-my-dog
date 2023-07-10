@@ -90,7 +90,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
         <Avator imgSrc={loggedInUser?.image}/>
       </div>
       {isOpen && (
-        <div className="absolute md:top-[95px] top-[45px] right-[20px] z-[100]">
+        <div className="absolute md:top-[100px] top-[60px] md:right-[15px] right-0 z-[100]">
           <ul className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>

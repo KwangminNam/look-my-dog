@@ -33,12 +33,10 @@ const useFavortie = ({ listingId, currentUser, }: IUseFav) => {
       let request;
       if (hasFav) {
         request = () => axios.delete(`/api/like/${listingId}`)
-          .then(() => toast.success('좋아요 취소완료'));
+          .then(() => toast.success('좋아요 취소완료',{icon:'💔'}));
       } else {
         request = () => axios.post(`/api/like/${listingId}`)
-          .then(() => toast.success('좋아요!',{
-            icon:'❤️'
-          }));
+          .then(() => toast.success('좋아요!',{icon:'❤️'}));
       }
       await request();
       router.refresh();

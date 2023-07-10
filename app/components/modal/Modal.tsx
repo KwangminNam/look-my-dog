@@ -85,6 +85,9 @@ export default function Modal({
                   label={secondActionLabel}
                   onClick={secondActionOnclick}
                   disabled={disabled}
+                  textColor
+                  borderColor
+                  bgColor
                 />
               )}
               <Button

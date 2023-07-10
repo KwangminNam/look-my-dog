@@ -200,7 +200,7 @@ export default function PostmyDogModal() {
   };
 
   let bodyModal = (
-    <div className="grid grid-cols-2 gap-4">
+    <ul className="grid grid-cols-2 gap-4">
       {TYPE_OF_DOG.map((item) => (
         <PostDogInput
           label={item.label}
@@ -210,7 +210,7 @@ export default function PostmyDogModal() {
           key={item.label}
         />
       ))}
-    </div>
+    </ul>
   );
 
   if (step === POST_STEPS.INFO) {
