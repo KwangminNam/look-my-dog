@@ -1,17 +1,19 @@
 "use client";
 
-import Container from "../components/Container";
 import DogListCard from "../components/list/DogListCard";
 import { LostDogTypes } from "./type";
 
-export default function LostDogClient({ lostGetDogList }: any) {
-  console.log(lostGetDogList);
+interface LostDogClientProps {
+  lostGetDogList: LostDogTypes[];
+}
+
+export default function LostDogClient({ lostGetDogList }: LostDogClientProps) {
 
   return (
     <>
-      {lostGetDogList.map((item: LostDogTypes) => (
+      {lostGetDogList.map((item) => (
         <DogListCard
-          imageSrc={item.filename}
+          imageSrc={item.popfile}
           male={item.sexCd}
           dogType={item.kindCd.replaceAll("[개]", "[강아지]")}
           paramsName="lost"

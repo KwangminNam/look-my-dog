@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 interface AvatorPropsType {
-  imgSrc: string | null | undefined;
+  imgSrc?: string | null | undefined;
 }
 
 export default function Avator({ imgSrc }: AvatorPropsType) {

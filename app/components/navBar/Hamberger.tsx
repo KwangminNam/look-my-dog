@@ -33,6 +33,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
     postModal.actionOpen();
   };
 
+  
   return (
     <>
       <ul className="relative flex items-center gap-3 md:gap-10 text-sm md:text-2xl">
@@ -89,7 +90,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
         <Avator imgSrc={loggedInUser?.image}/>
       </div>
       {isOpen && (
-        <div className="absolute md:top-[80px] top-[45px] right-[15px] z-[100]">
+        <div className="absolute md:top-[95px] top-[45px] right-[20px] z-[100]">
           <ul className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>

@@ -23,6 +23,7 @@ export default function LostDogDetailClient({
 
   console.log(getDetailLostDog);
   console.log(getAllLostDogListing);
+  console.log(getDetailLostDog.happenDt);
 
   const maleLabel = useMemo(() => {
     switch (getDetailLostDog.sexCd) {
@@ -46,7 +47,7 @@ export default function LostDogDetailClient({
             <Image
               className="rounded-2xl"
               alt={getDetailLostDog.filename}
-              src={getDetailLostDog.filename}
+              src={getDetailLostDog.popfile}
               width={700}
               height={200}
             />
@@ -66,10 +67,6 @@ export default function LostDogDetailClient({
               <LostDogDetialListItem label="보호 장소" value={getDetailLostDog.careAddr} />
               <LostDogDetialListItem label="유기 날짜" value={getDetailLostDog.happenDt} />
               <LostDogDetialListItem label="찾은곳" value={getDetailLostDog.happenPlace} />
-              {/* <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">특징:</span>{getDetailLostDog.specialMark}</li>
-              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">보호 장소:</span>{getDetailLostDog.careAddr}</li>
-              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">유기 된 날짜:</span>{getDetailLostDog.happenDt}</li>
-              <li className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"><span className="text-blue-400">찾은곳:</span>{getDetailLostDog.happenPlace}</li> */}
               <li className="border-2 rounded-md p-4 border-[#34C759] group hover:bg-[#34c759]">
                 <a
                   className="
@@ -84,7 +81,7 @@ export default function LostDogDetailClient({
                   href={`tel:${getDetailLostDog.careTel}`}
                 >
                   보호소 전화하기 {getDetailLostDog.careTel}
-                  <BsTelephoneFill size={25} color="#34C759" className="absolute top-[-50%] translate-y-1/2 left-52" />
+                  <BsTelephoneFill size={25} color="#34C759" className="absolute top-[-50%] translate-y-1/2 left-0 md:left-52" />
                 </a>
               </li>
             </ul>

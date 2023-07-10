@@ -71,7 +71,9 @@ export default function LoginModal() {
       .then((callback) => {
         if (callback?.ok) {
           setIsLoading(false);
-          toast.success("로그인 성공");
+          toast.success("로그인 성공",{
+            icon:'🐶',
+          });
           router.refresh();
           loginModal.actionClose();
         }

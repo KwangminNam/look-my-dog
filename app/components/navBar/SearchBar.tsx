@@ -33,7 +33,8 @@ export default function SearchBar() {
     <button
       onClick={searchModal.actionOpen}
       className="
-          gap-3
+          gap-0
+          md:gap-3
           items-center
           font-bold
           cursor-pointer

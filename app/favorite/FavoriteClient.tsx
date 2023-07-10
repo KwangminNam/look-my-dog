@@ -15,6 +15,7 @@ export default function FavoriteClient({ favoriteList , loggedInUser }: any) {
           imageSrc={item.imageSrc}
           paramsName="listing"
           loggedInUser={loggedInUser}
+          showLikeButton
         />
       ))}
     </>

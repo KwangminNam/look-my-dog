@@ -102,7 +102,7 @@ export default function DogListCard({
             />
             {lostDogStatus && <StatusTag label={lostDogStatus} />}
           </div>
-          <div className="font-semibold text-lg flex gap-3">
+          <div className="font-semibold text-sm lg:text-lg flex-col md:flex gap-3">
             <p>{dogType}</p>
             {dogName && <p className="text-neutral-400">이름은:{dogName}</p>}
           </div>

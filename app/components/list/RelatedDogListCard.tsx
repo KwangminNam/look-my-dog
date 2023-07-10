@@ -59,7 +59,7 @@ export default function RelatedDogListCard({
   return (
     <>
       <h3 className="text-2xl mb-6">{title === '다른 유기견 보기' ? "다른 유기견 보기" : title}</h3>
-      <div className="grid grid-cols-4 gap-9 after:mt-9">
+      <div className="grid grid-cols-4 md:gap-9 after:mt-9">
         {renderRelatedListByTitle()}
       </div>
     </>

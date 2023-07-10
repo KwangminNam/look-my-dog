@@ -51,17 +51,17 @@ export default function ListingClient({
             <Image
               className="rounded-2xl"
               alt={dogList.desc}
-              src={dogList.imageSrc}
+              src={dogList.imageSrc || "/images/dog-placeholder.png"}
               width={700}
               height={500}
             />
           </div>
           <div className="md:w-[750px] m-auto">
-            <div className="py-7 flex justify-between items-center">
+            <div className="py-7 md:flex md:flex-row justify-between items-center flex-col">
               <div className="flex items-center gap-2">
                 <Image
                   className="rounded-full"
-                  src={dogList.user?.image || "/images/dog-placeholder.png"}
+                  src={dogList.user?.image}
                   alt="사용자"
                   width={50}
                   height={50}
@@ -83,7 +83,7 @@ export default function ListingClient({
               </span>
               <div className="my-10">
                 <h3 className="text-xl">성격</h3>
-                <ul className="mt-3 mb-8 flex gap-2">
+                <ul className="mt-3 mb-8 md:flex gap-2">
                   {dogList.personality.map((item: any) => (
                     <li
                       key={item}
