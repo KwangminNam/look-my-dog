@@ -22,7 +22,7 @@ const useFavortie = ({ listingId, currentUser, }: IUseFav) => {
 
   // const list = currentUser?.favoriteIds || [];
 
-  const toggleFav = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
+  const toggleFav = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     if (!currentUser) {

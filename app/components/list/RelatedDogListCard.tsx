@@ -65,8 +65,6 @@ export default function RelatedDogListCard({
             grid 
             grid-cols-1
             lg:grid-cols-4
-            xl:grid-cols-5
-            2xl:grid-cols-6
             md:grid-cols-3
             md:gap-9
             after:mt-9

@@ -7,14 +7,12 @@ import { useCallback } from "react";
 
 interface TypeDogBoxProps {
   label: string;
-  desc: string;
   src: string;
   selected: boolean;
 }
 
 export default function TypeDogBox({
   label,
-  desc,
   src,
   selected
 }: TypeDogBoxProps) {

@@ -25,8 +25,8 @@ export interface DogListCardProps {
   paramsName?: string;
   lostDogStatus?: string;
   disabled?: boolean;
-  dogList?:Array<any>;
-  showLikeButton?:boolean;
+  dogList?: Array<any>;
+  showLikeButton?: boolean;
   onAction?: (id: string) => void;
 }
 
@@ -47,15 +47,13 @@ export default function DogListCard({
   showLikeButton,
   onAction
 }: DogListCardProps) {
-
-
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     const confirm = "게시글을 삭제하시겠습니까?";
 
     if (confirm) {
       e.stopPropagation();
       onAction?.(id);
-    }else{
+    } else {
       return;
     }
   };
@@ -79,43 +77,48 @@ export default function DogListCard({
       <Link href={`/${paramsName}/${id}`} shallow className="group">
         <div className="flex flex-col gap-2 w-full">
           <div
-            className="
+            className={`
+            ${!imageSrc ? 'border-[1px] border-neutral-200' : 'border-none'}
             aspect-square 
             w-full 
             relative 
             overflow-hidden 
             rounded-xl
-          "
+            `}
           >
             <Image
               fill
-              className="
+              className={`
               cursor-pointer
               object-cover 
               h-full 
               w-full 
               group-hover:scale-110
               transition
-            "
-              src={imageSrc || '/images/dog-placeholder.png'}
+
+              `
+            }
+              src={imageSrc || "/images/dog-placeholder.png"}
               alt="Listing"
             />
             {lostDogStatus && <StatusTag label={lostDogStatus} />}
           </div>
           <div className="font-semibold text-sm lg:text-lg flex-col md:flex gap-3">
             <p>{dogType}</p>
-            {dogName && <p className="text-neutral-400">이름은:{dogName}</p>}
+            {dogName && <p className="text-neutral-400">이름:{dogName}</p>}
           </div>
 
           <div className="font-light text-neutral-500 flex items-center">
-            {dogAge && <div>나이는:{dogAge}살</div>}
+            {dogAge && <div>나이:{dogAge}살</div>}
             {dogMonth && <div>{dogMonth}</div>}
             <div>{maleLabel || male}</div>
           </div>
         </div>
       </Link>
 
-      {showLikeButton && <LikeButton currentUser={loggedInUser} listingId={id} />}
+      {showLikeButton && (
+        <LikeButton currentUser={loggedInUser} listingId={id} />
+      )}
 
       {onAction && (
         <Button
