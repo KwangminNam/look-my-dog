@@ -21,28 +21,21 @@ export default function MyPostListClinet({
   const router = useRouter();
 
   const onDelete = (id: string) => {
-    const checkDelete = confirm('게시글을 삭제하시겠습니까?');
-    if (checkDelete) {
-      axios
-        .delete(`/api/listing/${id}`)
-        .then(() => {
-          toast.success("삭제가 정상적으로 되었습니다.", {
-            icon: "🐶",
-          });
-          router.refresh();
-        })
-        .catch((error) => {
-          toast.error(error);
-        })
-        .finally(() => {
-          setDeleteId("");
+    axios
+      .delete(`/api/listing/${id}`)
+      .then(() => {
+        toast.success("삭제가 정상적으로 되었습니다.", {
+          icon: "🐶"
         });
-    }else{
-      return;
-    }
-
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error(error);
+      })
+      .finally(() => {
+        setDeleteId("");
+      });
   };
-
 
   return (
     <Container>
@@ -63,11 +56,13 @@ export default function MyPostListClinet({
           <DogListCard
             paramsName="listing"
             id={item.id}
+            dogName={item.dogName}
             imageSrc={item.imageSrc}
             male={item.male}
             dogType={item.dogType}
             onAction={onDelete}
             disabled={item.id === deleteId}
+            key={item.id}
           />
         ))}
       </section>

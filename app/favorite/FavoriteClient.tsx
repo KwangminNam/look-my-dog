@@ -1,8 +1,14 @@
 "use client";
 
 import DogListCard from "../components/list/DogListCard";
+import { SafeListing, SafeUser } from "../types";
 
-export default function FavoriteClient({ favoriteList, loggedInUser }: any) {
+interface FavoriteClient{
+  favoriteList:SafeListing;
+  loggedInUser:SafeUser;
+}
+
+export default function FavoriteClient({ favoriteList, loggedInUser }: any) {1
   return (
     <>
       {favoriteList.map((item: any) => (
@@ -10,6 +16,7 @@ export default function FavoriteClient({ favoriteList, loggedInUser }: any) {
           showLikeButton
           id={item.id}
           dogType={item.dogType}
+          lostDogStatus={item.dogName}
           dogAge={item.dogAge}
           weight={item.weight}
           male={item.male}
