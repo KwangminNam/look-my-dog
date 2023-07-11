@@ -4,15 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import usePostModal from "../../hooks/usePostModal";
 import Modal from "./Modal";
 import Input from "../Input/Input";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { TYPE_OF_DOG } from "../TypeDogs";
 import Image from "next/image";
 import PostDogInput from "../Input/PostDogInput";
 import AgeCounter from "../AgeCounter";
 import SelectSex from "../Input/SelectSex";
 import ImageUpload from "../ImageUpload";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ZodType, z } from "zod";
 import SelectPersonality from "../Input/SelectPersonality";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -25,7 +23,9 @@ const POST_STEPS = {
   IMAGE: 3
 } as const;
 
-type POST_STEPS = typeof POST_STEPS[keyof typeof POST_STEPS];
+type POST_STEPS_TYPE = typeof POST_STEPS[keyof typeof POST_STEPS];
+
+
 // type ValidationType = {
 //   name: string;
 //   email: string;
@@ -83,7 +83,7 @@ export default function PostmyDogModal() {
 
   const stepsLength = stepsArray.length;
 
-  const [step, setStep] = useState<POST_STEPS>(POST_STEPS.DOGTYPE);
+  const [step, setStep] = useState<POST_STEPS_TYPE>(POST_STEPS.DOGTYPE);
   const [label, setLabel] = useState("");
   const [showMonthAge, setShowMonthAge] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -113,11 +113,11 @@ export default function PostmyDogModal() {
   }, [postModal.isOpen]);
 
   const nextStep = () => {
-    setStep((prev) => prev + 1 as POST_STEPS);
+    setStep((prev) => prev + 1 as POST_STEPS_TYPE);
   };
 
   const prevStep = () => {
-    setStep((prev) => prev - 1 as POST_STEPS);
+    setStep((prev) => prev - 1 as POST_STEPS_TYPE);
   };
 
   const selectDogType = (value: string) => {

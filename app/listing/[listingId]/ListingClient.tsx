@@ -53,7 +53,7 @@ export default function ListingClient({
               alt={dogList.desc}
               src={dogList.imageSrc || "/images/dog-placeholder.png"}
               width={700}
-              height={500}
+              height={200}
             />
           </div>
           <div className="md:w-[750px] m-auto">
