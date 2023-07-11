@@ -18,13 +18,14 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export enum POST_STEPS {
-  DOGTYPE = 0,
-  INFO = 1,
-  DESC = 2,
-  IMAGE = 3
-}
+const POST_STEPS = {
+  DOGTYPE: 0,
+  INFO: 1,
+  DESC: 2,
+  IMAGE: 3
+} as const;
 
+type POST_STEPS = typeof POST_STEPS[keyof typeof POST_STEPS];
 // type ValidationType = {
 //   name: string;
 //   email: string;
@@ -76,12 +77,13 @@ export default function PostmyDogModal() {
   });
 
   const stepsArray = Object.keys(POST_STEPS)
-    .filter((key) => isNaN(Number(key)))
-    .map((key) => POST_STEPS[key as any]);
+  .filter((key) => isNaN(Number(key)))
+  .map((key) => POST_STEPS[key as keyof typeof POST_STEPS]);
+
 
   const stepsLength = stepsArray.length;
 
-  const [step, setStep] = useState(POST_STEPS.DOGTYPE);
+  const [step, setStep] = useState<POST_STEPS>(POST_STEPS.DOGTYPE);
   const [label, setLabel] = useState("");
   const [showMonthAge, setShowMonthAge] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,11 +113,11 @@ export default function PostmyDogModal() {
   }, [postModal.isOpen]);
 
   const nextStep = () => {
-    setStep((prev) => prev + 1);
+    setStep((prev) => prev + 1 as POST_STEPS);
   };
 
   const prevStep = () => {
-    setStep((prev) => prev - 1);
+    setStep((prev) => prev - 1 as POST_STEPS);
   };
 
   const selectDogType = (value: string) => {
