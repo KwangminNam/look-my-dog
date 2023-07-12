@@ -47,9 +47,9 @@ export default function DogListCard({
   onAction
 }: DogListCardProps) {
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const confirm = "게시글을 삭제하시겠습니까?";
+    const checkDel = confirm('게시글을 삭제하시겠습니까?');
 
-    if (confirm) {
+    if (checkDel) {
       e.stopPropagation();
       onAction?.(id);
     } else {
@@ -72,12 +72,11 @@ export default function DogListCard({
   }, [male]);
 
   return (
-    <article className="flex flex-col relative">
+    <article className="flex flex-col relative border-[1px] border-neutral-200 rounded-xl p-3">
       <Link href={`/${paramsName}/${id}`} shallow className="group">
         <div className="flex flex-col gap-2 w-full">
           <div
             className={`
-            ${!imageSrc ? 'border-[1px] border-neutral-200' : 'border-none'}
             aspect-square 
             w-full 
             relative 
@@ -102,7 +101,7 @@ export default function DogListCard({
             />
             {lostDogStatus && <StatusTag label={lostDogStatus} />}
           </div>
-          <div className="font-semibold text-sm lg:text-lg flex-col md:flex gap-3">
+          <div className="font-semibold text-sm lg:text-lg flex-col md:flex gap-1">
             <p>{dogType}</p>
             {dogName && <p className="text-neutral-400">이름:{dogName}</p>}
           </div>
@@ -110,7 +109,7 @@ export default function DogListCard({
           <div className="font-light text-neutral-500 flex items-center">
             {dogAge && <div>나이:{dogAge}살</div>}
             {dogMonth && <div>{dogMonth}</div>}
-            <div>{maleLabel || male}</div>
+            <span className="text-xl">{maleLabel || male}</span>
           </div>
         </div>
       </Link>

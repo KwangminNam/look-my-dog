@@ -1,12 +1,13 @@
 "use client";
 
+import { ReactElement } from "react";
 import usePostModal from "../hooks/usePostModal";
 import Button from "./Button";
 import Container from "./Container";
 import { SiDatadog } from "react-icons/si";
 
 export interface EmptyStateProps {
-  title: string;
+  title: string | ReactElement;
   showButton?: boolean;
 }
 

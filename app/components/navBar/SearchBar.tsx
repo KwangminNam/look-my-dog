@@ -14,10 +14,6 @@ export default function SearchBar() {
   const dogAge = params?.get('dogAge');
   const male = params?.get('male');
 
-  console.log(dogName);
-  console.log(dogAge)
-  console.log(male)
-
   const nameLabel = useMemo(()=>{
     if(dogName) return decodeURIComponent(dogName);
     return "검색"

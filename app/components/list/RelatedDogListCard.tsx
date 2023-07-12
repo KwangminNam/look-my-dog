@@ -65,6 +65,7 @@ export default function RelatedDogListCard({
               imageSrc={item.imageSrc}
               id={item.id}
               paramsName="listing"
+              key={item.id}
             />
           ))}
         </>
