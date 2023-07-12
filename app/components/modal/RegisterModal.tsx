@@ -181,6 +181,7 @@ export default function RegisterModal() {
       actionOnclick={handleSubmit(onRegister)}
       bodyContent={registerBodyContent}
       footerContent={registerFooterContent}
+      isLoading={isLoading}
     />
   );
 }

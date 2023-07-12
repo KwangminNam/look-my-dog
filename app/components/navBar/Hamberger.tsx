@@ -82,15 +82,15 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             gap-2
             hover:shadow-md
             rounded-md
+            relative
             md:rounded-2xl
           "
         onClick={setToggleOpen}
       >
         <AiOutlineMenu size={30} />
         <Avator imgSrc={loggedInUser?.image}/>
-      </div>
-      {isOpen && (
-        <div className="absolute md:top-[100px] top-[60px] md:right-[15px] right-0 z-[100]">
+        {isOpen && (
+        <div className="absolute right-0 top-12 md:top-16 z-[100]">
           <ul className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
             {loggedInUser ? (
               <>
@@ -126,6 +126,8 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
           </ul>
         </div>
       )}
+      </div>
+
     </>
   );
 }
