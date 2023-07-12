@@ -144,7 +144,7 @@ export default function RegisterModal() {
           onSnsRegister("naver");
         }}
         icon={SiNaver}
-        iconColor='2db400'
+        iconColor='#2db400'
         textColor
         borderColor
         disabled={isLoading}
