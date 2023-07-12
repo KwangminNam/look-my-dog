@@ -114,7 +114,7 @@ export default function LoginModal() {
   const loginFooterContent = (
     <div className="flex items-center flex-col gap-4">
       <Button
-        label="Github로 로그인하기"
+        label="깃허브로 로그인하기"
         bgColor
         onClick={() => {
           onSnsLogin("github");
@@ -125,7 +125,7 @@ export default function LoginModal() {
         disabled={isLoading}
       />
       <Button
-        label="Google로 로그인하기"
+        label="구글로 로그인하기"
         bgColor
         onClick={() => {
           onSnsLogin("google");
@@ -136,7 +136,7 @@ export default function LoginModal() {
         disabled={isLoading}
       />
       <Button
-        label="Naver로 로그인하기"
+        label="네이버로 로그인하기"
         bgColor
         onClick={() => {
           onSnsLogin("naver");

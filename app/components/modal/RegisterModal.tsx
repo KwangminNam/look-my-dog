@@ -116,7 +116,7 @@ export default function RegisterModal() {
   const registerFooterContent = (
     <div className="flex flex-col items-center  gap-4">
       <Button
-        label="Github로 회원가입"
+        label="깃허브로 회원가입"
         bgColor
         onClick={() => {
           onSnsRegister("github");
@@ -127,7 +127,7 @@ export default function RegisterModal() {
         disabled={isLoading}
       />
       <Button
-        label="Google로 회원가입"
+        label="구글로 회원가입"
         bgColor
         onClick={() => {
           onSnsRegister("google");
