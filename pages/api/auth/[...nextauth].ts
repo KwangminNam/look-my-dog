@@ -4,7 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import KakaoProvider from "next-auth/providers/kakao";
 import NaverProvider from "next-auth/providers/naver";
 import prisma from "@/app/libs/prismadb"
 
@@ -13,11 +12,13 @@ export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string
+      clientSecret: process.env.GITHUB_SECRET as string,
+      allowDangerousEmailAccountLinking:true,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      allowDangerousEmailAccountLinking:true,
     }),
     // KakaoProvider({
     //   clientId: process.env.KAKAO_CLIENT_ID as string,
@@ -25,7 +26,8 @@ export const authOptions: AuthOptions = {
     // }),
     NaverProvider({
       clientId: process.env.NAVER_CLIENT_ID as string,
-      clientSecret: process.env.NAVER_CLIENT_SECRET as string
+      clientSecret: process.env.NAVER_CLIENT_SECRET as string,
+      allowDangerousEmailAccountLinking:true,
     }),
     CredentialsProvider({
       name: 'credentials',

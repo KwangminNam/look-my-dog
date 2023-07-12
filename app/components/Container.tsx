@@ -10,7 +10,7 @@ export default function Container({ children, nonPadding }: ContainerProps) {
     <div
       className={`
        ${nonPadding ? 'pt-0' : 'pt-9'} 
-       max-w-[2520px]
+       max-w-[2050px]
        mx-auto
        xl:px-20
        md:px-10
