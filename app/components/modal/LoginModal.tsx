@@ -145,7 +145,7 @@ export default function LoginModal() {
         disabled={isLoading}
         textColor
         borderColor
-        iconColor="green"
+        iconColor="#2db400"
       />
       <ModalFooterInfo label="룩마독이 처음이신가요?" actionLabel="회원가입" onToggleAction={onToggleLogin}/>
     </div>
