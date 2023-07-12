@@ -259,7 +259,7 @@ export default function PostmyDogModal() {
             />
           </div>
           <div className="mt-4 flex py-6 w-full justify-between border-t border-b border-solid border-neutral-300">
-            <span className="text-2xl">성별을 골라주세요</span>
+            <span className="text-2xl">성별을 골라주세요.</span>
             <div className="flex">
               {MALE_DATA.map((item) => (
                 <SelectSex
@@ -273,7 +273,7 @@ export default function PostmyDogModal() {
           </div>
           <hr />
           <div className="flex pt-6 w-full justify-between">
-            <span className="text-2xl">강아지의 나이는 몇살인가요?</span>
+            <span className="text-2xl">나이를 입력해주세요.</span>
             <AgeCounter
               value={dogAge}
               showMonth={showMonthAge}

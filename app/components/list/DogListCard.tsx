@@ -5,7 +5,6 @@ import { useMemo } from "react";
 import { GiMale, GiFemale } from "react-icons/gi";
 import LikeButton from "../LikeButton";
 import { SafeUser } from "@/app/types";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import StatusTag from "../tag/StatusTag";
 import Button from "../Button";

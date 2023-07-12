@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
   return (
     <div>
-      <HeroBox />
+      <HeroBox getLoggedinuser={getLoggedinuser} />
       <Container>
         <>
           <h2 className="text-4xl text-center">강아지 포스트</h2>

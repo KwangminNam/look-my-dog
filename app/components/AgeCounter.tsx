@@ -44,7 +44,7 @@ export default function AgeCounter({
         >
           <AiOutlineMinus size={30} />
         </button>
-        <span className="mx-3 text-2xl">{value}</span>
+        <span className="mx-3 text-2xl">{value}&nbsp;살</span>
         <button
           className="
           border
@@ -55,56 +55,42 @@ export default function AgeCounter({
         >
           <AiOutlinePlus size={30} />
         </button>
-      </div>
-
-      {renderSelctMonth && (
-        <div>
-          <button
-            onClick={onToggle}
-            className="text-sm p-4 flex items-center border-2  rounded-md border-neutral-400"
-          >
-            <span>개월 수 선택하기</span>
-            <LuDog size={30} />
-          </button>
-          {showMonth && (
-            <div className="absolute">
-              <Select
-                onChange={(value) => onMonthChange(value as any)}
-                value={monthValue}
-                placeholder="개월 수 선택"
-                options={[
-                  { month: "1 개월" },
-                  { month: "2 개월" },
-                  { month: "3 개월" },
-                  { month: "4 개월" },
-                  { month: "5 개월" },
-                  { month: "6 개월" },
-                  { month: "7 개월" },
-                  { month: "8 개월" },
-                  { month: "9 개월" },
-                  { month: "10 개월" },
-                  { month: "11 개월" },
-                  { month: "12 개월" }
-                ]}
-                formatOptionLabel={(option: any) => (
-                  <div className="flex flex-row items-center gap-3">
-                    <div className="text-neutral-500 ml-1">{option.month}</div>
-                  </div>
-                )}
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadious: 6,
-                  colors: {
-                    ...theme.colors,
-                    primary: "black",
-                    primary25: "#ffe4e6"
-                  }
-                })}
-              />
-            </div>
-          )}
+        <div className="ml-4">
+          <Select
+            onChange={(value) => onMonthChange(value)}
+            value={monthValue}
+            placeholder="개월 수 선택"
+            options={[
+              { month: "1 개월" },
+              { month: "2 개월" },
+              { month: "3 개월" },
+              { month: "4 개월" },
+              { month: "5 개월" },
+              { month: "6 개월" },
+              { month: "7 개월" },
+              { month: "8 개월" },
+              { month: "9 개월" },
+              { month: "10 개월" },
+              { month: "11 개월" },
+              { month: "12 개월" }
+            ]}
+            formatOptionLabel={(option: any) => (
+              <div className="flex flex-row items-center gap-3">
+                <div className="text-neutral-500 ml-1">{option.month}</div>
+              </div>
+            )}
+            theme={(theme) => ({
+              ...theme,
+              borderRadious: 6,
+              colors: {
+                ...theme.colors,
+                primary: "black",
+                primary25: "#ffe4e6"
+              }
+            })}
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 }
