@@ -19,7 +19,8 @@ export default function SelectPersonality({
         htmlFor={value}
         className={`
         cursor-pointer
-        text-2xl
+        text-md
+        md:text-2xl
         rounded-xl
         border-[3px]
         border-solid

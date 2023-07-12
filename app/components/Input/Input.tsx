@@ -41,7 +41,7 @@ export default function Input({
 
   return (
     <div className='w-full relative'>
-      {formatWeight && <GiWeight size={35} className="text-neutral-500 absolute right-40 top-1/2 -translate-y-1/2" />}
+      {formatWeight && <GiWeight size={35} className="hidden md:block text-neutral-500 absolute right-40 top-1/2 -translate-y-1/2" />}
       <input
         min={min}
         autoFocus={focus}

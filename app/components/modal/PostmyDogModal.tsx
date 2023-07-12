@@ -77,8 +77,8 @@ export default function PostmyDogModal() {
   });
 
   const stepsArray = Object.keys(POST_STEPS)
-  .filter((key) => isNaN(Number(key)))
-  .map((key) => POST_STEPS[key as keyof typeof POST_STEPS]);
+    .filter((key) => isNaN(Number(key)))
+    .map((key) => POST_STEPS[key as keyof typeof POST_STEPS]);
 
 
   const stepsLength = stepsArray.length;
@@ -102,13 +102,13 @@ export default function PostmyDogModal() {
   useEffect(() => {
     if (postModal.isOpen === false) {
       setStep(POST_STEPS.DOGTYPE);
-      setCustumValue("dogType","");
-      setCustumValue("dogName","");
-      setCustumValue("weight","");
-      setCustumValue("dogAge",0);
-      setCustumValue("dogMonth","");
-      setCustumValue("personality","");
-      setCustumValue("personality","");
+      setCustumValue("dogType", "");
+      setCustumValue("dogName", "");
+      setCustumValue("weight", "");
+      setCustumValue("dogAge", 0);
+      setCustumValue("dogMonth", "");
+      setCustumValue("personality", "");
+      setCustumValue("personality", "");
     }
   }, [postModal.isOpen]);
 
@@ -138,8 +138,8 @@ export default function PostmyDogModal() {
     axios
       .post("/api/listing", data)
       .then(() => {
-        toast.success("강아지 등록 완료!",{
-          icon:'🐶',
+        toast.success("강아지 등록 완료!", {
+          icon: '🐶',
         });
         router.refresh();
         postModal.actionClose();
@@ -219,7 +219,7 @@ export default function PostmyDogModal() {
     bodyModal = (
       <>
         <div className="flex justify-center items-center mb-4 gap-3">
-          <div className="text-xl">
+          <div className="text-md md:text-xl">
             나의 강아지 종류는 <span className="text-red-400">{label}</span>
           </div>
           {TYPE_OF_DOG.filter((item) => item.label === label).map((item) => (
@@ -259,9 +259,23 @@ export default function PostmyDogModal() {
               formatWeight
             />
           </div>
-          <div className="mt-4 flex py-6 w-full justify-between border-t border-b border-solid border-neutral-300">
-            <span className="text-2xl">성별을 골라주세요.</span>
-            <div className="flex">
+          <div
+            className="
+              mt-4
+              flex-col
+              md:flex-row
+              flex
+              py-6
+              w-full
+              border-t
+              border-b
+              border-solid
+              border-neutral-300
+              justify-between
+            ">
+
+            <span className="text-md md:text-xl">성별을 골라주세요.</span>
+            <div className="flex gap-2 md:gap-0 justify-center">
               {MALE_DATA.map((item) => (
                 <SelectSex
                   onClick={selectMaleType}
@@ -273,8 +287,8 @@ export default function PostmyDogModal() {
             </div>
           </div>
           <hr />
-          <div className="flex pt-6 w-full justify-between">
-            <span className="text-2xl">나이를 입력해주세요.</span>
+          <div className="flex md:items-center md:flex-row flex-col pt-6 w-full justify-between">
+            <span className="text-md md:text-xl">나이를 입력해주세요.</span>
             <AgeCounter
               value={dogAge}
               showMonth={showMonthAge}
@@ -324,7 +338,7 @@ export default function PostmyDogModal() {
 
   const checkBeforeClose = () => {
     const checking = confirm('창을 닫으시면 정보가 모두 사라집니다.');
-    if(checking) postModal.actionClose();
+    if (checking) postModal.actionClose();
   }
 
   return (

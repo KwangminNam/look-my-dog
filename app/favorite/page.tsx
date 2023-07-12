@@ -29,9 +29,17 @@ export default async function Favoirte() {
         px-4"
       >
         <h2 className="text-4xl text-center pb-11">나의 좋아요 강아지들</h2>
-        <div className="grid grid-cols-6 gap-9">
+        <section
+          className="
+            grid-cols-1
+            sm:grid-cols-2
+            grid
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-6
+            md:grid-cols-3">
           <FavoriteClient favoriteList={favoriteList} loggedInUser={getCurrentUser} />
-        </div>
+        </section>
       </div>
 
       {/* {favoriteList.map((item) => (

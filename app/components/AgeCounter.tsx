@@ -44,7 +44,7 @@ export default function AgeCounter({
         >
           <AiOutlineMinus size={30} />
         </button>
-        <span className="mx-3 text-2xl">{value}&nbsp;살</span>
+        <span className="mx-3 text-md md:text-xl">{value}&nbsp;살</span>
         <button
           className="
           border
