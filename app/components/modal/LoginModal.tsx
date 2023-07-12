@@ -136,7 +136,7 @@ export default function LoginModal() {
         disabled={isLoading}
       />
       <Button
-        label="Google로 로그인하기"
+        label="Naver로 로그인하기"
         bgColor
         onClick={() => {
           onSnsLogin("naver");
