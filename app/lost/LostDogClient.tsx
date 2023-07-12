@@ -20,6 +20,7 @@ export default function LostDogClient({ lostGetDogList }: LostDogClientProps) {
           id={item.desertionNo}
           dogMonth={item.age}
           lostDogStatus={item.processState}
+          key={item.desertionNo}
         />
       ))}
     </>

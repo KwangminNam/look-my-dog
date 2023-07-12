@@ -42,6 +42,7 @@ export default function RelatedDogListCard({
               imageSrc={item.popfile}
               id={item.id}
               paramsName="lost"
+              key={item.id}
             />
           ))}
         </>

@@ -5,7 +5,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import Button from "../Button";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { MALE_DATA, PERSONALTY_DATA, POST_STEPS } from "./PostmyDogModal";
+import { MALE_DATA, PERSONALTY_DATA, POST_STEPS , POST_STEPS_TYPE } from "./PostmyDogModal";
 import { useMemo, useState } from "react";
 import PostDogInput from "../Input/PostDogInput";
 import Image from "next/image";
@@ -82,6 +82,8 @@ import malti from '../../../public/images/puppy2/malti.png'
     src: "/images/puppy2/dalmatian"
   }
 ];
+
+
 
 const meta: Meta<typeof Modal> = {
   title: "Modal/ 모달창",
@@ -245,7 +247,7 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
     }
   });
 
-  const [step, setStep] = useState(POST_STEPS.DOGTYPE);
+  const [step, setStep] = useState<POST_STEPS_TYPE>(POST_STEPS.DOGTYPE);
   const [label, setLabel] = useState("");
   const dogType = watch("dogType");
   const dogAge = watch("dogAge");
@@ -310,10 +312,9 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
     return "뒤로";
   }, [step]);
 
-
   const stepsArray = Object.keys(POST_STEPS)
-    .filter((key) => isNaN(Number(key)))
-    .map((key) => POST_STEPS[key as any]);
+  .filter((key) => isNaN(Number(key)))
+  .map((key) => POST_STEPS[key as keyof typeof POST_STEPS]);
 
     let bodyModal = (
       <div className="grid grid-cols-2 gap-4">
@@ -346,6 +347,7 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
                 alt={label}
                 width={70}
                 height={70}
+                key={item.label}
               />
             ))}
           </div>
@@ -410,6 +412,7 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
                 selected={personality}
                 value={item.personlityDog}
                 onClick={selectPersonalityFn}
+                key={item.personlityDog}
               />
             ))}
           </div>
@@ -436,11 +439,11 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
 
   const stepsLength = stepsArray.length;
   const nextStep = () => {
-    setStep((prev) => prev + 1);
+    setStep((prev) => prev + 1 as POST_STEPS_TYPE);
   };
 
   const prevStep = () => {
-    setStep((prev) => prev - 1);
+    setStep((prev) => prev - 1 as POST_STEPS_TYPE);
   };
   const onSubmit = (data: any) => {
     if (step !== POST_STEPS.IMAGE) {

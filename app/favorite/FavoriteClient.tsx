@@ -23,6 +23,7 @@ export default function FavoriteClient({ favoriteList, loggedInUser }: any) {1
           imageSrc={item.imageSrc}
           paramsName="listing"
           loggedInUser={loggedInUser}
+          key={item.id}
         />
       ))}
     </>

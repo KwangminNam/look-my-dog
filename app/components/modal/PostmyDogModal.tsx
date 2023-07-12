@@ -16,14 +16,14 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-const POST_STEPS = {
+export const POST_STEPS = {
   DOGTYPE: 0,
   INFO: 1,
   DESC: 2,
   IMAGE: 3
 } as const;
 
-type POST_STEPS_TYPE = typeof POST_STEPS[keyof typeof POST_STEPS];
+export type POST_STEPS_TYPE = typeof POST_STEPS[keyof typeof POST_STEPS];
 
 
 // type ValidationType = {
@@ -233,6 +233,7 @@ export default function PostmyDogModal() {
               alt={label}
               width={70}
               height={70}
+              key={item.label}
             />
           ))}
         </div>
@@ -297,6 +298,7 @@ export default function PostmyDogModal() {
               selected={personality}
               value={item.personlityDog}
               onClick={selectPersonalityFn}
+              key={item.personlityDog}
             />
           ))}
         </div>
