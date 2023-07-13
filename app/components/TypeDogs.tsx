@@ -5,6 +5,7 @@ import TypeDogBox from "./TypeDogBox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import Button from "./Button";
+import { useLocalStorageState } from "../hooks/useLocalStorage";
 
 export const TYPE_OF_DOG = [
   {
@@ -71,15 +72,13 @@ export default function TypeDogs() {
   const dogTypeParams = params?.get("dogType");
   const pathname = usePathname();
 
-  const [isOpen, setIsOpen] = useState(true);
-  const openToggle = () => setIsOpen((prev) => !prev);
 
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useLocalStorageState('showAll', false);
   const [typeDogs, setTypeDogs] = useState(
     showAll ? TYPE_OF_DOG : TYPE_OF_DOG.slice(0, 10)
   );
   const onToggle = () => {
-    setShowAll((prev) => !prev);
+    setShowAll((prev:any) => !prev);
   };
 
   const toggleItems = () => {
@@ -101,7 +100,21 @@ export default function TypeDogs() {
 
   return (
     <div className="relative flex flex-col items-center mb-10 sm:mb-20">
-      <ul className="w-full pt-8 sm:pt-11 pb-4 sm:pb-5 grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 h-0s translate-y-0">
+      <ul
+        className="
+          w-full
+          pt-8
+          sm:pt-11
+          pb-4
+          sm:pb-5
+          grid
+          grid-cols-2
+          sm:grid-cols-5
+          gap-2
+          sm:gap-3
+          h-0s
+          translate-y-0
+          ">
         {typeDogs.map((type) => (
           <TypeDogBox
             src={type.src}

@@ -38,7 +38,9 @@ export default async function DogList({ searchParams }: DogListProps) {
     <Container>
       <TypeDogs />
       <h2 className="text-4xl text-center pb-11">나의 강아지</h2>
-      <div className="            pt-20
+      <div
+        className="
+            pt-20
             grid-cols-1
             sm:grid-cols-2
             grid
@@ -46,7 +48,9 @@ export default async function DogList({ searchParams }: DogListProps) {
             xl:grid-cols-5
             2xl:grid-cols-6
             md:grid-cols-3
-            gap-8">
+            gap-8
+            "
+      >
         {getDogList?.map((item: any) => (
           <DogListCard
             loggedInUser={getLoggedInuser}

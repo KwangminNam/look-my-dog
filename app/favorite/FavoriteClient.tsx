@@ -4,26 +4,27 @@ import DogListCard from "../components/list/DogListCard";
 import { SafeListing, SafeUser } from "../types";
 
 interface FavoriteClient{
-  favoriteList:SafeListing;
+  favoriteList:SafeListing[];
   loggedInUser:SafeUser;
 }
 
-export default function FavoriteClient({ favoriteList, loggedInUser }: any) {1
+export default function FavoriteClient({ favoriteList, loggedInUser }: FavoriteClient) {
   return (
     <>
-      {favoriteList.map((item: any) => (
+      {favoriteList.map((favItem) => (
         <DogListCard
           showLikeButton
-          id={item.id}
-          dogType={item.dogType}
-          lostDogStatus={item.dogName}
-          dogAge={item.dogAge}
-          weight={item.weight}
-          male={item.male}
-          imageSrc={item.imageSrc}
+          id={favItem.id}
+          dogType={favItem.dogType}
+          lostDogStatus={favItem.dogName}
+          dogAge={favItem.dogAge}
+          weight={favItem.weight}
+          male={favItem.male}
+          imageSrc={favItem.imageSrc}
           paramsName="listing"
           loggedInUser={loggedInUser}
-          key={item.id}
+          key={favItem.id}
+          dogName={favItem.dogName}
         />
       ))}
     </>
