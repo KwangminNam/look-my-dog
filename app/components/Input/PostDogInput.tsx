@@ -27,15 +27,16 @@ export default function PostDogInput({
         hover:border-blue-500
         text-sm
         md:text-xl
-        ${
-          selected
-            ? "border-[3px] border-solid border-blue-500"
-            : "border-neutral-300"
+        ${selected
+          ? "border-[3px] border-solid border-blue-500"
+          : "border-neutral-300"
         }
       `}
     >
       <span>{label}</span>
       <Image
+        blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+        placeholder="blur"
         className="
           w-[40px]
           h-[40px]

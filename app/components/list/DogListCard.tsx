@@ -85,6 +85,8 @@ export default function DogListCard({
             `}
           >
             <Image
+              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              placeholder="blur"
               fill
               className={`
               cursor-pointer

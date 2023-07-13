@@ -234,6 +234,8 @@ export default function PostmyDogModal() {
               width={70}
               height={70}
               key={item.label}
+              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              placeholder="blur"
             />
           ))}
         </div>
