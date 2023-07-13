@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import { GiFemale, GiMale } from "react-icons/gi";
 
 interface ListingClientProps {
-  dogList: (SafeListing & { user: SafeUser }) ;
+  dogList: (SafeListing & { user: SafeUser }) | any;
   loggedInUser: SafeUser | null;
   allDogList: SafeListing | any;
 }
