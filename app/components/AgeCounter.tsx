@@ -36,22 +36,22 @@ export default function AgeCounter({
       <div className="flex items-center">
         <button
           className="
-          border
-          border-solid
-          rounded-full
-          border-neutral-400"
-          onClick={decreaseAge}
+            border
+            border-solid
+            rounded-full
+            border-neutral-400"
+            onClick={decreaseAge}
         >
           <AiOutlineMinus size={30} />
         </button>
         <span className="mx-3 text-md md:text-xl">{value}&nbsp;살</span>
         <button
           className="
-          border
-          border-solid
-          rounded-full
-          border-neutral-400"
-          onClick={increaseAge}
+            border
+            border-solid
+            rounded-full
+            border-neutral-400"
+            onClick={increaseAge}
         >
           <AiOutlinePlus size={30} />
         </button>

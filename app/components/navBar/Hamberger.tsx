@@ -11,7 +11,7 @@ import Avator from "../Avator";
 import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {BiAddToQueue} from 'react-icons/bi'
+import { BiAddToQueue } from 'react-icons/bi'
 
 interface HambergerMenuProps {
   loggedInUser?: SafeUser | null;
@@ -33,7 +33,7 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
     postModal.actionOpen();
   };
 
-  
+
   return (
     <>
       <ul className="relative flex items-center gap-3 md:gap-10 text-sm md:text-2xl">
@@ -88,44 +88,44 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
         onClick={setToggleOpen}
       >
         <AiOutlineMenu size={30} />
-        <Avator imgSrc={loggedInUser?.image}/>
+        <Avator imgSrc={loggedInUser?.image} />
         {isOpen && (
-        <div className="absolute right-0 top-12 md:top-16 z-[100]">
-          <ul className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
-            {loggedInUser ? (
-              <>
-                <MenuItem
-                  label="로그아웃"
-                  onClick={() => {
-                    signOut();
-                  }}
-                />
-                <MenuItem
-                  label="나의 강아지"
-                  onClick={() => {
-                    router.push("/mypost");
-                  }}
-                />
-                <MenuItem
-                  label="이동"
-                  onClick={() => {
-                    router.push("/test");
-                  }}
-                />
-                <MenuItem
-                  label="좋아요 한 게시판"
-                  onClick={() => router.push("/favorite")}
-                />
-              </>
-            ) : (
-              <>
-                <MenuItem label="로그인" onClick={loginModal.actionOpen} />
-                <MenuItem label="회원가입" onClick={registerModal.actionOpen} />
-              </>
-            )}
-          </ul>
-        </div>
-      )}
+          <div className="absolute right-0 top-12 md:top-16 z-[100]">
+            <ul className="w-[190px] flex flex-col bg-white rounded-xl border border-solid border-black">
+              {loggedInUser ? (
+                <>
+                  <MenuItem
+                    label="홈"
+                    onClick={() => {
+                      router.push("/");
+                    }}
+                  />
+                  <MenuItem
+                    label="로그아웃"
+                    onClick={() => {
+                      signOut();
+                    }}
+                  />
+                  <MenuItem
+                    label="나의 강아지"
+                    onClick={() => {
+                      router.push("/mypost");
+                    }}
+                  />
+                  <MenuItem
+                    label="좋아요 한 게시판"
+                    onClick={() => router.push("/favorite")}
+                  />
+                </>
+              ) : (
+                <>
+                  <MenuItem label="로그인" onClick={loginModal.actionOpen} />
+                  <MenuItem label="회원가입" onClick={registerModal.actionOpen} />
+                </>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
 
     </>
