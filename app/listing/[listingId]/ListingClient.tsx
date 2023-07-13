@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import { GiFemale, GiMale } from "react-icons/gi";
 
 interface ListingClientProps {
-  dogList: (SafeListing & { user: SafeUser }) | any;
+  dogList: (SafeListing & { user: SafeUser }) ;
   loggedInUser: SafeUser | null;
   allDogList: SafeListing | any;
 }
@@ -37,6 +37,8 @@ export default function ListingClient({
 
   const date = new Date(dogList.createdAt);
 
+  console.log(dogList)
+
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -61,12 +63,12 @@ export default function ListingClient({
               <div className="flex items-center gap-2">
                 <Image
                   className="rounded-full"
-                  src={dogList.user?.image}
+                  src={dogList.user?.image || '/images/userPlaceholder.jpg'}
                   alt="사용자"
                   width={50}
                   height={50}
                 />
-                <span>{dogList.user.name}</span>
+                <span>{dogList.user.name || dogList.user.email}</span>
               </div>
               <span>게시글 등록날짜:{formattedDate}</span>
             </div>

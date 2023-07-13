@@ -19,7 +19,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
 
   if (emptyList) {
-    return <EmptyState title="등록된 리스트가 없습니다." showButton />;
+    return <EmptyState loggedInUser={getLoggedinuser} title="등록된 리스트가 없습니다." showButton />;
   }
 
   return (

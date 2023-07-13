@@ -29,7 +29,7 @@ export default async function DogList({ searchParams }: DogListProps) {
         <Container>
           <TypeDogs />
         </Container>
-        <EmptyState title="텅 비었습니다!" showButton />
+        <EmptyState title="텅 비었습니다!" showButton loggedInUser={getLoggedInuser} />
       </>
     );
   }

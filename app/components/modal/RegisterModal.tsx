@@ -7,7 +7,7 @@ import Input from "../Input/Input";
 import Modal from "./Modal";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import {SiNaver} from 'react-icons/si'
+import { SiNaver } from "react-icons/si";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -17,7 +17,7 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import ModalFooterInfo from "./ModalFooterInfo";
 
-type SnsName = "github" | "google" | "naver";
+type SnsName = "github" | "google" | "naver" | "kakao";
 
 type ValidationType = {
   name: string;
@@ -30,7 +30,7 @@ export default function RegisterModal() {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
-  const [isLoading ,setIsLoading ] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const validation: ZodType<ValidationType> = z
     .object({
@@ -73,10 +73,10 @@ export default function RegisterModal() {
     loginModal.actionOpen();
   };
 
-  const onSnsRegister = (name:SnsName) => {
+  const onSnsRegister = (name: SnsName) => {
     signIn(name);
     setIsLoading(true);
-  }
+  };
 
   const registerBodyContent = (
     <div className="flex flex-col gap-5">
@@ -144,12 +144,28 @@ export default function RegisterModal() {
           onSnsRegister("naver");
         }}
         icon={SiNaver}
-        iconColor='#2db400'
+        iconColor="#2db400"
         textColor
         borderColor
         disabled={isLoading}
       />
-      <ModalFooterInfo label="이미 회원이신가요?" actionLabel="로그인" onToggleAction={onToggleLogin}/>
+      <Button
+        label="카카오로 회원가입"
+        bgColor
+        onClick={() => {
+          onSnsRegister("kakao");
+        }}
+        icon={SiNaver}
+        iconColor="yellow"
+        textColor
+        borderColor
+        disabled={isLoading}
+      />
+      <ModalFooterInfo
+        label="이미 회원이신가요?"
+        actionLabel="로그인"
+        onToggleAction={onToggleLogin}
+      />
     </div>
   );
 
@@ -157,8 +173,8 @@ export default function RegisterModal() {
     axios
       .post("/api/register", data)
       .then(() => {
-        toast.success("회원가입 성공",{
-          icon:'🐶',
+        toast.success("회원가입 성공", {
+          icon: "🐶"
         });
         registerModal.actionClose();
         loginModal.actionOpen();

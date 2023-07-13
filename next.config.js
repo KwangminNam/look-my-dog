@@ -6,7 +6,8 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "res.cloudinary.com",
       "www.animal.go.kr",
-      "ssl.pstatic.net"
+      "ssl.pstatic.net",
+      "phinf.pstatic.net",
     ]
   }
 }

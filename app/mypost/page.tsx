@@ -24,7 +24,7 @@ export default async function MyPostPage(){
   }
 
   if(dogListing?.length === 0){
-    return <EmptyState title="작성하신 글이 없으시네요!" showButton/>
+    return <EmptyState title="작성하신 글이 없으시네요!" showButton loggedInUser={currentUser}/>
   }
 
   return(

@@ -20,6 +20,7 @@ export default function TypeDogBox({
   const params = useSearchParams();
 
   const handleClick = useCallback(() => {
+    
     let currentQuery = {};
     if (params) {
       currentQuery = qs.parse(params.toString());
@@ -43,11 +44,6 @@ export default function TypeDogBox({
     );
 
     router.push(url);
-
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior:'smooth'
-    })
 
   }, [label, params, router]);
 

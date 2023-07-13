@@ -5,17 +5,32 @@ import usePostModal from "../hooks/usePostModal";
 import Button from "./Button";
 import Container from "./Container";
 import { SiDatadog } from "react-icons/si";
+import getLoggedInUser from "../actions/getLoginedUser";
+import { SafeUser } from "../types";
+import useLoginModal from "../hooks/useLoginModal";
 
 export interface EmptyStateProps {
   title: string | ReactElement;
   showButton?: boolean;
+  loggedInUser?:SafeUser | null;
 }
 
 export default function EmptyState({
   title,
-  showButton = false
+  showButton = false,
+  loggedInUser
 }: EmptyStateProps) {
+  
   const postModal = usePostModal();
+  const loginModal = useLoginModal();
+
+  const onOpenPostModal = () => {
+    if (!loggedInUser) {
+      return loginModal.actionOpen();
+    }
+    postModal.actionOpen();
+  };
+
 
   return (
     <Container>
@@ -25,7 +40,7 @@ export default function EmptyState({
         {showButton && (
           <Button
             label="내 강아지 자랑하기"
-            onClick={postModal.actionOpen}
+            onClick={onOpenPostModal}
             borderColor
             halfWidth
           />
