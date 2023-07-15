@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  FieldValues,
-  SubmitHandler,
-  useForm
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useLoginModal from "../../hooks/useLoginModal";
 import Button from "../Button";
 import Input from "../Input/Input";
@@ -15,10 +11,10 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import { ZodType, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {SiNaver} from 'react-icons/si'
+import { SiNaver } from "react-icons/si";
 import ModalFooterInfo from "./ModalFooterInfo";
 
 // SNS LOGIN TYPE
@@ -44,9 +40,19 @@ export default function LoginModal() {
       .max(10, "비밀번호는 10글자 이하 여야합니다")
   });
 
+  const setCustumValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true
+    });
+  };
+
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors }
   } = useForm<FieldValues>({
     resolver: zodResolver(validation),
@@ -61,6 +67,15 @@ export default function LoginModal() {
     registerModal.actionOpen();
   };
 
+  // useEffect(() => {
+  //   if (loginModal.isOpen === false) {
+  //     const email = watch("email");
+  //     const password = watch("password");
+  //     setCustumValue('email',"");
+  //     setCustumValue('password',"");
+  //   }
+  // }, [loginModal.isOpen]);
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
     setIsLoading(true);
@@ -71,8 +86,8 @@ export default function LoginModal() {
       .then((callback) => {
         if (callback?.ok) {
           setIsLoading(false);
-          toast.success("로그인 성공",{
-            icon:'🐶',
+          toast.success("로그인 성공", {
+            icon: "🐶"
           });
           router.refresh();
           loginModal.actionClose();
@@ -147,7 +162,11 @@ export default function LoginModal() {
         borderColor
         iconColor="#2db400"
       />
-      <ModalFooterInfo label="룩마독이 처음이신가요?" actionLabel="회원가입" onToggleAction={onToggleLogin}/>
+      <ModalFooterInfo
+        label="룩마독이 처음이신가요?"
+        actionLabel="회원가입"
+        onToggleAction={onToggleLogin}
+      />
     </div>
   );
 

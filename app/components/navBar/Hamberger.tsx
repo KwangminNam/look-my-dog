@@ -121,6 +121,12 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
                 <>
                   <MenuItem label="로그인" onClick={loginModal.actionOpen} />
                   <MenuItem label="회원가입" onClick={registerModal.actionOpen} />
+                  <MenuItem
+                    label="홈"
+                    onClick={() => {
+                      router.push("/");
+                    }}
+                  />
                 </>
               )}
             </ul>
