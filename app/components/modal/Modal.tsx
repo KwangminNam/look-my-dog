@@ -85,7 +85,7 @@ export default function Modal({
             </header>
             {/* BODY CONTENT */}
             <form className="flex flex-col relative p-6 sm:p-9 pb-3 sm:pb-3" onSubmit={actionOnclick}>
-              <div className="pb-10 sm:pb-16">{bodyContent}</div>
+              <div className="pb-8 sm:pb-12">{bodyContent}</div>
               {stepsLength && (
                 <p className="absolute left-0 top-[-40px] text-sm md:text-lg">
                   {stepsLength}단계 중

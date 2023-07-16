@@ -127,7 +127,7 @@ export default function LoginModal() {
   );
 
   const loginFooterContent = (
-    <div className="flex items-center flex-col gap-4">
+    <div className="flex items-center flex-col gap-4 px-6 sm:px-9">
       <Button
         label="깃허브로 로그인하기"
         bgColor

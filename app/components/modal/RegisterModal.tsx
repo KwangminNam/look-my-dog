@@ -114,7 +114,7 @@ export default function RegisterModal() {
   );
 
   const registerFooterContent = (
-    <div className="flex flex-col items-center  gap-4">
+    <div className="flex flex-col items-center gap-4 px-6 sm:px-9">
       <Button
         label="깃허브로 회원가입"
         bgColor
@@ -145,18 +145,6 @@ export default function RegisterModal() {
         }}
         icon={SiNaver}
         iconColor="#2db400"
-        textColor
-        borderColor
-        disabled={isLoading}
-      />
-      <Button
-        label="카카오로 회원가입"
-        bgColor
-        onClick={() => {
-          onSnsRegister("kakao");
-        }}
-        icon={SiNaver}
-        iconColor="yellow"
         textColor
         borderColor
         disabled={isLoading}
