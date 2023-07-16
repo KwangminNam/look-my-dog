@@ -50,6 +50,8 @@ export default function LostDogDetailClient({
               src={getDetailLostDog.popfile}
               width={700}
               height={200}
+              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              placeholder="blur"
             />
           </div>
           <div className="md:w-[750px] m-auto">

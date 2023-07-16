@@ -69,6 +69,8 @@ export default function ListingClient({
                   alt="사용자"
                   width={50}
                   height={50}
+                  blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+                  placeholder="blur"
                 />
                 <span>{dogList.user.name || dogList.user.email}</span>
               </div>

@@ -84,7 +84,7 @@ export default function Modal({
               </button>
             </header>
             {/* BODY CONTENT */}
-            <form className="flex flex-col relative p-6 sm:p-9" onSubmit={actionOnclick}>
+            <form className="flex flex-col relative p-6 sm:p-9 pb-3 sm:pb-3" onSubmit={actionOnclick}>
               <div className="pb-10 sm:pb-16">{bodyContent}</div>
               {stepsLength && (
                 <p className="absolute left-0 top-[-40px] text-sm md:text-lg">
@@ -102,7 +102,7 @@ export default function Modal({
               {/* FOOTER CONTENT */}
             </form>
             {/* BUTTON */}
-            <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 sm:gap-7 pb-4 sm:pb-2">
+            <div className="sm:px-9 px-6 flex flex-col-reverse sm:flex-row justify-between gap-4 sm:gap-7 pb-4 sm:pb-2">
               {secondActionLabel && secondActionOnclick && (
                 <Button
                   label={secondActionLabel}
