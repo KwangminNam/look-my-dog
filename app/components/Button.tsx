@@ -12,8 +12,7 @@ export interface ButtonProps {
   iconColor?: string;
   textColor?: boolean;
   icon?: IconType;
-
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Button({

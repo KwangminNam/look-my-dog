@@ -35,6 +35,7 @@ export default function AgeCounter({
     <div className="flex flex-col gap-3">
       <div className="flex items-center">
         <button
+          type="button"
           className="
             border
             border-solid
@@ -46,6 +47,7 @@ export default function AgeCounter({
         </button>
         <span className="mx-3 text-md md:text-xl">{value}&nbsp;살</span>
         <button
+          type="button"
           className="
             border
             border-solid

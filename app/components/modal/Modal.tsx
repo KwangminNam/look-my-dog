@@ -84,7 +84,7 @@ export default function Modal({
               </button>
             </header>
             {/* BODY CONTENT */}
-            <div className="flex flex-col relative p-6 sm:p-9">
+            <form className="flex flex-col relative p-6 sm:p-9" onSubmit={actionOnclick}>
               <div className="pb-10 sm:pb-16">{bodyContent}</div>
               {stepsLength && (
                 <p className="absolute left-0 top-[-40px] text-sm md:text-lg">
@@ -95,8 +95,12 @@ export default function Modal({
                   에요.
                 </p>
               )}
+              <Button
+                label={actionLabel}
+                disabled={disabled}
+              />
               {/* FOOTER CONTENT */}
-            </div>
+            </form>
             {/* BUTTON */}
             <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 sm:gap-7 pb-4 sm:pb-2">
               {secondActionLabel && secondActionOnclick && (
@@ -109,11 +113,6 @@ export default function Modal({
                   bgColor
                 />
               )}
-              <Button
-                label={actionLabel}
-                onClick={actionOnclick}
-                disabled={disabled}
-              />
             </div>
             <hr className="sm:hidden" />
             {footerContent && <div className="pb-6 sm:pb-9">{footerContent}</div>}
