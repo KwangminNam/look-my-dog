@@ -109,6 +109,7 @@ export default function PostmyDogModal() {
       setCustumValue("dogMonth", "");
       setCustumValue("personality", "");
       setCustumValue("personality", "");
+      setCustumValue("male", "");
     }
   }, [postModal.isOpen]);
 
