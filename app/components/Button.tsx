@@ -37,7 +37,6 @@ function Button({
         disabled:opacity-40
         disabled:cursor-not-allowed
         ${bgColor ? "bg-white" : "bg-sky-500"}
-        text-2xl
         font-light
         relative
         ${textColor ? 'text-black' : 'text-white'}
@@ -45,7 +44,7 @@ function Button({
       onClick={onClick}
       disabled={disabled}
     >
-      <span>{label}</span>
+      <span className="text-lg md:text-2xl">{label}</span>
       {Icon && <Icon size={35} color={iconColor} className="absolute left-[0.5rem] md:left-28 top-1" />}
     </button>
   );

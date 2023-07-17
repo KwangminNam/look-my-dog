@@ -51,7 +51,7 @@ export default function HeroBox({ getLoggedinuser }: HeroBoxProps) {
 
 
   return (
-    <section className=" w-full mb-32">
+    <section className=" w-full mb-20">
       <Container nonPadding>
         <Swiper
           autoplay={{
@@ -70,7 +70,7 @@ export default function HeroBox({ getLoggedinuser }: HeroBoxProps) {
           className="mySwiper"
         >
           <SwiperSlide>
-            <div className="w-full h-[400px] lg:h-[950px] bg-green-500">
+            <div className="w-full h-[400px] lg:h-[800px] bg-green-500">
               <div className="h-full flex flex-col md:flex-row items-center justify-center">
                 <div
                   className="
@@ -122,13 +122,13 @@ export default function HeroBox({ getLoggedinuser }: HeroBoxProps) {
               md:p-36
               w-full
               h-[400px]
+              lg:h-[800px]
               justify-center
               flex
               items-center
               bg-[url('https://img.freepik.com/free-vector/frame-with-dogs-vector-white-background_53876-127700.jpg')]
               bg-cover
               bg-no-repeat
-              lg:h-[950px]
               "
             >
               <p

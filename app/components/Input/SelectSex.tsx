@@ -13,7 +13,8 @@ export default function SelectSex({
 }: SelectSexProps) {
   return (
     <div className="cursor-pointer" onClick={() => onClick(value)}>
-      <span
+      <button
+        type="button"
         className={`
           text-sm
           block
@@ -28,7 +29,7 @@ export default function SelectSex({
           `}
       >
         {value}
-      </span>
+      </button>
     </div>
   );
 }

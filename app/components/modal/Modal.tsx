@@ -55,7 +55,7 @@ export default function Modal({
           {/* MODAL */}
           <div
             className="
-              pb-5
+              pb-16
               bg-white
               w-full
               sm:w-[650px]
@@ -65,7 +65,6 @@ export default function Modal({
               relative
               flex
               flex-col
-              justify-between
               px-7
               transform
               translate-y-0
@@ -84,10 +83,10 @@ export default function Modal({
               </button>
             </header>
             {/* BODY CONTENT */}
-            <form className="flex flex-col relative p-6 sm:p-9 pb-3 sm:pb-3" onSubmit={actionOnclick}>
+            <form className="flex flex-col relative p-6 sm:p-9 pb-3 sm:pb-3 pt-16" onSubmit={actionOnclick}>
               <div className="pb-8 sm:pb-12">{bodyContent}</div>
               {stepsLength && (
-                <p className="absolute left-0 top-[-40px] text-sm md:text-lg">
+                <p className="absolute left-0 top-[10px] md:top-[-40px] text-sm md:text-sm">
                   {stepsLength}단계 중
                   <span className="text-red-400">
                     &nbsp;{currentStep === 4 ? "마지막" : currentStep}단계&nbsp;

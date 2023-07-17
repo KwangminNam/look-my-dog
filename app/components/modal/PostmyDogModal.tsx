@@ -134,7 +134,6 @@ export default function PostmyDogModal() {
       return nextStep();
     }
     setIsLoading(true);
-
     axios
       .post("/api/listing", data)
       .then(() => {
@@ -356,6 +355,7 @@ export default function PostmyDogModal() {
       stepsLength={stepsLength}
       currentStep={step + 1}
       disabled={dogType === "" ? true : false}
+      isLoading={isLoading}
     />
   );
 }
