@@ -118,9 +118,7 @@ export default function RegisterModal() {
       <Button
         label="깃허브로 회원가입"
         bgColor
-        onClick={() => {
-          onSnsRegister("github");
-        }}
+        onClick={() => signIn('github')}
         icon={AiFillGithub}
         textColor
         borderColor
