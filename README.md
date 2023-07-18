@@ -24,14 +24,17 @@
 * react-select
 * react-spinners
 * zod
+* swiper slide
 
 ## ⭐️Project Status
 * React-hook-form 라이브러러리를 이용하여 http 통신
-* 서버사이드 렌더링 Prisma Client를 이용해  클라이언트에서 fetch API 가 아닌 서버와 함께 바로 통신
-* Next Auth 로 SNS Login 구현.
+* 서버사이드 렌더링을 Prisma Client를 이용해  클라이언트에서 fetch API 가 아닌 서버와 함께 바로 통신
+* Next Auth 로 SNS Login 구현. (구글,깃허브,네이버)
 * Query-string 을 이용해 url 파라미터 컨트롤
-* React hot toast로 http 통신 시 succsee , fail(reject) 클라이언트에게 표시
+* React hot toast로 http 통신 시 success , fail(reject) 클라이언트에게 표시
 
+기존 리액트처럼 빈html 에 태그에 데이터를 fetch 해와서 쓰는 방식이 아닌 ,Prisma Client를 통해 데이터베이스와 직접 통신 하기때문에 서버사이드 렌더링을 구현 할 수 있고,
+클라이언트사이드렌더링의 단점인 SEO나 , 초기 로딩속도를 개선 할 수 있음.
 
 Work Flow 사이드프로젝트 하면서 느꼈던 점 밑 방향성 
 ```sh
