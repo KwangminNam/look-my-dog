@@ -71,7 +71,7 @@ export default function Modal({
               transition-transform
               duration-300
             "
-            >
+          >
             {isLoading && <Loading />}
             <header className="py-6 sm:py-9 border-b-2 flex justify-center text-sm md:text-2xl items-center">
               <span>{title}</span>
@@ -101,8 +101,8 @@ export default function Modal({
               {/* FOOTER CONTENT */}
             </form>
             {/* BUTTON */}
-            <div className="sm:px-9 px-6 flex flex-col-reverse sm:flex-row justify-between gap-4 sm:gap-7 pb-4 sm:pb-2">
-              {secondActionLabel && secondActionOnclick && (
+            {secondActionLabel && secondActionOnclick && (
+              <div className="sm:px-9 px-6 flex flex-col-reverse sm:flex-row justify-between gap-4 sm:gap-7 pb-4 sm:pb-2">
                 <Button
                   label={secondActionLabel}
                   onClick={secondActionOnclick}
@@ -111,8 +111,8 @@ export default function Modal({
                   borderColor
                   bgColor
                 />
-              )}
-            </div>
+              </div>
+            )}
             <hr className="sm:hidden" />
             {footerContent && <div className="pb-6 sm:pb-9">{footerContent}</div>}
           </div>

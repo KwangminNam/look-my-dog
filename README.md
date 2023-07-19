@@ -1,6 +1,10 @@
 ##  ⭐️ Project name (프로젝트 명)
   Look My Dog / 룩마독 (2023.05.20 ~ 2023. 7.10)
 
+## Image 및 Icon 출처
+* https://www.flaticon.com/search?word=puppy
+* React Icons
+
 ## ⭐️What skills did I use? (사용 기술)
 * NextJS 13
 * Nextjs Auth

@@ -63,7 +63,7 @@ export const TYPE_OF_DOG = [
   },
   {
     label:"시고르잡종",
-    src: "/images/puppy2/dalmatian"
+    src: "/images/puppy2/mix"
   }
 ];
 
