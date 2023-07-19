@@ -1,12 +1,12 @@
 "use client";
 
 import axios from "axios";
-import Container from "../components/Container";
 import DogListCard from "../components/list/DogListCard";
 import { SafeListing, SafeUser } from "../types";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import PageContainer from "../components/PageContainer";
 
 interface MyPostListClinetProps {
   loggedInUser?: SafeUser | null;
@@ -38,20 +38,7 @@ export default function MyPostListClinet({
   };
 
   return (
-    <Container>
-      <section
-        className="
-          mt-10
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8
-         "
-      >
+      <PageContainer>
         {dogList?.map((item) => (
           <DogListCard
             paramsName="listing"
@@ -65,7 +52,7 @@ export default function MyPostListClinet({
             key={item.id}
           />
         ))}
-      </section>
-    </Container>
+      </PageContainer>
+
   );
 }

@@ -1,16 +1,18 @@
 "use client";
 
+import Container from "../components/Container";
+import PageContainer from "../components/PageContainer";
 import DogListCard from "../components/list/DogListCard";
 import { SafeListing, SafeUser } from "../types";
 
-interface FavoriteClient{
-  favoriteList:SafeListing[];
-  loggedInUser:SafeUser;
+interface FavoriteClient {
+  favoriteList: SafeListing[];
+  loggedInUser: SafeUser;
 }
 
 export default function FavoriteClient({ favoriteList, loggedInUser }: FavoriteClient) {
   return (
-    <>
+    <PageContainer>
       {favoriteList.map((favItem) => (
         <DogListCard
           showLikeButton
@@ -27,6 +29,6 @@ export default function FavoriteClient({ favoriteList, loggedInUser }: FavoriteC
           dogName={favItem.dogName}
         />
       ))}
-    </>
+    </PageContainer>
   );
 }

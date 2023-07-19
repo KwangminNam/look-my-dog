@@ -5,24 +5,25 @@ interface StatusTagProps {
 }
 
 const getStyleLabel = (labelStyle:string) => {
-  if(labelStyle === "반환"){
-    return "bg-red-500";
+  switch (labelStyle) {
+    case "반환":
+      return "bg-red-500";
+    case "입양":
+      return "bg-green-500";
+    case "자연사":
+      return "bg-blue-600 text-white";
+    case "기증":
+      return "bg-yellow-300";
+    case "보호중":
+      return "bg-[#28a649] text-white";
+    default:
+      return "";
   }
-  if(labelStyle === "입양"){
-    return "bg-green-500";
-  }
-  if(labelStyle === "자연사"){
-    return " bg-blue-600 text-white";
-  }
-  if(labelStyle === "기증"){
-    return "bg-yellow-300";
-  }
-  if(labelStyle === "보호중"){
-    return "bg-white";
-  }
-}
+};
+
 
 export default function StatusTag({ label }: StatusTagProps) {
+
   const statusLabel = useMemo(() => {
     switch (true) {
       case label === "종료(반환)":

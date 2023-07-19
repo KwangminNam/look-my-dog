@@ -5,6 +5,8 @@ import Container from "../components/Container";
 import DogListCard from "../components/list/DogListCard";
 import TypeDogs from "../components/TypeDogs";
 import { Metadata, ResolvingMetadata } from "next";
+import PageTitle from "../components/PageTitle";
+import PageContainer from "../components/PageContainer";
 
 interface DogListProps {
   searchParams: IListingParmas;
@@ -37,20 +39,8 @@ export default async function DogList({ searchParams }: DogListProps) {
   return (
     <Container>
       <TypeDogs />
-      <h2 className="text-4xl text-center pb-11">나의 강아지</h2>
-      <div
-        className="
-            pt-20
-            grid-cols-1
-            sm:grid-cols-2
-            grid
-            lg:grid-cols-4
-            xl:grid-cols-5
-            2xl:grid-cols-6
-            md:grid-cols-3
-            gap-8
-            "
-      >
+      <PageTitle title='모든 강아지' />
+      <PageContainer>
         {getDogList?.map((item: any) => (
           <DogListCard
             loggedInUser={getLoggedInuser}
@@ -67,7 +57,7 @@ export default async function DogList({ searchParams }: DogListProps) {
             paramsName="listing"
           />
         ))}
-      </div>
+      </PageContainer>
     </Container>
   );
 }

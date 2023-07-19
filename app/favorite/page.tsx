@@ -2,6 +2,7 @@ import getFavorite from "../actions/getFavorite";
 import getLoggedInUser from "../actions/getLoginedUser";
 import Container from "../components/Container";
 import EmptyState from "../components/EmptyState";
+import PageTitle from "../components/PageTitle";
 import DogListCard from "../components/list/DogListCard";
 import FavoriteClient from "./FavoriteClient";
 
@@ -19,40 +20,8 @@ export default async function Favoirte() {
 
   return (
     <Container>
-      <div
-        className=" 
-        max-w=[2250px]
-        mx-auto
-        xl:px-20
-        md:px-10
-        sm:px-2
-        px-4"
-      >
-        <h2 className="text-4xl text-center pb-11">나의 좋아요 강아지들</h2>
-        <section
-          className="
-            grid-cols-1
-            sm:grid-cols-2
-            grid
-            lg:grid-cols-4
-            xl:grid-cols-5
-            2xl:grid-cols-6
-            md:grid-cols-3">
-          <FavoriteClient favoriteList={favoriteList} loggedInUser={getCurrentUser} />
-        </section>
-      </div>
-
-      {/* {favoriteList.map((item) => (
-          <DogListCard
-            id={item.id}
-            dogType={item.dogType}
-            dogAge={item.dogAge}
-            weight={item.weight}
-            male={item.male}
-            imageSrc={item.imageSrc}
-            paramsName="listing"
-          />
-        ))} */}
+      <PageTitle title="좋아요 누른 강아지"/>
+      <FavoriteClient favoriteList={favoriteList} loggedInUser={getCurrentUser} />
     </Container>
   );
 }

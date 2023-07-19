@@ -1,6 +1,8 @@
 import getLostDogList from "../actions/getLostDogListing";
 import Container from "../components/Container";
 import EmptyState from "../components/EmptyState";
+import PageContainer from "../components/PageContainer";
+import PageTitle from "../components/PageTitle";
 import LostDogClient from "./LostDogClient";
 import { LostDogTypes } from "./type";
 import { Metadata } from "next";
@@ -27,19 +29,10 @@ export default async function LostDog() {
 
   return (
     <Container>
-      <h2 className="text-4xl text-center pb-11">유기견</h2>
-      <section className="
-            pt-20
-            grid-cols-1
-            sm:grid-cols-2
-            grid
-            lg:grid-cols-3
-            xl:grid-cols-4
-            2xl:grid-cols-5
-            md:grid-cols-3
-            gap-8">
+      <PageTitle title='유기견' />
+      <PageContainer>
         <LostDogClient lostGetDogList={getLostDogListing} />
-      </section>
+      </PageContainer>
     </Container>
   );
 }
