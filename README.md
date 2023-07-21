@@ -29,6 +29,7 @@
 * react-spinners
 * zod
 * swiper slide
+* lottie json
 
 ## ⭐️Project Status
 * React-hook-form 라이브러러리를 이용하여 http 통신
