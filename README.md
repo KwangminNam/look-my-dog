@@ -1,5 +1,6 @@
 ##  ⭐️ Project name (프로젝트 명)
-  Look My Dog / 룩마독 (2023.05.20 ~ 2023. 7.10)
+  * Look My Dog / 룩마독 (2023.05.20 ~ 2023. 7.10)
+  * https://lookmydog.vercel.app/
 
 ## Image 및 Icon 출처
 * https://www.flaticon.com/search?word=puppy
