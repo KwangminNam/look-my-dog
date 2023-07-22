@@ -53,7 +53,6 @@ export default function Input({
           peer
           w-full
           p-4
-          pt-6
           font-light
           border-solid
           rounded-md

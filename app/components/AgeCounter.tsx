@@ -61,7 +61,7 @@ export default function AgeCounter({
           <Select
             onChange={(value) => onMonthChange(value)}
             value={monthValue}
-            placeholder="개월 수 선택"
+            placeholder="개월 수"
             options={[
               { month: "1 개월" },
               { month: "2 개월" },

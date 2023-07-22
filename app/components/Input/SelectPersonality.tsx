@@ -14,7 +14,7 @@ export default function SelectPersonality({
   const isSelected = selected.includes(value);
 
   return (
-    <div className="relative">
+    <li className="relative">
       <label
         htmlFor={value}
         className={`
@@ -57,6 +57,6 @@ export default function SelectPersonality({
           translate-y-[-50%]
           "
       />
-    </div>
+    </li>
   );
 }

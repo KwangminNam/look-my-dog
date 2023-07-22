@@ -55,7 +55,7 @@ export default function Modal({
           {/* MODAL */}
           <div
             className="
-              pb-16
+              pb-10
               bg-white
               w-full
               sm:w-[650px]
@@ -73,7 +73,7 @@ export default function Modal({
             "
           >
             {isLoading && <Loading />}
-            <header className="py-6 sm:py-9 border-b-2 flex justify-center text-sm md:text-2xl items-center">
+            <header className="py-4 border-b-2 flex justify-center text-sm md:text-2xl items-center">
               <span>{title}</span>
               <button
                 className="absolute top-4 sm:top-8 right-4 sm:right-9"
@@ -114,7 +114,7 @@ export default function Modal({
               </div>
             )}
             <hr className="sm:hidden" />
-            {footerContent && <div className="pb-6 sm:pb-9">{footerContent}</div>}
+            {footerContent && <div className="pb-3">{footerContent}</div>}
           </div>
         </div>
       </div>

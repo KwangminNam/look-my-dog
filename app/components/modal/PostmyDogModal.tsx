@@ -36,11 +36,14 @@ export type POST_STEPS_TYPE = typeof POST_STEPS[keyof typeof POST_STEPS];
 export const MALE_DATA = [{ male: "남자" }, { male: "여자" }];
 
 export const PERSONALTY_DATA = [
-  { personlityDog: "온순한 편이에요" },
-  { personlityDog: "사나운편이에요." },
-  { personlityDog: "사회성이 좋은편이에요" },
+  { personlityDog: "온순한 편이에요."},
+  { personlityDog: "사나운 편이에요."},
+  { personlityDog: "사회성이 좋은편이에요."},
   { personlityDog: "낯을 많이 가려요." },
-  { personlityDog: "사람을 좋아해요" },
+  { personlityDog: "사람을 좋아해요." },
+  { personlityDog: "상처를 받은적이 있어요."},
+  { personlityDog: "충성심이 강해요."},
+  { personlityDog: "아무나 잘 따르는 편이에요."},
 ];
 
 // const validation: ZodType<any> = z.object({
@@ -134,6 +137,7 @@ export default function PostmyDogModal() {
     if (step !== POST_STEPS.IMAGE) {
       return nextStep();
     }
+    console.log(data);
     setIsLoading(true);
     axios
       .post("/api/listing", data)
@@ -156,9 +160,9 @@ export default function PostmyDogModal() {
   const headerLabel = useMemo(() => {
     switch (step) {
       case POST_STEPS.DOGTYPE:
-        return "강아지 종류 선택해주세요";
+        return "강아지 종류를 선택해주세요";
       case POST_STEPS.INFO:
-        return "강아지에 대해 간단한 정보를 알려주세요";
+        return "강아지 정보를 입력해주세요";
       case POST_STEPS.DESC:
         return "강아지 성격을 알려주세요.";
       case POST_STEPS.IMAGE:
@@ -202,7 +206,7 @@ export default function PostmyDogModal() {
   };
 
   let bodyModal = (
-    <ul className="grid grid-cols-2 gap-4">
+    <ul className="grid grid-cols-2 gap-4 max-h-[480px] overflow-y-scroll p-4">
       {TYPE_OF_DOG.map((item) => (
         <PostDogInput
           label={item.label}
@@ -219,9 +223,9 @@ export default function PostmyDogModal() {
     bodyModal = (
       <>
         <div className="flex justify-center items-center mb-4 gap-3">
-          <div className="text-md md:text-xl">
+          <strong className="text-md md:text-xl">
             나의 강아지 종류는 <span className="text-red-400">{label}</span>
-          </div>
+          </strong>
           {TYPE_OF_DOG.filter((item) => item.label === label).map((item) => (
             <Image
               className="
@@ -308,7 +312,7 @@ export default function PostmyDogModal() {
   if (step === POST_STEPS.DESC) {
     bodyModal = (
       <>
-        <div className="flex flex-col flex-wrap justify-center gap-2 mb-5">
+        <ul className="flex flex-col gap-2 mb-5 max-h-[364px] overflow-y-scroll">
           {PERSONALTY_DATA.map((item) => (
             <SelectPersonality
               selected={personality}
@@ -317,7 +321,7 @@ export default function PostmyDogModal() {
               key={item.personlityDog}
             />
           ))}
-        </div>
+        </ul>
         <Input
           id="desc"
           label="추가 설명해주세요"
@@ -339,7 +343,7 @@ export default function PostmyDogModal() {
   }
 
   const checkBeforeClose = () => {
-    const checking = confirm('창을 닫으시면 정보가 모두 사라집니다.');
+    const checking = confirm('창을 닫으시면 입력하신 정보가 모두 사라집니다.');
     if (checking) postModal.actionClose();
   }
 
