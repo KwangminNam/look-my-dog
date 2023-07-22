@@ -76,7 +76,7 @@ export default function Modal({
             <header className="py-4 border-b-2 flex justify-center text-sm md:text-2xl items-center">
               <span>{title}</span>
               <button
-                className="absolute top-4 sm:top-8 right-4 sm:right-9"
+                className="absolute top-2 md:top-4 right-4 sm:right-9"
                 onClick={closeAction}
               >
                 <IoMdClose size={40} />
