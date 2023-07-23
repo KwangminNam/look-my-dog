@@ -11,7 +11,6 @@ interface AgeCounter {
   renderSelctMonth?: boolean;
   onChange: (age: number) => void;
   onMonthChange: (month: number) => void;
-  onToggle?: () => void;
 }
 
 export default function AgeCounter({
@@ -21,7 +20,6 @@ export default function AgeCounter({
   value,
   showMonth,
   onChange,
-  onToggle
 }: AgeCounter) {
   const increaseAge = () => {
     onChange(value + 1);

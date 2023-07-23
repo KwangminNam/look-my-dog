@@ -29,7 +29,6 @@ export default function SelectPersonality({
         flex-1
         w-full
         block
-
         ${isSelected ? "border-blue-500" : "border-neutral-300"}
       `}
       >

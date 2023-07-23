@@ -50,6 +50,7 @@ export default function MyPostListClinet({
             onAction={onDelete}
             disabled={item.id === deleteId}
             key={item.id}
+            edit
           />
         ))}
       </PageContainer>

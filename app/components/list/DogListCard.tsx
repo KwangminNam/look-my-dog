@@ -27,6 +27,7 @@ export interface DogListCardProps {
   dogList?: Array<any>;
   showLikeButton?: boolean;
   onAction?: (id: string) => void;
+  edit?:boolean;
 }
 
 export default function DogListCard({
@@ -44,6 +45,7 @@ export default function DogListCard({
   paramsName,
   disabled,
   showLikeButton,
+  edit,
   onAction
 }: DogListCardProps) {
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -126,6 +128,9 @@ export default function DogListCard({
           onClick={handleDelete}
           label="게시글 삭제하기"
         />
+      )}
+      {edit && (
+        <Link href={`edit/${id}`}>수정하기</Link>
       )}
     </article>
   );

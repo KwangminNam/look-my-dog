@@ -15,6 +15,7 @@ export interface InputProps {
   requiredField?: boolean;
   focus?: boolean;
   min?: any;
+  defaultValue?:string;
   register: UseFormRegister<FieldValues>;
 }
 
@@ -27,6 +28,7 @@ export default function Input({
   errors,
   requiredField,
   focus,
+  defaultValue,
   min,
   register
 }: InputProps) {
@@ -36,8 +38,6 @@ export default function Input({
   console.log(errors);
 
   console.log(errors?.root?.message)
-
-  
 
   return (
     <div className='w-full relative'>
@@ -49,6 +49,7 @@ export default function Input({
         {...register(id, { required })}
         placeholder=" "
         type={type}
+        defaultValue={defaultValue}
         className={`
           peer
           w-full

@@ -91,7 +91,7 @@ export default function PostmyDogModal() {
   const [showMonthAge, setShowMonthAge] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const onToggle = () => setShowMonthAge((prev) => !prev);
+
 
   const dogType = watch("dogType");
   const dogAge = watch("dogAge");
@@ -298,7 +298,6 @@ export default function PostmyDogModal() {
             <AgeCounter
               value={dogAge}
               showMonth={showMonthAge}
-              onToggle={onToggle}
               monthValue={monthValue}
               onMonthChange={(month) => setCustumValue("dogMonth", month)}
               onChange={(age) => setCustumValue("dogAge", age)}
