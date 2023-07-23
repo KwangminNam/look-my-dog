@@ -130,7 +130,7 @@ export default function DogListCard({
         />
       )}
       {edit && (
-        <Link href={`edit/${id}`}>수정하기</Link>
+        <Link className="rounded-md text-center mt-1 bg-red-300 text-white" href={`edit/${id}`}>수정하기</Link>
       )}
     </article>
   );

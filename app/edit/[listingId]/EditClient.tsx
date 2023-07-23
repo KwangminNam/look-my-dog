@@ -1,6 +1,7 @@
 "use client";
 
 import AgeCounter from "@/app/components/AgeCounter";
+import Button from "@/app/components/Button";
 import Container from "@/app/components/Container";
 import ImageUpload from "@/app/components/ImageUpload";
 import Input from "@/app/components/Input/Input";
@@ -16,7 +17,7 @@ import { SafeListing, SafeUser } from "@/app/types";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { GiFemale, GiMale } from "react-icons/gi";
@@ -35,9 +36,8 @@ export default function EditClient({
   console.log(dogList);
   console.log(allDogList);
 
-  const per = dogList.personality.map((item: any) => item);
-
-  console.log(per);
+  const defaultPersonality = dogList.personality.map((item: any) => item);
+  const [editId, setEditId] = useState("");
 
   const {
     watch,
@@ -53,7 +53,7 @@ export default function EditClient({
       dogAge: dogList.dogAge,
       male: dogList.male,
       imageSrc: dogList.imageSrc,
-      personality: per,
+      personality: defaultPersonality,
       dogMonth: dogList.dogMonth,
       dogName: dogList.dogName,
       weight: dogList.weight,
@@ -114,6 +114,9 @@ export default function EditClient({
       })
       .catch((error) => {
         toast.error(error);
+      })
+      .finally(() => {
+        setEditId("");
       });
   };
   const onFormSubmit = async (data: any) => {
@@ -135,15 +138,6 @@ export default function EditClient({
               value={imageSrc}
               onChange={(value) => setCustumValue("imageSrc", value)}
             />
-            {/* <Image
-              className="rounded-2xl"
-              alt={dogList.desc}
-              src={dogList.imageSrc || "/images/dog-placeholder.png"}
-              width={700}
-              height={200}
-              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-              placeholder="blur"
-            /> */}
           </div>
           <div className="md:w-[750px] m-auto">
             <div className="py-7 md:flex md:flex-row justify-between items-center flex-col">
@@ -162,7 +156,18 @@ export default function EditClient({
               <span>게시글 등록날짜:{formattedDate}</span>
             </div>
             <div className="py-11 border-y-2 border-neutral-200 mb-10">
-              <h2 className="text-4xl flex items-center gap-3">
+              <ul className="grid grid-cols-2 gap-4 max-h-[480px] overflow-y-scroll p-4">
+                {TYPE_OF_DOG.map((item) => (
+                  <PostDogInput
+                    label={item.label}
+                    src={item.src}
+                    selected={dogType === item.label}
+                    onClick={selectDogType}
+                    key={item.label}
+                  />
+                ))}
+              </ul>
+              <div className="text-4xl flex items-center gap-3">
                 {/* <input type="text" defaultValue={dogList.dogName} /> */}
                 <Input
                   id="dogName"
@@ -179,7 +184,8 @@ export default function EditClient({
                   formatWeight
                   min={0}
                 />
-              </h2>
+              </div>
+
               <div className="flex gap-2 md:gap-0 justify-center">
                 {MALE_DATA.map((item) => (
                   <SelectSex
@@ -190,17 +196,6 @@ export default function EditClient({
                   />
                 ))}
               </div>
-              <ul className="grid grid-cols-2 gap-4 max-h-[480px] overflow-y-scroll p-4">
-                {TYPE_OF_DOG.map((item) => (
-                  <PostDogInput
-                    label={item.label}
-                    src={item.src}
-                    selected={dogType === item.label}
-                    onClick={selectDogType}
-                    key={item.label}
-                  />
-                ))}
-              </ul>
               <AgeCounter
                 value={dogAge}
                 showMonth={monthValue}
@@ -231,7 +226,7 @@ export default function EditClient({
                 </ul> */}
               </div>
 
-              <div className="text-2xl text-stone-500">
+              <div className="text-2xl text-stone-500 mb-7">
                 <Input
                   id="desc"
                   register={register}
@@ -239,9 +234,11 @@ export default function EditClient({
                   label="내용"
                 />
               </div>
-              <button type="button" onClick={handleSubmit(onFormSubmit)}>
-                수정
-              </button>
+              <Button
+                onClick={handleSubmit(onFormSubmit)}
+                label="수정하기"
+                disabled={dogList.id === editId}
+              />
             </div>
             {/* Reletated DogType */}
           </div>

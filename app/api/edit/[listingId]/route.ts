@@ -33,8 +33,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
     dogMonth,
     dogName,
     weight,
-    desc, } = 
-    body;
+    desc, } = body;
 
   const listing = await prisma.dogListing.updateMany({
     where: {
