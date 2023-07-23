@@ -257,7 +257,7 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
   const dogName = watch("dogName");
   const weight = watch("dogWeight");
   const [showMonthAge, setShowMonthAge] = useState(false);
-  const onToggle = () => setShowMonthAge((prev) => !prev);
+  
   
   const selectMaleType = (value: string) => {
     setCustumValue("male", value);
@@ -392,7 +392,6 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
               <AgeCounter
                 value={dogAge}
                 showMonth={showMonthAge}
-                onToggle={onToggle}
                 monthValue={monthValue}
                 onMonthChange={(month) => setCustumValue("dogMonth", month)}
                 onChange={(age) => setCustumValue("dogAge", age)}
