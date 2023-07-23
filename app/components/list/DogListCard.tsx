@@ -105,7 +105,7 @@ export default function DogListCard({
           </div>
           <div className="font-semibold text-sm lg:text-lg flex-col md:flex gap-1">
             <p>{dogType}</p>
-            {dogName && <p className="text-neutral-400">이름:{dogName}</p>}
+            {dogName && <p className="text-neutral-400">이름:<span className="text-neutral-600">{dogName}</span></p>}
           </div>
 
           <div className="font-light text-neutral-500 flex items-center">
