@@ -37,12 +37,12 @@ export default async function Home({ searchParams }: HomeProps) {
             grid
             lg:grid-cols-4
             xl:grid-cols-5
-            2xl:grid-cols-6
+            2xl:grid-cols-5
             md:grid-cols-3
             gap-8
             "
           >
-            {getDogList?.slice(0, 8).map((item: any) => (
+            {getDogList?.slice(0, 10).map((item: any) => (
               <DogListCard
                 loggedInUser={getLoggedinuser}
                 id={item.id}
