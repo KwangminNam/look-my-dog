@@ -42,6 +42,9 @@
 기존 리액트처럼 빈html 태그에 데이터를 fetch 해와서 쓰는 방식이 아닌 ,Prisma Client를 통해 데이터베이스와 직접 통신 하기때문에 서버사이드 렌더링을 구현 할 수 있고,
 클라이언트사이드렌더링의 단점인 SEO나 , 초기 로딩속도를 개선 할 수 있음.
 
+## 공공데이터 유기견 API 활용
+ * https://www.data.go.kr/data/15098931/openapi.do
+
 ## Page & Features
   ```sh
   /mypost
@@ -82,11 +85,8 @@
    Validation
  * Sever component , Client component 구분   
  * 동적라우팅 listing/[listingId]
- 서버컴포넌트의 default props로 params의 값을 갖고 올 수있음.
+ * 서버컴포넌트의 default props로 params의 값을 갖고 올 수있음.
 ```
-
-## 공공데이 유기견 API 활용
- * https://www.data.go.kr/data/15098931/openapi.do
 
 
 ## TO DO
