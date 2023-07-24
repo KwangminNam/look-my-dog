@@ -131,18 +131,19 @@ export default function DogListCard({
       )}
       {edit && (
         <Link className="
-        flex
-        items-center
-        justify-center
-        w-full
-        h-12
-        disabled:opacity-40
-        disabled:cursor-not-allowed
-        font-light
-        relative
-        rounded-md
-        text-center
-        mt-1
+          flex
+          items-center
+          justify-center
+          w-full
+          h-12
+          disabled:opacity-40
+          disabled:cursor-not-allowed
+          font-light
+          relative
+          rounded-md
+          text-center
+          mt-1
+          text-2xl
         bg-red-300
         text-white" href={`edit/${id}`}>수정하기</Link>
       )}
