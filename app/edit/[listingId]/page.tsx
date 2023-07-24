@@ -13,7 +13,6 @@ export async function generateMetadata({ params, searchParams }: Props,
 ): Promise<Metadata> {
   // read route params
   const dogList = await getListById(params);
-  console.log(params);
 
   // optionally access and extend (rather than replace) parent metadata
   return {
@@ -29,8 +28,6 @@ export default async function List({ params }: { params: IParams }) {
   const dogList = await getListById(params);
   const allDogList = await getListing(params as any);
   const loggedInUser = await getLoggedInUser();
-
-  console.log(params);
 
   return (
       <EditClient

@@ -18,9 +18,6 @@ export async function generateMetadata({ params, searchParams }: Props,
   const getAllLostDogListing: LostDogTypes[] = await getLostDogList()
   const getDetailLostDog: LostDogTypes | undefined = getAllLostDogListing?.find((item) => item.desertionNo === params.lostId);
 
-  console.log(getAllLostDogListing);
-  console.log(getDetailLostDog);
-
   return {
     title: "룩마독 | 유기견 | " + getDetailLostDog?.kindCd,
   }
@@ -35,8 +32,6 @@ export default async function page({ params }: { params: IParams }) {
   const getAllLostDogListing: LostDogTypes[] = await getLostDogList()
   const getDetailLostDog: LostDogTypes | undefined = getAllLostDogListing.find((item) => item.desertionNo === params.lostId);
 
-  console.log(params.lostId);
-  console.log(getDetailLostDog);
 
   if (!getDetailLostDog) {
     return <EmptyState title="등록된 유기견 강아지가 없습니다."/>

@@ -8,7 +8,7 @@ interface LostDogClientProps {
 }
 
 export default function LostDogClient({ lostGetDogList }: LostDogClientProps) {
-  console.log(lostGetDogList);
+  
   return (
     <>
       {lostGetDogList.map((item) => (

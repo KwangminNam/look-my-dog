@@ -18,8 +18,6 @@ export default function ListingClient({
   loggedInUser,
   allDogList
 }: ListingClientProps) {
-  console.log(dogList);
-  console.log(allDogList);
 
   const maleLabel = useMemo(() => {
     switch (dogList.male) {
@@ -37,7 +35,6 @@ export default function ListingClient({
 
   const date = new Date(dogList.createdAt);
 
-  console.log(dogList)
 
   const year = date.getFullYear();
   const month = date.getMonth() + 1;

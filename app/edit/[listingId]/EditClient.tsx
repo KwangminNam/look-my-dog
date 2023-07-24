@@ -33,9 +33,6 @@ export default function EditClient({
   loggedInUser,
   allDogList
 }: ListingClientProps) {
-  console.log(dogList);
-  console.log(allDogList);
-
   const defaultPersonality = dogList.personality.map((item: any) => item);
   const [editId, setEditId] = useState("");
 
@@ -74,7 +71,6 @@ export default function EditClient({
   const selectPersonalityFn = (value: string) => {
     const newPersonality = [...personality];
     const index = newPersonality.indexOf(value);
-    console.log(index);
     if (index > -1) {
       newPersonality.splice(index, 1);
     } else {

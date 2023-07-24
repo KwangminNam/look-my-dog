@@ -12,10 +12,6 @@ export default async function getListing(params: IListingParmas) {
   try {
 
     const { dogType, dogAge, dogName, male, userId } = params;
-
-    console.log(dogType, dogAge, dogName, male);
-    console.log(userId)
-
     let query: any = {};
 
     if (dogAge) {
@@ -29,8 +25,6 @@ export default async function getListing(params: IListingParmas) {
     if (dogName) query.dogName = decodeURIComponent(dogName);
     if (male) query.male = decodeURIComponent(male);
     if (dogType) query.dogType = decodeURIComponent(dogType);
-
-    console.log(query)
 
     const getDogList = await prisma.dogListing.findMany({
       where: query,

@@ -12,7 +12,7 @@ export default function SearchBar() {
 
   const dogName = params?.get('dogName');
   const dogAge = params?.get('dogAge');
-  const male = params?.get('male');
+  
 
   const nameLabel = useMemo(()=>{
     if(dogName) return decodeURIComponent(dogName);

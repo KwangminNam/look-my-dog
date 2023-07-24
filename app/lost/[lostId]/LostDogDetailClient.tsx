@@ -21,10 +21,6 @@ export default function LostDogDetailClient({
 }: LostDogDetailClientProps) {
   const dogLabel = getDetailLostDog.kindCd.replaceAll("[개]", "");
 
-  console.log(getDetailLostDog);
-  console.log(getAllLostDogListing);
-  console.log(getDetailLostDog.happenDt);
-
   const maleLabel = useMemo(() => {
     switch (getDetailLostDog.sexCd) {
       case "남자":

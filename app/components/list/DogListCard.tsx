@@ -130,7 +130,9 @@ export default function DogListCard({
         />
       )}
       {edit && (
-        <Link className="
+        <Link
+          href={`edit/${id}`}
+          className="
           flex
           items-center
           justify-center
@@ -143,9 +145,13 @@ export default function DogListCard({
           rounded-md
           text-center
           mt-1
-          text-2xl
-        bg-red-300
-        text-white" href={`edit/${id}`}>수정하기</Link>
+          text-lg
+          md:text-2xl
+          bg-[#28a649]
+          text-white"
+          >
+            수정하기
+          </Link>
       )}
     </article>
   );

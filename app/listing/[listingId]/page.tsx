@@ -13,7 +13,7 @@ export async function generateMetadata({ params, searchParams }: Props,
 ): Promise<Metadata> {
   // read route params
   const dogList = await getListById(params);
-  console.log(params);
+  
 
   // optionally access and extend (rather than replace) parent metadata
   return {

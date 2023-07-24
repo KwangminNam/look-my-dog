@@ -448,7 +448,6 @@ export const PostMyDogModal: Story = (args: ModalProps) => {
     if (step !== POST_STEPS.IMAGE) {
       return nextStep();
     }
-    console.log('done!')
   };
 
   return <Modal {...args}

@@ -7,7 +7,6 @@ interface IParams{
 export default async function getListById(params:IParams){
   try{
     const {listingId} = params;
-    console.log(listingId);
     const listItems = await prisma.dogListing.findUnique({
       where:{
         id:listingId

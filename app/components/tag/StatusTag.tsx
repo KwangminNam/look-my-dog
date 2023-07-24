@@ -39,7 +39,6 @@ export default function StatusTag({ label }: StatusTagProps) {
     }
   }, [label]);
 
-  console.log(label);
 
   const customClasses = useMemo(()=>{
     const modeCalss = getStyleLabel(statusLabel);
