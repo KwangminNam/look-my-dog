@@ -26,8 +26,6 @@ export default function SearchModal() {
   const [dogAge, setDogAge] = useState(1);
   const [male, setMale] = useState("남자");
 
-
-
   const onSubmit = () => {
     let currentQuery = {};
     if (params) {
