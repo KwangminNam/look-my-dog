@@ -66,8 +66,6 @@ export default function RegisterModal() {
     }
   });
 
-  console.log(errors);
-
   const onToggleLogin = () => {
     registerModal.actionClose();
     loginModal.actionOpen();
@@ -77,6 +75,13 @@ export default function RegisterModal() {
     signIn(name);
     setIsLoading(true);
   };
+
+  const [inputType , setInputType] = useState('password');
+
+  const onToggleInputType = () => {
+    setInputType(prev => prev === 'password' ? 'text' : 'password');
+  }
+
 
   const registerBodyContent = (
     <div className="flex flex-col gap-5">
@@ -98,7 +103,7 @@ export default function RegisterModal() {
         register={register}
         errors={errors}
         id="password"
-        type="password"
+        type={inputType}
         label="비밀번호"
         required
       />
@@ -106,9 +111,10 @@ export default function RegisterModal() {
         register={register}
         errors={errors}
         id="passwordConfirm"
-        type="password"
+        type={inputType}
         label="비밀번호 확인"
         required
+        passwordButton={onToggleInputType}
       />
     </div>
   );

@@ -31,6 +31,11 @@ export default function LoginModal() {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [inputType , setInputType] = useState('password');
+
+  const onToggleInputType = () => {
+    setInputType(prev => prev === 'password' ? 'text' : 'password');
+  }
 
   const validation: ZodType<ValidationType> = z.object({
     email: z.string().email("이메일 형식에 맞게 입력해주세요."),
@@ -40,19 +45,9 @@ export default function LoginModal() {
       .max(10, "비밀번호는 10글자 이하 여야합니다")
   });
 
-  const setCustumValue = (id: string, value: any) => {
-    setValue(id, value, {
-      shouldDirty: true,
-      shouldValidate: true,
-      shouldTouch: true
-    });
-  };
-
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors }
   } = useForm<FieldValues>({
     resolver: zodResolver(validation),
@@ -120,8 +115,9 @@ export default function LoginModal() {
         label="비밀번호"
         register={register}
         errors={errors}
-        type="password"
+        type={inputType}
         required
+        passwordButton={onToggleInputType}
       />
     </div>
   );

@@ -3,6 +3,7 @@
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import Validation from "../Validation";
 import { GiWeight } from 'react-icons/gi'
+import {AiFillEye , AiOutlineEyeInvisible} from 'react-icons/ai'
 // import { use, useEffect,  } from "react";
 
 export interface InputProps {
@@ -16,6 +17,7 @@ export interface InputProps {
   focus?: boolean;
   min?: any;
   defaultValue?:string;
+  passwordButton?:()=> void;
   register: UseFormRegister<FieldValues>;
 }
 
@@ -30,18 +32,22 @@ export default function Input({
   focus,
   defaultValue,
   min,
+  passwordButton,
   register
 }: InputProps) {
-
-  // const inputRef = useRef<HTMLInputElement>(null);
-
-  console.log(errors);
-
-  console.log(errors?.root?.message)
 
   return (
     <div className='w-full relative'>
       {formatWeight && <GiWeight size={35} className="hidden md:block text-neutral-500 absolute right-40 top-1/2 -translate-y-1/2" />}
+      {passwordButton && 
+        <button
+          type="button"
+          onClick={passwordButton}
+          className="text-neutral-500 absolute right-12 top-1/2 -translate-y-1/2"
+          >
+          {type === 'password' ? <AiFillEye size={35}/> : <AiOutlineEyeInvisible size={35}/>}
+          </button>}
+      {}
       <input
         min={min}
         autoFocus={focus}
