@@ -43,6 +43,13 @@
 클라이언트사이드렌더링의 단점인 SEO나 , 초기 로딩속도를 개선 할 수 있음.
 
 ## Page & Features
+  ```sh
+  /mypost
+  /favorite
+  /listing/[$listingId]
+  /edit/[$listingId]
+  /lost
+  ```
   * CREATE
     좋아요 기능
     게시글 포스트
