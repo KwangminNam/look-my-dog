@@ -17,7 +17,7 @@ export async function generateMetadata({ params, searchParams }: Props,
 
   // optionally access and extend (rather than replace) parent metadata
   return {
-    title: `룩마독 | 상세페이지 | ${dogList?.dogType} | ${dogList?.dogName}`,
+    title: `룩마독 | 수정페이지 | ${dogList?.dogType} | ${dogList?.dogName}`,
   }
 }
 interface IParams {

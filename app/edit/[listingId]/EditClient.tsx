@@ -91,11 +91,6 @@ export default function EditClient({
     setCustumValue("male", value);
   };
 
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  const formattedDate = `${year}년 ${month}월 ${day}일`;
 
   const personality = watch("personality") || [];
   const dogAge = watch("dogAge");
@@ -133,30 +128,18 @@ export default function EditClient({
     <Container>
       <div className="max-w-screen-lg mx-auto">
         <div className="flex-col">
-          <div className="flex justify-center">
+          <div className="flex justify-center m,">
             <ImageUpload
+              editPage
               value={imageSrc}
               onChange={(value) => setCustumValue("imageSrc", value)}
             />
           </div>
+          <p className="text-center">이미지를 수정하시려면 사진을 클릭해주세요!</p>
           <div className="md:w-[750px] m-auto">
-            <div className="py-7 md:flex md:flex-row justify-between items-center flex-col">
-              <div className="flex items-center gap-2">
-                <Image
-                  className="rounded-full"
-                  src={dogList.user?.image || "/images/userPlaceholder.jpg"}
-                  alt="사용자"
-                  width={50}
-                  height={50}
-                  blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-                  placeholder="blur"
-                />
-                <span>{dogList.user.name || dogList.user.email}</span>
-              </div>
-              <span>게시글 등록날짜:{formattedDate}</span>
-            </div>
-            <div className="py-11 border-y-2 border-neutral-200 mb-10">
-              <ul className="grid grid-cols-2 gap-4 max-h-[480px] overflow-y-scroll p-4">
+            <div className="py-11">
+              <h3 className="text-lg md:text-2xl">강아지 종류</h3>
+              <ul className="border-2 border-neutral-200 rounded-lg grid grid-cols-2 gap-4 max-h-[480px] overflow-y-scroll p-4">
                 {TYPE_OF_DOG.map((item) => (
                   <PostDogInput
                     label={item.label}
@@ -167,44 +150,47 @@ export default function EditClient({
                   />
                 ))}
               </ul>
-              <div className="text-4xl flex items-center gap-3">
-                {/* <input type="text" defaultValue={dogList.dogName} /> */}
-                <Input
-                  id="dogName"
-                  register={register}
-                  errors={errors}
-                  label="강아지이름"
-                />
-                <Input
-                  id="weight"
-                  type="number"
-                  register={register}
-                  errors={errors}
-                  label="몸무게"
-                  formatWeight
-                  min={0}
-                />
-              </div>
-
-              <div className="flex gap-2 md:gap-0 justify-center">
-                {MALE_DATA.map((item) => (
-                  <SelectSex
-                    onClick={selectMaleType}
-                    key={item.male}
-                    value={item.male}
-                    selected={male === item.male}
+              <div className="my-14">
+                <h3 className="text-lg md:text-2xl">강아지 정보</h3>
+                <div className="text-4xl flex items-center gap-3">
+                  <Input
+                    id="dogName"
+                    register={register}
+                    errors={errors}
+                    label="강아지이름"
                   />
-                ))}
+                  <Input
+                    id="weight"
+                    type="number"
+                    register={register}
+                    errors={errors}
+                    label="몸무게"
+                    formatWeight
+                    min={0}
+                  />
+                </div>
+                <div className="flex flex-col md:flex-row justify-between mt-7 items-center gap-4">
+                  <div className="flex gap-2 md:gap-0 justify-center">
+                    {MALE_DATA.map((item) => (
+                      <SelectSex
+                        onClick={selectMaleType}
+                        key={item.male}
+                        value={item.male}
+                        selected={male === item.male}
+                      />
+                    ))}
+                  </div>
+                  <AgeCounter
+                      value={dogAge}
+                      showMonth={monthValue}
+                      onMonthChange={(month) => setCustumValue("dogMonth", month)}
+                      onChange={(age) => setCustumValue("dogAge", age)}
+                    />
+                </div>
               </div>
-              <AgeCounter
-                value={dogAge}
-                showMonth={monthValue}
-                onMonthChange={(month) => setCustumValue("dogMonth", month)}
-                onChange={(age) => setCustumValue("dogAge", age)}
-              />
-              <div className="my-10">
-                <h3 className="text-xl">성격</h3>
-                <ul className="flex flex-col gap-2 mb-5 max-h-[364px] overflow-y-scroll">
+              <div className="my-14">
+                <h3 className="text-lg md:text-2xl">성격</h3>
+                <ul className="border-2 border-neutral-200 p-4 rounded-lg flex flex-col gap-2 mb-5 max-h-[364px] overflow-y-scroll">
                   {PERSONALTY_DATA.map((item) => (
                     <SelectPersonality
                       selected={personality}
@@ -214,16 +200,6 @@ export default function EditClient({
                     />
                   ))}
                 </ul>
-                {/* <ul className="mt-3 mb-8 md:flex gap-2">
-                  {dogList.personality.map((item: any) => (
-                    <li
-                      key={item}
-                      className="w-full mb-2 text-center rounded-xl py-3 border-2 border-neutral-300"
-                    >
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul> */}
               </div>
 
               <div className="text-2xl text-stone-500 mb-7">

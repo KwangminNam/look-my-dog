@@ -11,9 +11,10 @@ declare global {
 interface ImageUploadProps {
   onChange: (value: string) => void;
   value: string;
+  editPage?: boolean;
 }
 
-export default function ImageUpload({ onChange, value }: ImageUploadProps) {
+export default function ImageUpload({ onChange, value, editPage }: ImageUploadProps) {
   const handleUpload = useCallback(
     (result: any) => {
       onChange(result.info.secure_url);
@@ -33,22 +34,25 @@ export default function ImageUpload({ onChange, value }: ImageUploadProps) {
         return (
           <div
             onClick={() => open?.()}
-            className="
-              relative
-              cursor-pointer
-              hover:opacity-70
-              border-dashed
-              border-2
-              p-20
-              border-neutral-300
-              flex
-              flex-col
-              justify-center
-              items-center
-              gap-4 text-neutral-600"
+            className={`
+            relative
+            cursor-pointer
+            hover:opacity-70
+            border-dashed
+            border-2
+            p-20
+            border-neutral-300
+            flex
+            flex-col
+            justify-center
+            items-center
+            gap-4 text-neutral-600
+            ${editPage ? 'w-full md:w-[1200px]' : null}
+            ${editPage ? 'h-[250px] md:h-[550px]' : null}
+            `}
           >
             <TbPhotoPlus size={50} />
-            <p className='text-center'>강아지 사진을 등록해주세요!<br/>클릭!</p>
+            <p className='text-center'>강아지 사진을 등록해주세요!<br />클릭!</p>
             {value && (
               <Image
                 src={value}
