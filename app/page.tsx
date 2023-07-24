@@ -17,6 +17,7 @@ export default async function Home({ searchParams }: HomeProps) {
   // const getLostDogListt = await getLostDogList();
   const emptyList = getDogList?.length === 0;
 
+  console.log("WELCOME TO LOOK MY DOG!");
 
   if (emptyList) {
     return <EmptyState loggedInUser={getLoggedinuser} title="등록된 리스트가 없습니다." showButton />;
