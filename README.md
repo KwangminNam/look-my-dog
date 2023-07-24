@@ -32,7 +32,7 @@
 * swiper slide
 * lottie json
 
-## Project Status
+## Work Flow
 * React-hook-form 라이브러러리를 이용하여 http 통신
 * 서버사이드 렌더링을 Prisma Client를 이용해  클라이언트에서 fetch API 가 아닌 서버와 함께 바로 통신
 * Next Auth 로 SNS Login 구현. (구글,깃허브,네이버)
@@ -42,7 +42,20 @@
 기존 리액트처럼 빈html 태그에 데이터를 fetch 해와서 쓰는 방식이 아닌 ,Prisma Client를 통해 데이터베이스와 직접 통신 하기때문에 서버사이드 렌더링을 구현 할 수 있고,
 클라이언트사이드렌더링의 단점인 SEO나 , 초기 로딩속도를 개선 할 수 있음.
 
-Work Flow
+## Page & Features
+  * CREATE
+    좋아요 기능
+    게시글 포스트
+  * READ
+    유저 본인이 등록한 게시글 /mypost
+    유저가 좋아요 버튼을 누른 게시글 /favorite
+    유기견 강아지 보기 /lost
+  * DELETE
+    유저 본인이 등록한 게시글 /mypost -> DELETE
+    유저 본인이 "좋아요" 게시글 -> 좋아요 취소 -> DELETE
+  * UPDATE (edit)
+    유저 본인이 등록한 게시글 수정 /mypost -> UPDATE
+
 ```sh
 * 폴더구조 
  * action:
@@ -63,6 +76,11 @@ Work Flow
 
 ## 공공데이 유기견 API 활용
  * https://www.data.go.kr/data/15098931/openapi.do
+
+
+## TO DO
+ * 강아지 사진 업로드 2장 이상
+ * 댓글기능
 
 
 
