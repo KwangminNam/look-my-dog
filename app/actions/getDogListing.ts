@@ -9,7 +9,7 @@ export interface IListingParmas {
   male?: string;
 }
 
-export default async function getListing(params: IListingParmas):Promise<AllDoglistProps[] | undefined> {
+export default async function getListing(params: IListingParmas) {
   try {
 
     const { dogType, dogAge, dogName, male, userId } = params;
