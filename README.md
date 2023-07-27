@@ -47,6 +47,8 @@
 
 ## Page & Features
   ```sh
+ ex: page.tsx -> ListClient.tsx . 서버컴포넌트에서 서버아사이드렌더링 후 클라이언트 컴포넌트로 데이터 props로 전달
+
   /mypost
   /favorite
   /listing/[$listingId]
@@ -66,13 +68,59 @@
   * UPDATE (edit)
     유저 본인이 등록한 게시글 수정 /mypost -> UPDATE
 
-```sh
-* 폴더구조 
+```sh 
  * action:
    1.서버사이드 렌더링을 하기위한 폴더 Prisma Client로 서버와 다이렉트로 통신하여 데이터를 갖고옴 
    2.데이터를 렌더링 할 page파일에 action에 선언 해놓은 데이터 요청을 갖고와서 하위 컴포넌트(클라이언트 컴포넌트)로 전달
     서버사이드렌더링과 클라이언트사이드 (hydrate)렌더링을 시킴.
- ex:page.tsx -> ListClient.tsx . 서버컴포넌트에서 서버아사이드렌더링 후 클라이언트 컴포넌트로 데이터 props로 전달
+
+   * getDoglisting
+    - qs 라이브러리를 이용하여 url 파라미터에 아무런 값이 없으면 전체 리스트 반환 , query에 파라미터가 담겨있다면 값이 일치한 리스트 렌더링
+    Prisma query:findMany({query})
+    const getDogList = await prisma.dogListing.findMany({
+      where: query,
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
+
+
+   * getListBtId
+    -서버 컴포넌트의 parmas값을 인자로 넣어서 한개의 리스트 렌더링
+    Prisma query: findUnique()
+     where:{
+      id:listingId
+      },
+      include:{
+        user:true,
+      }
+
+   * getFavoite
+    -user의 값을 갖고와서 favoriteIds가 존재한다하면 favoriteIds의 리스트 렌더링
+    Prisma query: findMany()
+      where: {
+        id: {
+          in: [
+            ...(currentUser.favoriteIds || [])
+          ]
+        }
+      }
+
+
+   * getLoggedInUser
+    -getSession() 으로 user.email 값 담겨있는지 체크
+    Prisma query: findUnique()
+     where: {
+        email: session.user.email as string
+      }
+
+
+   * getLostDogListing
+    -외부 공공데이터 API HTTP GET호출
+    axios.get(process.env.LOST_DOG_API_URL)
+   
+
+
  * API:
   http api 들을 선언해놓음. 여기서 또한 prisma client를 이용해서 Resopnse를 제공해줌.
   -* auth:
