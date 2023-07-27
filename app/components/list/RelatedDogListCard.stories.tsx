@@ -14,28 +14,120 @@ type Story = StoryObj<typeof RelatedDogListCard>
 
 const getAllLostDogListing = [
   // mock data for testing
-  { id: 1, dogName: "Dog 1", sexCd: "M", filename: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjx-by4e5r6kDq59HyeRElGTd00oMFr-duASxN8UKnsQ&s", desertionNo: 123 },
-  { id: 2, dogName: "Dog 2", sexCd: "F", filename: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjx-by4e5r6kDq59HyeRElGTd00oMFr-duASxN8UKnsQ&s", desertionNo: 123},
-  { id: 3, dogName: "Dog 3", sexCd: "M", filename: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjx-by4e5r6kDq59HyeRElGTd00oMFr-duASxN8UKnsQ&s", desertionNo: 789 },
-  { id: 4, dogName: "Dog 4", sexCd: "F", filename: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjx-by4e5r6kDq59HyeRElGTd00oMFr-duASxN8UKnsQ&s", desertionNo: 101 },
+  {
+    desertionNo: '446484202300395',
+    filename: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552_s.jpg',
+    happenDt: '20230727',
+    happenPlace: '광양읍 칠성리950-5 주변',
+    kindCd: '[개] 믹스견',
+    colorCd: '검정+흰색',
+    age: '2023(60일미만)(년생)',
+    weight: '1(Kg)',
+    noticeNo: '전남-광양-2023-00301',
+    noticeSdt: '20230727',
+    noticeEdt: '20230807',
+    popfile: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552.jpg',
+    processState: '보호중',
+    sexCd: 'M',
+    neuterYn: 'N',
+    specialMark: '믹스 검정+흰색 수컷 2개월추정(피부병있음)',
+    careNm: '광양시 임시보호소',
+    careTel: '061-797-3386',
+    careAddr: '전라남도 광양시 봉강면 인덕로 1169-20 (봉강면) 지곡리 864-24',
+    orgNm: '전라남도 광양시',
+    chargeNm: '광양시',
+    officetel: '061-797-3386'
+  },
+  {
+    desertionNo: '446484202300395',
+    filename: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552_s.jpg',
+    happenDt: '20230727',
+    happenPlace: '광양읍 칠성리950-5 주변',
+    kindCd: '[개] 믹스견',
+    colorCd: '검정+흰색',
+    age: '2023(60일미만)(년생)',
+    weight: '1(Kg)',
+    noticeNo: '전남-광양-2023-00301',
+    noticeSdt: '20230727',
+    noticeEdt: '20230807',
+    popfile: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552.jpg',
+    processState: '보호중',
+    sexCd: 'M',
+    neuterYn: 'N',
+    specialMark: '믹스 검정+흰색 수컷 2개월추정(피부병있음)',
+    careNm: '광양시 임시보호소',
+    careTel: '061-797-3386',
+    careAddr: '전라남도 광양시 봉강면 인덕로 1169-20 (봉강면) 지곡리 864-24',
+    orgNm: '전라남도 광양시',
+    chargeNm: '광양시',
+    officetel: '061-797-3386'
+  },
+  {
+    desertionNo: '446484202300395',
+    filename: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552_s.jpg',
+    happenDt: '20230727',
+    happenPlace: '광양읍 칠성리950-5 주변',
+    kindCd: '[개] 믹스견',
+    colorCd: '검정+흰색',
+    age: '2023(60일미만)(년생)',
+    weight: '1(Kg)',
+    noticeNo: '전남-광양-2023-00301',
+    noticeSdt: '20230727',
+    noticeEdt: '20230807',
+    popfile: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552.jpg',
+    processState: '보호중',
+    sexCd: 'M',
+    neuterYn: 'N',
+    specialMark: '믹스 검정+흰색 수컷 2개월추정(피부병있음)',
+    careNm: '광양시 임시보호소',
+    careTel: '061-797-3386',
+    careAddr: '전라남도 광양시 봉강면 인덕로 1169-20 (봉강면) 지곡리 864-24',
+    orgNm: '전라남도 광양시',
+    chargeNm: '광양시',
+    officetel: '061-797-3386'
+  },
+  {
+    desertionNo: '446484202300395',
+    filename: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552_s.jpg',
+    happenDt: '20230727',
+    happenPlace: '광양읍 칠성리950-5 주변',
+    kindCd: '[개] 믹스견',
+    colorCd: '검정+흰색',
+    age: '2023(60일미만)(년생)',
+    weight: '1(Kg)',
+    noticeNo: '전남-광양-2023-00301',
+    noticeSdt: '20230727',
+    noticeEdt: '20230807',
+    popfile: 'http://www.animal.go.kr/files/shelter/2023/07/202307270907552.jpg',
+    processState: '보호중',
+    sexCd: 'M',
+    neuterYn: 'N',
+    specialMark: '믹스 검정+흰색 수컷 2개월추정(피부병있음)',
+    careNm: '광양시 임시보호소',
+    careTel: '061-797-3386',
+    careAddr: '전라남도 광양시 봉강면 인덕로 1169-20 (봉강면) 지곡리 864-24',
+    orgNm: '전라남도 광양시',
+    chargeNm: '광양시',
+    officetel: '061-797-3386'
+  },
 ];
 
 const getDogListing = { id: 1, dogType: "Type 1" };
 
 
-export const RelatedDogList: Story = (args:RelatedDogListCardProps) => {
+export const RelatedDogList: Story = (args: RelatedDogListCardProps) => {
   return (
     <Container>
-      <RelatedDogListCard {...args}/>
+      <RelatedDogListCard {...args} />
     </Container>
   )
 }
 
-RelatedDogList.args ={
-  title:'다른 유기견 보기',
+RelatedDogList.args = {
+  title: '다른 유기견 보기',
   dogLabel: '테스트',
-  getAllLostDogListing:getAllLostDogListing,
-  getDogListing:getDogListing,
+  getAlLostDogListing: getAllLostDogListing,
+  getDogListing: getDogListing,
 }
 
 RelatedDogList.parameters = {
