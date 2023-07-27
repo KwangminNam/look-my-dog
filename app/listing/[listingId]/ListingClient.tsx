@@ -7,10 +7,11 @@ import Image from "next/image";
 import { useMemo } from "react";
 import { GiFemale, GiMale } from "react-icons/gi";
 
+// TODO: Replace any type 
 interface ListingClientProps {
-  dogList: (SafeListing & { user: SafeUser });
+  dogList: (SafeListing & { user: SafeUser }) | any;
   loggedInUser: SafeUser | null;
-  allDogList: SafeListing[];
+  allDogList: SafeListing[] | any;
 }
 
 export default function ListingClient({
