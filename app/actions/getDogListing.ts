@@ -1,14 +1,15 @@
 import prisma from '@/app/libs/prismadb';
+import { AllDoglistProps } from '../doglist/page';
 
 export interface IListingParmas {
   userId?: string;
-  dogAge?: string | number;
+  dogAge?: number;
   dogName?: string;
   dogType?: string;
   male?: string;
 }
 
-export default async function getListing(params: IListingParmas) {
+export default async function getListing(params: IListingParmas):Promise<AllDoglistProps[] | undefined> {
   try {
 
     const { dogType, dogAge, dogName, male, userId } = params;

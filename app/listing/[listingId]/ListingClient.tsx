@@ -8,9 +8,9 @@ import { useMemo } from "react";
 import { GiFemale, GiMale } from "react-icons/gi";
 
 interface ListingClientProps {
-  dogList: (SafeListing & { user: SafeUser }) | any;
+  dogList: (SafeListing & { user: SafeUser });
   loggedInUser: SafeUser | null;
-  allDogList: SafeListing | any;
+  allDogList: SafeListing[];
 }
 
 export default function ListingClient({
@@ -103,7 +103,7 @@ export default function ListingClient({
             </div>
             {/* Reletated DogType */}
             <RelatedDogListCard
-              getAllLostDogListing={allDogList}
+              getAllDogListing={allDogList}
               title={`다른 ${dogList.dogType} 보기`}
               getDogListing={dogList}
             />

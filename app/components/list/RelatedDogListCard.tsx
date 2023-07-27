@@ -6,56 +6,60 @@ import { SafeListing } from "@/app/types";
 import EmptyRelatedList from "./EmptyRelatedList";
 
 export interface RelatedDogListCardProps {
-  getAllLostDogListing?: LostDogTypes[] | SafeListing | any;
+  getAllDogListing?: SafeListing[] ;
+  getAlLostDogListing?:LostDogTypes[];
   getDogListing?: any;
   dogLabel?: string;
   title: string;
 }
 
 export default function RelatedDogListCard({
-  getAllLostDogListing,
+  getAllDogListing,
   getDogListing,
   dogLabel,
+  getAlLostDogListing,
   title
 }: RelatedDogListCardProps) {
 
+  console.log(getAllDogListing);
+  console.log(getDogListing);
+
   const renderRelatedListByTitle = () => {
     if (title === "다른 유기견 보기") {
-      const filteredList = getAllLostDogListing
-        ?.filter((item: any) => item.kindCd === getDogListing.kindCd && item.desertionNo !== getDogListing.desertionNo)
+      const filteredList = getAlLostDogListing
+        ?.filter((item) => item.kindCd === getDogListing.kindCd && item.desertionNo !== getDogListing.desertionNo)
         .splice(0, 4);
   
-      if (filteredList.length === 0) {
+      if (filteredList?.length === 0) {
         return <EmptyRelatedList title="🐶 같은 종의 유기견이 없습니다."/>
       }
   
       return (
         <>
-          {filteredList.map((item: any) => (
+          {filteredList?.map((item) => (
             <DogListCard
               dogType={dogLabel as any}
-              dogName={item.dogName}
               male={item.sexCd}
               imageSrc={item.popfile}
-              id={item.id}
+              id={item.desertionNo}
               paramsName="lost"
-              key={item.id}
+              key={item.desertionNo}
             />
           ))}
         </>
       );
     } else {
-      const filteredList = getAllLostDogListing
+      const filteredList = getAllDogListing
         ?.filter((item: any) => item.dogType === getDogListing.dogType && item.id !== getDogListing.id)
         .splice(0, 4);
   
-      if (filteredList.length === 0) {
+      if (filteredList?.length === 0) {
         return <EmptyRelatedList title="🐶 같은 종이 없습니다."/>
       }
   
       return (
         <>
-          {filteredList.map((item: any) => (
+          {filteredList?.map((item: any) => (
             <DogListCard
               dogType={item.dogType}
               dogName={item.dogName}

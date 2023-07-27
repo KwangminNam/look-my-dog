@@ -90,7 +90,7 @@ export default function LostDogDetailClient({
               여기서 현재 보고있는 게시물은 리스트에 포함이 안되기 때문에 allDogList.id 와 dogList.id 를 필터 처리 해줌.
             */}
             <RelatedDogListCard
-              getAllLostDogListing={getAllLostDogListing}
+              getAlLostDogListing={getAllLostDogListing}
               getDogListing={getDetailLostDog}
               dogLabel={dogLabel}
               title="다른 유기견 보기"

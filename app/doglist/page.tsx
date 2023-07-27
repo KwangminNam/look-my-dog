@@ -4,12 +4,27 @@ import EmptyState from "../components/EmptyState";
 import Container from "../components/Container";
 import DogListCard from "../components/list/DogListCard";
 import TypeDogs from "../components/TypeDogs";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import PageTitle from "../components/PageTitle";
 import PageContainer from "../components/PageContainer";
 
 interface DogListProps {
   searchParams: IListingParmas;
+}
+
+export interface AllDoglistProps {
+  id: string;
+  desc: string;
+  imageSrc:  string;
+  createdAt: string;
+  dogType: string;
+  dogAge: number;
+  dogName: string;
+  weight: number;
+  dogMonth?: string | null;
+  male: string
+  personality: string[]
+  userId?: string
 }
 
 
@@ -20,10 +35,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+
 export default async function DogList({ searchParams }: DogListProps) {
   const getLoggedInuser = await getLoggedInUser();
-  const getDogList = await getListing(searchParams);
+  const getDogList:AllDoglistProps[] | undefined = await getListing(searchParams);
   const emptyList = getDogList?.length === 0;
+  
 
   if (emptyList) {
     return (
@@ -41,7 +58,7 @@ export default async function DogList({ searchParams }: DogListProps) {
       <TypeDogs />
       <PageTitle title='모든 강아지' />
       <PageContainer>
-        {getDogList?.map((item: any) => (
+        {getDogList?.map((item) => (
           <DogListCard
             loggedInUser={getLoggedInuser}
             id={item.id}

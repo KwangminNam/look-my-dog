@@ -17,7 +17,7 @@ export interface DogListCardProps {
   dogAge?: number;
   dogName?: string;
   weight?: number;
-  dogMonth?: string;
+  dogMonth?: string | null;
   male: string;
   personality?: string[];
   loggedInUser?: SafeUser | null;

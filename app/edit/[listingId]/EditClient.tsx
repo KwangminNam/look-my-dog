@@ -15,23 +15,19 @@ import {
 } from "@/app/components/modal/PostmyDogModal";
 import { SafeListing, SafeUser } from "@/app/types";
 import axios from "axios";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { GiFemale, GiMale } from "react-icons/gi";
+
 
 interface ListingClientProps {
   dogList: (SafeListing & { user: SafeUser }) | any;
   loggedInUser: SafeUser | null;
-  allDogList: SafeListing | any;
 }
 
 export default function EditClient({
   dogList,
-  loggedInUser,
-  allDogList
 }: ListingClientProps) {
   const defaultPersonality = dogList.personality.map((item: any) => item);
   const [editId, setEditId] = useState("");
@@ -40,7 +36,6 @@ export default function EditClient({
     watch,
     setValue,
     register,
-    reset,
     handleSubmit,
     formState: { errors }
   } = useForm<FieldValues>({
@@ -57,8 +52,6 @@ export default function EditClient({
       desc: dogList.desc
     }
   });
-
-  const date = new Date(dogList.createdAt);
 
   const setCustumValue = (id: string, value: any) => {
     setValue(id, value, {

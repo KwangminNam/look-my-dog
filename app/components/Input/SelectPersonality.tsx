@@ -1,17 +1,17 @@
 "use client";
 
-interface SelectPersonality {
-  onClick: any;
-  selected?: any;
-  value: any;
+interface SelectPersonalityProps {
+  onClick: (value:string) => void;
+  selected?: string[];
+  value: string;
 }
 
 export default function SelectPersonality({
   onClick,
   selected,
   value
-}: SelectPersonality) {
-  const isSelected = selected.includes(value);
+}: SelectPersonalityProps) {
+  const isSelected = selected?.includes(value);
 
   return (
     <li className="relative">

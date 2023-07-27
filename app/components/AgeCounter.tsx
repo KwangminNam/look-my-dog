@@ -6,7 +6,7 @@ import { LuDog } from "react-icons/lu";
 
 interface AgeCounter {
   value: number;
-  monthValue?: any;
+  monthValue?: string;
   showMonth?: boolean;
   renderSelctMonth?: boolean;
   onChange: (age: number) => void;

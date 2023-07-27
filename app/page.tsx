@@ -6,18 +6,17 @@ import getLoggedInUser from "./actions/getLoginedUser";
 import Container from "./components/Container";
 import HeroBox from "./components/HeroBox";
 import Link from "next/link";
+import { AllDoglistProps } from "./doglist/page";
 
 interface HomeProps {
   searchParams: IListingParmas;
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-  const getDogList = await getListing(searchParams);
+  const getDogList:AllDoglistProps[] | undefined = await getListing(searchParams);
   const getLoggedinuser = await getLoggedInUser();
   // const getLostDogListt = await getLostDogList();
   const emptyList = getDogList?.length === 0;
-
-  console.log("WELCOME TO LOOK MY DOG!");
 
   if (emptyList) {
     return <EmptyState loggedInUser={getLoggedinuser} title="등록된 리스트가 없습니다." showButton />;
@@ -42,7 +41,7 @@ export default async function Home({ searchParams }: HomeProps) {
             gap-8
             "
           >
-            {getDogList?.slice(0, 10).map((item: any) => (
+            {getDogList?.slice(0, 10).map((item) => (
               <DogListCard
                 loggedInUser={getLoggedinuser}
                 id={item.id}

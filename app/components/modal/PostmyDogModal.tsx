@@ -102,6 +102,9 @@ export default function PostmyDogModal() {
   const weight = watch("dogWeight");
   const personality = watch("personality") || [];
 
+
+  console.log(monthValue);
+
   useEffect(() => {
     if (postModal.isOpen === false) {
       setStep(POST_STEPS.DOGTYPE);
