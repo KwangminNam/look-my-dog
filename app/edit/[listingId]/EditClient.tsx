@@ -36,13 +36,11 @@ export default function EditClient({
   dogList,
 }: ListingClientProps) {
 
+  
+  const safeDogList = dogList ?? {} as DogListingWithModifiedProps;
+
   const [editId, setEditId] = useState("");
-
-  if(!dogList){
-    return <EmptyState  title='상세 페이지가 존재 하지않습니다.'/>
-  }
-
-  const defaultPersonality = dogList.personality.map((item: any) => item);
+  const defaultPersonality = safeDogList.personality.map((item: any) => item);
 
   const {
     watch,
@@ -53,15 +51,15 @@ export default function EditClient({
   } = useForm<FieldValues>({
     // resolver: zodResolver(validation),
     defaultValues: {
-      dogType: dogList.dogType,
-      dogAge: dogList.dogAge,
-      male: dogList.male,
-      imageSrc: dogList.imageSrc,
+      dogType: safeDogList.dogType,
+      dogAge: safeDogList.dogAge,
+      male: safeDogList.male,
+      imageSrc: safeDogList.imageSrc,
       personality: defaultPersonality,
-      dogMonth: dogList.dogMonth,
-      dogName: dogList.dogName,
-      weight: dogList.weight,
-      desc: dogList.desc
+      dogMonth: safeDogList.dogMonth,
+      dogName: safeDogList.dogName,
+      weight: safeDogList.weight,
+      desc: safeDogList.desc
     }
   });
   const personality = watch("personality") || [];
@@ -73,7 +71,7 @@ export default function EditClient({
   const router = useRouter();
 
   console.log(monthValue);
-  console.log(dogList.dogMonth)
+  console.log(safeDogList.dogMonth)
 
   const setCustumValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -119,9 +117,9 @@ export default function EditClient({
   };
   const onFormSubmit = async (data: any) => {
     try {
-      onEdit(data, dogList.id);
+      onEdit(data, dogList?.id);
       toast.success("수정이 완료 되었습니다!");
-      router.push(`/listing/${dogList.id}`);
+      router.push(`/listing/${dogList?.id}`);
     } catch (error: any) {
       toast.error(error);
     }
@@ -216,7 +214,7 @@ export default function EditClient({
               <Button
                 onClick={handleSubmit(onFormSubmit)}
                 label="수정하기"
-                disabled={dogList.id === editId}
+                disabled={dogList?.id === editId}
               />
             </div>
             {/* Reletated DogType */}
