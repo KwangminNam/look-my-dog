@@ -24,9 +24,6 @@ export default function RelatedDogListCard({
   title
 }: RelatedDogListCardProps) {
 
-  console.log(getAlLostDogListing);
-  console.log(getLostDogListing);
-
   const renderRelatedListByTitle = () => {
     if (title === "다른 유기견 보기") {
       const filteredList = getAlLostDogListing

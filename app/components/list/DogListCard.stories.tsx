@@ -9,13 +9,10 @@ const meta: Meta<typeof DogListCard> = {
 };
 
 export default meta;
+type DeleteType = DogListCardProps
 type Story = StoryObj<typeof DogListCard>;
 
-// interface DogListStoryProps extends DogListCardProps {
-//   dogList: DogListCardProps[];
-// }
-
-export const Doglist: Story = (args: DogListCardProps) => (
+export const Doglist: Story = (args: DogListCardProps[]) => (
   <Container>
     <h2 className="text-center text-3xl">TITLE</h2>
     <div
@@ -30,15 +27,16 @@ export const Doglist: Story = (args: DogListCardProps) => (
       md:grid-cols-3
       gap-8"
     >
-      {args.dogList?.map((item: DogListCardProps) => (
+      {args?.map((item: DogListCardProps) => (
         <DogListCard key={item.id} {...item} />
       ))}
     </div>
   </Container>
 );
 
-Doglist.args = {
-  dogList: [
+
+Doglist.args = 
+ [
     {
       id: 1,
       imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjx-by4e5r6kDq59HyeRElGTd00oMFr-duASxN8UKnsQ&s",
@@ -134,7 +132,7 @@ Doglist.args = {
     },
     // Add more objects here
   ] as any,
-};
+
 
 Doglist.parameters = {
   nextjs: {

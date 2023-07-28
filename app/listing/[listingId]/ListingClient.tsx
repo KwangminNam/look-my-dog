@@ -19,12 +19,8 @@ export default function ListingClient({
   allDogList
 }: ListingClientProps) {
 
-  if(!dogList){
-    return <EmptyState title='등록된 강아지가없습니다!'/>
-  }
-
   const maleLabel = useMemo(() => {
-    switch (dogList.male) {
+    switch (dogList?.male) {
       case "남자":
       case "M":
         return <GiMale color="blue" />;
@@ -33,11 +29,15 @@ export default function ListingClient({
       case "F":
         return <GiFemale color="red" />;
       default:
-        return dogList.male;
+        return dogList?.male;
     }
-  }, [dogList.male]);
+  }, [dogList?.male]);
 
-  const date = new Date(dogList.createdAt);
+  const date = new Date(dogList?.createdAt || '등록된 날짜가 유효하지 않습니다.');
+
+  if(!dogList){
+    return <EmptyState title='등록된 강아지가없습니다!'/>
+  }
 
 
   const year = date.getFullYear();
