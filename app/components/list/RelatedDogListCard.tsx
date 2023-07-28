@@ -4,30 +4,33 @@ import { LostDogTypes } from "@/app/lost/type";
 import DogListCard from "./DogListCard";
 import { SafeListing } from "@/app/types";
 import EmptyRelatedList from "./EmptyRelatedList";
+import Validation from "../Validation";
 
 export interface RelatedDogListCardProps {
   getAllDogListing?: SafeListing[] ;
   getAlLostDogListing?:LostDogTypes[];
-  getDogListing?: any;
+  getDogListing?: SafeListing;
   dogLabel?: string;
   title: string;
+  getLostDogListing?:LostDogTypes;
 }
 
 export default function RelatedDogListCard({
   getAllDogListing,
+  getLostDogListing,
   getDogListing,
   dogLabel,
   getAlLostDogListing,
   title
 }: RelatedDogListCardProps) {
 
-  console.log(getAllDogListing);
-  console.log(getDogListing);
+  console.log(getAlLostDogListing);
+  console.log(getLostDogListing);
 
   const renderRelatedListByTitle = () => {
     if (title === "다른 유기견 보기") {
       const filteredList = getAlLostDogListing
-        ?.filter((item) => item.kindCd === getDogListing.kindCd && item.desertionNo !== getDogListing.desertionNo)
+        ?.filter((item) => item.kindCd === getLostDogListing?.kindCd && item.desertionNo !== getLostDogListing.desertionNo)
         .splice(0, 4);
   
       if (filteredList?.length === 0) {
@@ -50,7 +53,7 @@ export default function RelatedDogListCard({
       );
     } else {
       const filteredList = getAllDogListing
-        ?.filter((item: any) => item.dogType === getDogListing.dogType && item.id !== getDogListing.id)
+        ?.filter((item) => item.dogType === getDogListing?.dogType && item.id !== getDogListing?.id)
         .splice(0, 4);
   
       if (filteredList?.length === 0) {

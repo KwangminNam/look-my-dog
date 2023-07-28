@@ -10,7 +10,7 @@ import StatusTag from "../tag/StatusTag";
 import Button from "../Button";
 
 export interface DogListCardProps {
-  id?: any;
+  id: string;
   desc?: string;
   imageSrc: string;
   dogType: string;
@@ -24,7 +24,6 @@ export interface DogListCardProps {
   paramsName?: string;
   lostDogStatus?: string;
   disabled?: boolean;
-  dogList?: Array<any>;
   showLikeButton?: boolean;
   onAction?: (id: string) => void;
   edit?: boolean;

@@ -28,11 +28,11 @@ interface IParams {
 export default async function List({ params }: { params: IParams }) {
   const dogList = await getListById(params);
   const allDogList = await getListing(params as any);
-  const loggedInUser = await getLoggedInUser();
+
+  console.log(dogList);
 
   return (
       <ListingClient
-        loggedInUser={loggedInUser}
         dogList={dogList}
         allDogList={allDogList}
       />

@@ -1,6 +1,7 @@
 "use client";
 
 import Container from "@/app/components/Container";
+import EmptyState from "@/app/components/EmptyState";
 import RelatedDogListCard from "@/app/components/list/RelatedDogListCard";
 import { SafeListing, SafeUser } from "@/app/types";
 import Image from "next/image";
@@ -9,16 +10,18 @@ import { GiFemale, GiMale } from "react-icons/gi";
 
 // TODO: Replace any type 
 interface ListingClientProps {
-  dogList: (SafeListing & { user: SafeUser }) | any;
-  loggedInUser: SafeUser | null;
-  allDogList: SafeListing[] | any;
+  dogList: (SafeListing & { user: SafeUser }) | undefined | null;
+  allDogList: SafeListing[] | undefined;
 }
 
 export default function ListingClient({
   dogList,
-  loggedInUser,
   allDogList
 }: ListingClientProps) {
+
+  if(!dogList){
+    return <EmptyState title='등록된 강아지가없습니다!'/>
+  }
 
   const maleLabel = useMemo(() => {
     switch (dogList.male) {

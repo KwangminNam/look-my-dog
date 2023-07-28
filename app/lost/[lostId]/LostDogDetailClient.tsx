@@ -91,7 +91,7 @@ export default function LostDogDetailClient({
             */}
             <RelatedDogListCard
               getAlLostDogListing={getAllLostDogListing}
-              getDogListing={getDetailLostDog}
+              getLostDogListing={getDetailLostDog}
               dogLabel={dogLabel}
               title="다른 유기견 보기"
             />

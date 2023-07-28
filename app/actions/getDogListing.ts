@@ -16,7 +16,7 @@ export default async function getListing(params: IListingParmas) {
     let query: any = {};
 
     if (dogAge) {
-      query.dogAge = Number(dogAge);
+      query.dogAge = Number(dogAge); 
     }
 
     if (userId) {

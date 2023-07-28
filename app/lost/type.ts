@@ -6,7 +6,7 @@ export interface LostDogTypes {
   kindCd: string;
   colorCd: string;
   age: string;
-  weight: string;
+  weight: string | number | undefined;
   noticeNo: string;
   noticeSdt: string;
   noticeEdt: string;

@@ -14,6 +14,7 @@ import {
   PERSONALTY_DATA
 } from "@/app/components/modal/PostmyDogModal";
 import { SafeListing, SafeUser } from "@/app/types";
+import { DogListing } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -90,7 +91,8 @@ export default function EditClient({
 
   const router = useRouter();
 
-  const onEdit = (data?: any, id?: string) => {
+  const onEdit = (data?: Omit<DogListing , 'id'| 'createdAt' >, id?: string) => {
+    console.log(data);
     axios
       .post(`/api/edit/${id}`, data)
       .then(() => {

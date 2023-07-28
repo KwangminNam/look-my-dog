@@ -40,7 +40,6 @@ export default async function DogList({ searchParams }: DogListProps) {
   const getLoggedInuser = await getLoggedInUser();
   const getDogList:AllDoglistProps[] | undefined = await getListing(searchParams);
   const emptyList = getDogList?.length === 0;
-  
 
   if (emptyList) {
     return (

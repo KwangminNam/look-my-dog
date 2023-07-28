@@ -14,7 +14,7 @@ export interface ModalProps {
   footerContent?: React.ReactElement;
   secondActionLabel?: string;
   disabled?: boolean;
-  stepsLength?: any;
+  stepsLength?: number | string;
   currentStep?: number;
   secondActionOnclick?: () => void;
   closeAction: () => void;
