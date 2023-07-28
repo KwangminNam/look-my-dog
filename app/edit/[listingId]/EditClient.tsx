@@ -36,13 +36,13 @@ export default function EditClient({
   dogList,
 }: ListingClientProps) {
 
+  const [editId, setEditId] = useState("");
+
   if(!dogList){
     return <EmptyState  title='상세 페이지가 존재 하지않습니다.'/>
   }
 
   const defaultPersonality = dogList.personality.map((item: any) => item);
-  const [editId, setEditId] = useState("");
-
 
   const {
     watch,
