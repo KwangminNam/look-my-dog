@@ -3,6 +3,7 @@
 import AgeCounter from "@/app/components/AgeCounter";
 import Button from "@/app/components/Button";
 import Container from "@/app/components/Container";
+import EmptyState from "@/app/components/EmptyState";
 import ImageUpload from "@/app/components/ImageUpload";
 import Input from "@/app/components/Input/Input";
 import PostDogInput from "@/app/components/Input/PostDogInput";
@@ -23,15 +24,25 @@ import { toast } from "react-hot-toast";
 
 
 interface ListingClientProps {
-  dogList: (SafeListing & { user: SafeUser }) | any;
+  dogList: (SafeListing & { user: SafeUser }) | null | undefined;
   loggedInUser: SafeUser | null;
 }
+
+type DogListingWithModifiedProps = Omit<DogListing, "id" | "createdAt"> & {
+  dogMonth: { month: string | null } | null;
+};
 
 export default function EditClient({
   dogList,
 }: ListingClientProps) {
+
+  if(!dogList){
+    return <EmptyState  title='상세 페이지가 존재 하지않습니다.'/>
+  }
+
   const defaultPersonality = dogList.personality.map((item: any) => item);
   const [editId, setEditId] = useState("");
+
 
   const {
     watch,
@@ -53,6 +64,16 @@ export default function EditClient({
       desc: dogList.desc
     }
   });
+  const personality = watch("personality") || [];
+  const dogAge = watch("dogAge");
+  const monthValue = watch("dogMonth");
+  const dogType = watch("dogType");
+  const imageSrc = watch("imageSrc");
+  const male = watch("male");
+  const router = useRouter();
+
+  console.log(monthValue);
+  console.log(dogList.dogMonth)
 
   const setCustumValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -82,16 +103,7 @@ export default function EditClient({
   };
 
 
-  const personality = watch("personality") || [];
-  const dogAge = watch("dogAge");
-  const monthValue = watch("dogMonth");
-  const dogType = watch("dogType");
-  const imageSrc = watch("imageSrc");
-  const male = watch("male");
-
-  const router = useRouter();
-
-  const onEdit = (data?: Omit<DogListing , 'id'| 'createdAt' >, id?: string) => {
+  const onEdit = (data?: DogListingWithModifiedProps, id?: string) => {
     console.log(data);
     axios
       .post(`/api/edit/${id}`, data)
@@ -172,11 +184,11 @@ export default function EditClient({
                     ))}
                   </div>
                   <AgeCounter
-                      value={dogAge}
-                      showMonth={monthValue}
-                      onMonthChange={(month) => setCustumValue("dogMonth", month)}
-                      onChange={(age) => setCustumValue("dogAge", age)}
-                    />
+                    value={dogAge}
+                    showMonth={monthValue}
+                    onMonthChange={(month) => setCustumValue("dogMonth", month)}
+                    onChange={(age) => setCustumValue("dogAge", age)}
+                  />
                 </div>
               </div>
               <div className="my-14">
