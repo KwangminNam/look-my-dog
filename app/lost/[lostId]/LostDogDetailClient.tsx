@@ -20,7 +20,7 @@ export default function LostDogDetailClient({
   getAllLostDogListing
 }: LostDogDetailClientProps) {
   const dogLabel = getDetailLostDog.kindCd.replaceAll("[개]", "");
-
+  
   const maleLabel = useMemo(() => {
     switch (getDetailLostDog.sexCd) {
       case "남자":
@@ -54,6 +54,7 @@ export default function LostDogDetailClient({
             <div className="py-11">
               <h2 className="text-4xl mb-3 flex gap-2">
                 {dogLabel} <span>{maleLabel}</span>
+                <strong>{getDetailLostDog.weight}</strong>
               </h2>
               <div>
                 <p className="text-3xl">{getDetailLostDog.age}</p>

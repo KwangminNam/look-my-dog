@@ -11,8 +11,6 @@ type Props = {
 export async function generateMetadata({ params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // read route params
-  const id = params.lostId
 
   // fetch data
   const getAllLostDogListing: LostDogTypes[] = await getLostDogList()
@@ -22,7 +20,6 @@ export async function generateMetadata({ params, searchParams }: Props,
     title: "룩마독 | 유기견 | " + getDetailLostDog?.kindCd,
   }
 }
-
 interface IParams {
   lostId?: string;
 }

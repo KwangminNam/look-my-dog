@@ -86,7 +86,8 @@ export default function ListingClient({
                 <span>{maleLabel}</span>
               </h2>
               <span className="text-xl text-neutral-500">
-                {dogList.dogAge}살 {dogList.dogMonth && dogList.dogMonth}
+                {dogList.dogAge === 0 ? null : dogList.dogAge+'살'}
+                {dogList.dogMonth && dogList.dogMonth}
               </span>
               <div className="my-10">
                 <h3 className="text-xl">성격</h3>
