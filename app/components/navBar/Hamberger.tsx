@@ -86,6 +86,8 @@ export default function Hamberger({ loggedInUser }: HambergerMenuProps) {
             md:rounded-2xl
           "
         onClick={setToggleOpen}
+        onBlur={()=>{setIsOpen(false)}}
+        tabIndex={0}
       >
         <AiOutlineMenu size={30} />
         <Avator imgSrc={loggedInUser?.image} />
