@@ -9,6 +9,7 @@ import "./globals.css";
 import { Jua } from "next/font/google";
 import SearchModal from "./components/modal/SearchModal";
 import ToasterProvider from "./Provider/ToasterProvider";
+import { Analytics } from '@vercel/analytics/react';
 
 const jua = Jua({ subsets: ["latin"], weight: "400" });
 export const metadata = {
@@ -32,6 +33,7 @@ export default async function RootLayout({
         <PostmyDogModal />
         <NavBar loggedInUser={loggedInUser} />
         <div className="pb-20 pt-28">{children}</div>
+        <Analytics/>
       </body>
     </html>
   );
